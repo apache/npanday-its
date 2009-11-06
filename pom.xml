@@ -70,5 +70,12 @@ under the License.
   <properties>
     <npanday.version>${project.version}</npanday.version>
   </properties>
+  
+  <scm> 
+    <url>https://npanday.svn.codeplex.com/svn/npanday-its/trunk</url>  
+    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk</connection>  
+    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk</developerConnection>  
+  </scm> 
+  
 </project>
 
