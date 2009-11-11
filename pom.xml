@@ -71,11 +71,11 @@
   </scm> 
   
   <distributionManagement>
-    <snapshotRepostiory>
+    <snapshotRepository>
       <id>${snapshots}</id>
       <name>${snapshots}</name>
       <url>${url.deploy}</url>
-    </snapshotRepostiory>
+    </snapshotRepository>
   </distributionManagement>
 
 </project>
