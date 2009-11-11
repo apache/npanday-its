@@ -69,4 +69,13 @@
     <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</connection>  
     <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</developerConnection>  
   </scm> 
+  
+  <distributionManagement>
+    <snapshotRepostiory>
+      <id>${snapshots}</id>
+      <name>${snapshots}</name>
+      <url>${url.deploy}</url>
+    </snapshotRepostiory>
+  </distributionManagement>
+
 </project>
