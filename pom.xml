@@ -81,7 +81,7 @@
       <id>${snapshots}</id>
       <name>${snapshots}</name>
       <url>${url.snapshots}</url>
-      <layout>legacy</layout>
+      <layout>default</layout>
     </snapshotRepository>
   </distributionManagement>
 
