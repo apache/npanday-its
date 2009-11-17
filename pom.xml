@@ -4,7 +4,6 @@
   <groupId>npanday.its</groupId>
   <artifactId>npanday-its</artifactId>
   <version>1.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
 
   <name>NPanday Integration Tests Parent</name>
 
@@ -44,9 +43,16 @@
             </property>
           </systemProperties>
         </configuration>
+      </plugin>	  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+		  <source>1.5</source>
+		  <target>1.5</target>
+        </configuration>
       </plugin>
-	  
-    </plugins>
+	</plugins>
   </build>
   <dependencies>
     <dependency>
@@ -70,20 +76,4 @@
     <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</developerConnection>  
   </scm> 
   
-<distributionManagement>
-    <repository>
-      <id>${releases}</id>
-      <name>${releases}</name>
-      <url>${url.releases}</url>
-      <layout>default</layout>
-    </repository>
-    <snapshotRepository>
-      <id>${snapshots}</id>
-      <name>${snapshots}</name>
-      <url>${url.snapshots}</url>
-      <layout>default</layout>
-    </snapshotRepository>
-  </distributionManagement>
-
-
 </project>
