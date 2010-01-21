@@ -16,6 +16,7 @@
       <plugin>
         <groupId>npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
+        <version>${npanday.version}</version>
         <extensions>true</extensions>
         <configuration>
           <includeSources>

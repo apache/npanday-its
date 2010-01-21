@@ -16,6 +16,7 @@
       <plugin>
         <groupId>npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
+        <version>${npanday.version}</version>
         <extensions>true</extensions>
         <configuration>
           <includeSources>
@@ -29,6 +30,7 @@
       <plugin>
         <groupId>npanday.plugin</groupId>
         <artifactId>maven-test-plugin</artifactId>
+        <version>${npanday.version}</version>
         <extensions>true</extensions>
         <configuration>
           <integrationTest>true</integrationTest>
@@ -37,6 +39,7 @@
       <plugin>
         <groupId>npanday.plugin</groupId>
         <artifactId>maven-wsdl-plugin</artifactId>
+        <version>${npanday.version}</version>
         <extensions>true</extensions>
         <executions>
           <execution>
