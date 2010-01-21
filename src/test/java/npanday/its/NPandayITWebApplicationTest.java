@@ -27,7 +27,7 @@ public class NPandayITWebApplicationTest
 {
     public NPandayITWebApplicationTest()
     {
-        super( "(1.0,)" ); // 1.0.1+
+        super( "(1.0,)", "[v3.5,)" ); // 1.0.1+
     }
     
     public void testWebApplicationProject()

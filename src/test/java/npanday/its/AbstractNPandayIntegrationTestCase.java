@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -40,9 +41,15 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private boolean skip;
 
+    private String skipReason;
+
+    private static final String NPANDAY_MAX_FRAMEWORK_VERSION_PROPERTY = "npanday.framework.version";
+
     private static final String NPANDAY_VERSION_SYSTEM_PROPERTY = "npanday.version";
 
     private static DefaultArtifactVersion version = checkVersion();
+
+    private static DefaultArtifactVersion frameworkVersion = checkFrameworkVersion();
 
     private VersionRange versionRange;
 
@@ -58,6 +65,20 @@ public abstract class AbstractNPandayIntegrationTestCase
         if ( !versionRange.containsVersion( version ) )
         {
             skip = true;
+            skipReason = "NPanday version " + version + " not in range " + versionRange;
+        }
+    }
+
+    protected AbstractNPandayIntegrationTestCase( String versionRangeStr, String frameworkVersionStr )
+    {
+        this( versionRangeStr );
+
+        VersionRange versionRange = createVersionRange( frameworkVersionStr );
+
+        if ( !versionRange.containsVersion( frameworkVersion ) )
+        {
+            skip = true;
+            skipReason = "Framework version " + frameworkVersion + " not in range " + versionRange;
         }
     }
 
@@ -73,6 +94,48 @@ public abstract class AbstractNPandayIntegrationTestCase
         else
         {
             out.println( "No NPanday version given" );
+        }
+        return version;
+    }
+
+    private static DefaultArtifactVersion checkFrameworkVersion()
+    {
+        DefaultArtifactVersion version = null;
+        String v = System.getProperty( NPANDAY_MAX_FRAMEWORK_VERSION_PROPERTY );
+        if ( v != null )
+        {
+            version = new DefaultArtifactVersion( v );
+            out.println( "Using Framework versions <= " + version );
+        }
+        else
+        {
+            File versions = new File( System.getenv( "systemroot" ) + "\\Microsoft.NET\\Framework" );
+            if ( versions.exists() )
+            {
+                List<DefaultArtifactVersion> frameworkVersions = new ArrayList<DefaultArtifactVersion>();
+                String[] list = versions.list( new java.io.FilenameFilter() {
+                    public boolean accept( File parent, String name )
+                    {
+                        File f= new File( parent, name );
+                        return f.isDirectory() && new File( f, "Mscorlib.dll" ).exists();
+                    }
+                } );
+                if ( list != null && list.length > 0 )
+                {
+                    for ( String frameworkVersion : list )
+                    {
+                        frameworkVersions.add( new DefaultArtifactVersion( frameworkVersion ) );
+                    }
+                    Collections.sort( frameworkVersions );
+                    out.println( "Available framework versions: " + frameworkVersions );
+                    version = frameworkVersions.get( frameworkVersions.size() - 1 );
+                    out.println( "Selected framework version: " + version );
+                }
+            }
+            if ( version == null )
+            {
+                out.println( "No Framework version given - attempting to use all" );
+            }
         }
         return version;
     }
@@ -105,7 +168,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         if ( skip )
         {
-            out.println( " Skipping (version " + version + " not in range " + versionRange + ")" );
+            out.println( " Skipping (" + skipReason + ")" );
             return;
         }
 
