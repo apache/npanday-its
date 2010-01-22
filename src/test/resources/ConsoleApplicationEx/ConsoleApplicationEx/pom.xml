@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns="http://maven.apache.org/POM/4.0.0">
   <parent>
     <artifactId>ConsoleApplicationEx-parent</artifactId>
     <groupId>NPanday.IT</groupId>
@@ -19,7 +20,7 @@
         <version>${npanday.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <frameworkVersion>3.5</frameworkVersion>
+          <frameworkVersion>2.0.50727</frameworkVersion>
           <includeSources>
             <includeSource>Program.cs</includeSource>
             <includeSource>Properties\AssemblyInfo.cs</includeSource>
