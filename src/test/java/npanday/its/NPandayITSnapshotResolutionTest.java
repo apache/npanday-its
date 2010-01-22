@@ -42,12 +42,11 @@ public class NPandayITSnapshotResolutionTest
             new File( testDir, getAssemblyFile( "test-unique-snapshot", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-unique-snapshot-test", "1.0-SNAPSHOT",
                                                                         "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "test-assemblies/" +
-            getAssemblyFile( "test-unique-snapshot", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "test-assemblies/" +
-            getAssemblyFile( "test-unique-snapshot-test", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "test-assemblies/" +
-            getAssemblyFile( "test-snapshot", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/test-unique-snapshot.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/test-unique-snapshot-test.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "target/test-assemblies/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
@@ -65,12 +64,11 @@ public class NPandayITSnapshotResolutionTest
                                                                         "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-non-unique-snapshot-test", "1.0-SNAPSHOT",
                                                                         "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "test-assemblies/" +
-            getAssemblyFile( "test-non-unique-snapshot", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "test-assemblies/" +
-            getAssemblyFile( "test-non-unique-snapshot-test", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "test-assemblies/" +
-            getAssemblyFile( "test-snapshot", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/test-non-unique-snapshot.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/test-non-unique-snapshot-test.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "target/test-assemblies/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
