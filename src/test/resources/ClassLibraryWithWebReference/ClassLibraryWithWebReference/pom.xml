@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns="http://maven.apache.org/POM/4.0.0">
   <parent>
     <artifactId>ClassLibraryWithWebReference-parent</artifactId>
     <groupId>NPanday.ITs.ClassLibraryWithWebReference</groupId>
@@ -16,6 +17,7 @@
       <plugin>
         <groupId>npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
+        <version>${npanday.version}</version>
         <extensions>true</extensions>
         <configuration>
           <frameworkVersion>2.0.50727</frameworkVersion>
@@ -28,7 +30,7 @@
       <plugin>
         <groupId>npanday.plugin</groupId>
         <artifactId>maven-wsdl-plugin</artifactId>
-        <extensions>true</extensions>
+        <version>${npanday.version}</version>
         <executions>
           <execution>
             <goals>
