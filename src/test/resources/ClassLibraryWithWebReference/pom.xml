@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>NPanday.IT</groupId>
+  <groupId>NPanday.ITs.ClassLibraryWithWebReference</groupId>
   <artifactId>ClassLibraryWithWebReference-parent</artifactId>
   <packaging>pom</packaging>
-  <name>NPanday.IT : ClassLibraryWithWebReference-parent</name>
+  <name>NPanday.ITs.ClassLibraryWithWebReference : ClassLibraryWithWebReference-parent</name>
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>ClassLibraryWithWebReference</module>
