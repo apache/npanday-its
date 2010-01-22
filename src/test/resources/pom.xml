@@ -22,6 +22,7 @@
   <groupId>NPanday.ITs</groupId>
   <artifactId>NPanday.ITs.Parent</artifactId>
   <version>1-SNAPSHOT</version>
+  <packaging>pom</packaging>
   <build>
     <pluginManagement>
       <plugins>
