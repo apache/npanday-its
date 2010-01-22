@@ -17,8 +17,6 @@ package npanday.its;
  */
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,11 +32,6 @@ import org.apache.maven.it.Verifier;
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
 {
-    /**
-     * Save System.out for progress reports etc.
-     */
-    private static PrintStream out = System.out;
-
     private boolean skip;
 
     private String skipReason;
@@ -51,8 +44,6 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static DefaultArtifactVersion frameworkVersion = checkFrameworkVersion();
 
-    private VersionRange versionRange;
-
     protected AbstractNPandayIntegrationTestCase()
     {
         this( "(0,)" );
@@ -60,7 +51,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected AbstractNPandayIntegrationTestCase( String versionRangeStr )
     {
-        versionRange = createVersionRange( versionRangeStr );
+        VersionRange versionRange = createVersionRange( versionRangeStr );
 
         if ( !versionRange.containsVersion( version ) )
         {
@@ -89,11 +80,11 @@ public abstract class AbstractNPandayIntegrationTestCase
         if ( v != null )
         {
             version = new DefaultArtifactVersion( v );
-            out.println( "Using NPanday version " + version );
+            System.out.println( "Using NPanday version " + version );
         }
         else
         {
-            out.println( "No NPanday version given" );
+            System.out.println( "No NPanday version given" );
         }
         return version;
     }
@@ -105,7 +96,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         if ( v != null )
         {
             version = new DefaultArtifactVersion( v );
-            out.println( "Using Framework versions <= " + version );
+            System.out.println( "Using Framework versions <= " + version );
         }
         else
         {
@@ -119,7 +110,8 @@ public abstract class AbstractNPandayIntegrationTestCase
                         File f = new File( parent, name );
                         // Mscorlib.dll can be used to detect 2.0 SDK, Microsoft.CompactFramework.Build.Tasks.dll for 3.5 SDK
                         // Having just the runtime (without these files) is not sufficient
-                        return f.isDirectory() && ( new File( f, "Mscorlib.dll" ).exists() || new File( f, "Microsoft.CompactFramework.Build.Tasks.dll" ).exists() );
+                        return f.isDirectory() && ( new File( f, "Mscorlib.dll" ).exists() ||
+                            new File( f, "Microsoft.CompactFramework.Build.Tasks.dll" ).exists() );
                     }
                 } );
                 if ( list != null && list.length > 0 )
@@ -129,24 +121,17 @@ public abstract class AbstractNPandayIntegrationTestCase
                         frameworkVersions.add( new DefaultArtifactVersion( frameworkVersion ) );
                     }
                     Collections.sort( frameworkVersions );
-                    out.println( "Available framework versions: " + frameworkVersions );
+                    System.out.println( "Available framework versions: " + frameworkVersions );
                     version = frameworkVersions.get( frameworkVersions.size() - 1 );
-                    out.println( "Selected framework version: " + version );
+                    System.out.println( "Selected framework version: " + version );
                 }
             }
             if ( version == null )
             {
-                out.println( "No Framework version given - attempting to use all" );
+                System.out.println( "No Framework version given - attempting to use all" );
             }
         }
         return version;
-    }
-
-    protected boolean matchesVersionRange( String versionRangeStr )
-    {
-        VersionRange versionRange = createVersionRange( versionRangeStr );
-
-        return versionRange.containsVersion( version );
     }
 
     private static VersionRange createVersionRange( String versionRangeStr )
@@ -158,7 +143,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
         catch ( InvalidVersionSpecificationException e )
         {
-            throw (RuntimeException) new IllegalArgumentException( "Invalid version range: " + versionRangeStr ).initCause( e );
+            throw new RuntimeException( "Invalid version range: " + versionRangeStr + " - " + e.getMessage(), e );
         }
         return versionRange;
     }
@@ -166,22 +151,22 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void runTest()
         throws Throwable
     {
-        out.print( getITName() + "(" + getName() + ").." );
+        System.out.print( getITName() + "(" + getName() + ").." );
 
         if ( skip )
         {
-            out.println( " Skipping (" + skipReason + ")" );
+            System.out.println( " Skipping (" + skipReason + ")" );
             return;
         }
 
         try
         {
             super.runTest();
-            out.println( " Ok" );
+            System.out.println( " Ok" );
         }
         catch ( Throwable t )
         {
-            out.println( " Failure" );
+            System.out.println( " Failure" );
             throw t;
         }
     }
