@@ -29,6 +29,10 @@
               <name>npanday.version</name>
               <value>${npanday.version}</value>
             </property>
+            <property>
+              <name>npanday.version.force</name>
+              <value>${npanday.version.force}</value>
+            </property>
           </systemProperties>
         </configuration>
       </plugin>
