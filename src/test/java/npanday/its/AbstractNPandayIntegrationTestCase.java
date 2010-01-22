@@ -43,6 +43,8 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static DefaultArtifactVersion frameworkVersion = checkFrameworkVersion();
 
+    private static boolean forceVersion = Boolean.valueOf( System.getProperty( "npanday.version.force", "false" ) );
+
     protected AbstractNPandayIntegrationTestCase()
     {
         this( "(0,)" );
@@ -52,7 +54,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         VersionRange versionRange = createVersionRange( versionRangeStr );
 
-        if ( !versionRange.containsVersion( version ) )
+        if ( !versionRange.containsVersion( version ) && !forceVersion )
         {
             skip = true;
             skipReason = "NPanday version " + version + " not in range " + versionRange;
@@ -65,7 +67,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         VersionRange versionRange = createVersionRange( frameworkVersionStr );
 
-        if ( !versionRange.containsVersion( frameworkVersion ) )
+        if ( !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
         {
             skip = true;
             skipReason = "Framework version " + frameworkVersion + " not in range " + versionRange;
