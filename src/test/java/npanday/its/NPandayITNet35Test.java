@@ -35,8 +35,8 @@ public class NPandayITNet35Test
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/Net35Project" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "Net35Project/" +
-            getAssemblyFile( "Net35Project", "1.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "ClassLibrary1/" +
+            getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
