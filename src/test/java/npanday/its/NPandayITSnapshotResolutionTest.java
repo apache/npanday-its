@@ -1,10 +1,5 @@
 package npanday.its;
 
-import java.io.File;
-
-import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
-
 /*
  * Copyright 2010
  *
@@ -20,6 +15,11 @@ import org.apache.maven.it.util.ResourceExtractor;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import java.io.File;
+
+import org.apache.maven.it.Verifier;
+import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayITSnapshotResolutionTest
     extends AbstractNPandayIntegrationTestCase
