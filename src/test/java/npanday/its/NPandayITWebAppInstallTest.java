@@ -18,7 +18,6 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
@@ -29,14 +28,15 @@ public class NPandayITWebAppInstallTest
     {
         super( "(1.0,)", "[v3.5,)" ); // 1.0.1+
     }
-    
+
     public void testWebAppInstall()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/WebAppExample" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "WebAppExample/" + getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "WebAppExample/" +
+            getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

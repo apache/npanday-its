@@ -18,7 +18,6 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
@@ -29,7 +28,7 @@ public class NPandayITWithResourceFileTest
     {
         super( "(1.0,)" ); // 1.0.1+
     }
-    
+
     public void testWithResourceFile()
         throws Exception
     {

@@ -22,7 +22,6 @@ import java.util.Collections;
 import java.util.List;
 
 import junit.framework.TestCase;
-
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.artifact.versioning.VersionRange;
@@ -104,7 +103,8 @@ public abstract class AbstractNPandayIntegrationTestCase
             if ( versions.exists() )
             {
                 List<DefaultArtifactVersion> frameworkVersions = new ArrayList<DefaultArtifactVersion>();
-                String[] list = versions.list( new java.io.FilenameFilter() {
+                String[] list = versions.list( new java.io.FilenameFilter()
+                {
                     public boolean accept( File parent, String name )
                     {
                         File f = new File( parent, name );

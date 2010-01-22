@@ -18,7 +18,6 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
@@ -29,14 +28,15 @@ public class NPandayIT9903ResGenWithErrorInFileNameTest
     {
         super( "(1.0,)" ); // 1.0.1+
     }
-    
+
     public void testResGenWithErrorInFileName()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/npanday-9903" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "npanday-9903/" + getAssemblyFile( "npanday-9903", "1.0.0", "zip" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "npanday-9903/" +
+            getAssemblyFile( "npanday-9903", "1.0.0", "zip" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

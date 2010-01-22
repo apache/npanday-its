@@ -18,7 +18,6 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
@@ -29,7 +28,7 @@ public class NPandayITWebApplicationTest
     {
         super( "(1.0,)", "[v3.5,)" ); // 1.0.1+
     }
-    
+
     public void testWebApplicationProject()
         throws Exception
     {
@@ -37,6 +36,6 @@ public class NPandayITWebApplicationTest
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "test" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();		
+        verifier.resetStreams();
     }
 }

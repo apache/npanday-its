@@ -18,7 +18,6 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
@@ -29,14 +28,15 @@ public class NPandayITClassLibWithWebRefInstallTest
     {
         super( "(1.0,)" ); // 1.0.1+
     }
-    
+
     public void testClassLibWithWebRefInstall()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/ClassLibraryWithWebReference" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "ClassLibraryWithWebReference/" + getAssemblyFile( "ClassLibraryWithWebReference", "1.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "ClassLibraryWithWebReference/" +
+            getAssemblyFile( "ClassLibraryWithWebReference", "1.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

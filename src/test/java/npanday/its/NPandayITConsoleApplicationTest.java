@@ -18,7 +18,6 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
@@ -29,15 +28,16 @@ public class NPandayITConsoleApplicationTest
     {
         super( "(1.0,)", "[v3.5,)" ); // 1.0.1+
     }
-    
+
     public void testConsoleApplication()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/ConsoleApplicationEx" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "ConsoleApplicationEx/" + getAssemblyFile( "ConsoleApplicationEx", "1.0.0", "exe" ) ).getAbsolutePath() );		
+        verifier.assertFilePresent( new File( testDir, "ConsoleApplicationEx/" +
+            getAssemblyFile( "ConsoleApplicationEx", "1.0.0", "exe" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();		
+        verifier.resetStreams();
     }
 }
