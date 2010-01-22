@@ -116,8 +116,10 @@ public abstract class AbstractNPandayIntegrationTestCase
                 String[] list = versions.list( new java.io.FilenameFilter() {
                     public boolean accept( File parent, String name )
                     {
-                        File f= new File( parent, name );
-                        return f.isDirectory() && new File( f, "Mscorlib.dll" ).exists();
+                        File f = new File( parent, name );
+                        // Mscorlib.dll can be used to detect 2.0 SDK, Microsoft.CompactFramework.Build.Tasks.dll for 3.5 SDK
+                        // Having just the runtime (without these files) is not sufficient
+                        return f.isDirectory() && ( new File( f, "Mscorlib.dll" ).exists() || new File( f, "Microsoft.CompactFramework.Build.Tasks.dll" ).exists();
                     }
                 } );
                 if ( list != null && list.length > 0 )
