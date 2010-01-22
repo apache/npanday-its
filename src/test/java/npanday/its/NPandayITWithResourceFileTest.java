@@ -37,7 +37,7 @@ public class NPandayITWithResourceFileTest
         verifier.executeGoal( "test" );
         verifier.assertFilePresent( new File( testDir, "ClassLibrary1/" +
             getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath() );
-        String path = "ClassLibrary1/assembly-resources/resources/ClassLibrary1.Resource1.resources";
+        String path = "ClassLibrary1/target/assembly-resources/resources/ClassLibrary1.Resource1.resources";
         verifier.assertFilePresent( new File( testDir, path ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
