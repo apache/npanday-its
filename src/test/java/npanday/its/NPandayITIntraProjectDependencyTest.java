@@ -35,7 +35,13 @@ public class NPandayITIntraProjectDependencyTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/IntraProjectDependency" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        //verifier.assertFilePresent( new File( testDir, "npanday-9903/" + getAssemblyFile( "npanday-9903", "1.0.0", "zip" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "ClassLibrary3", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "target/test-assemblies/ClassLibrary1.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "target/test-assemblies/ClassLibrary2.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "target/test-assemblies/ClassLibrary3.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/NUnit.Framework.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
