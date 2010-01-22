@@ -35,13 +35,17 @@ public class NPandayIT11579MissingGroupOrVersionTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPanday.IT11579" );
         Verifier verifier = getVerifier( testDir );
 
-        verifier.executeGoal( "install" );
+        verifier.executeGoal( "package" );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPanday.ITs11579", "1.0-SNAPSHOT",
+                                                                        "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPanday.ITs11579-test", "1.0-SNAPSHOT",
+                                                                        "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testDir, "ClassLibrary1/" + getAssemblyFile( "ClassLibrary1", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+            new File( testDir, "target/test-assemblies/NPanday.ITs11579.dll" ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testDir, "ClassLibrary2/" + getAssemblyFile( "ClassLibrary2", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+            new File( testDir, "target/test-assemblies/NPanday.ITs11579-test.dll" ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testDir, "ClassLibrary2/target/test-assemblies/ClassLibrary1.dll" ).getAbsolutePath() );
+            new File( testDir, "target/test-assemblies/NPanday11579Dependency.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

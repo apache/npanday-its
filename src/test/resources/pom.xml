@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright 2010
   ~
@@ -14,10 +13,7 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
-  -->
-
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-         xmlns="http://maven.apache.org/POM/4.0.0">
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <modelVersion>4.0.0</modelVersion>
   <groupId>NPanday.ITs</groupId>
   <artifactId>NPanday.ITs.Parent</artifactId>
@@ -139,4 +135,7 @@
       </plugins>
     </pluginManagement>
   </build>
+  <modules>
+    <module>NPanday.IT11579</module>
+  </modules>
 </project>
