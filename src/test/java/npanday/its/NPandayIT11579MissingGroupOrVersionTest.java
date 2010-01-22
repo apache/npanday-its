@@ -29,7 +29,7 @@ public class NPandayIT11579MissingGroupOrVersionTest
         super( "[1.1,)" );
     }
 
-    public void testMissingGroupIdAndVersionShouldbeInherited()
+    public void testMissingGroupIdAndVersionShouldBeInherited()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPanday.IT11579" );
@@ -37,7 +37,11 @@ public class NPandayIT11579MissingGroupOrVersionTest
 
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPanday.IT11579", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+            new File( testDir, "ClassLibrary1/" + getAssemblyFile( "ClassLibrary1", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "ClassLibrary2/" + getAssemblyFile( "ClassLibrary2", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "ClassLibrary2/target/test-assemblies/ClassLibrary1.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
