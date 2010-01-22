@@ -26,7 +26,7 @@ public class NPandayIT11579MissingGroupOrVersionTest
 {
     public NPandayIT11579MissingGroupOrVersionTest()
     {
-        super( "[1.0,)" );
+        super( "[1.1,)" );
     }
 
     public void testMissingGroupIdAndVersionShouldbeInherited()
