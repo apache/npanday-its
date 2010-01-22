@@ -17,6 +17,7 @@ package npanday.its;
  */
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,7 @@ import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
+import org.apache.maven.it.util.FileUtils;
 
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
@@ -241,5 +243,11 @@ public abstract class AbstractNPandayIntegrationTestCase
         sb.append( "." );
         sb.append( type );
         return sb.toString();
+    }
+
+    protected void clearRdfCache()
+        throws IOException
+    {
+        FileUtils.deleteDirectory( new File( System.getProperty( "user.home" ), ".m2/uac/rdfRepository" ) );
     }
 }
