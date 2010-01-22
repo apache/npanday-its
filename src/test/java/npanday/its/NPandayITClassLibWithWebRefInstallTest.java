@@ -35,6 +35,9 @@ public class NPandayITClassLibWithWebRefInstallTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/ClassLibraryWithWebReference" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
+        String generatedClass =
+            "ClassLibraryWithWebReference/ClassLibraryWithWebReference/Web References/com.amazon.soap/AmazonSearch.cs";
+        verifier.assertFilePresent( new File( testDir, generatedClass ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, "ClassLibraryWithWebReference/" +
             getAssemblyFile( "ClassLibraryWithWebReference", "1.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
