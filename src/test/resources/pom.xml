@@ -135,7 +135,4 @@
       </plugins>
     </pluginManagement>
   </build>
-  <modules>
-    <module>NPanday.IT11579</module>
-  </modules>
 </project>
