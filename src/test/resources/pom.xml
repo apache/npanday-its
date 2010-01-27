@@ -20,6 +20,14 @@
   <version>1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <build>
+    <plugins>
+      <!-- all projects need the extensions loaded -->
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
     <pluginManagement>
       <plugins>
         <plugin>
