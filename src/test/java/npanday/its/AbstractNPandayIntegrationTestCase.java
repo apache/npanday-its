@@ -230,6 +230,11 @@ public abstract class AbstractNPandayIntegrationTestCase
         return "target/" + buildDirectory + "/" + fileName;
     }
 
+    protected String getAssemblyFile( String assemblyName, String type )
+    {
+        return getAssemblyFile( assemblyName, null, type, null );
+    }
+
     protected String getAssemblyFile( String assemblyName, String version, String type )
     {
         return getAssemblyFile( assemblyName, version, type, null );
