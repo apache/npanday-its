@@ -38,6 +38,8 @@ public class NPandayIT0021VBTest
 		verifier.executeGoal( "install" );
 		verifier.assertFilePresent( new File( testDir + "/" +
 			getAssemblyFile( "NPandayIT0021", null, "dll", null ) ).getAbsolutePath() );
+		verifier.assertFilePresent( new File( testDir + "/" +
+		    getAssemblyFile( "assembly-resources/resource/fix", null, "resources", null) ).getAbsolutePath() );
 		verifier.verifyErrorFreeLog();
 		verifier.resetStreams();
     }

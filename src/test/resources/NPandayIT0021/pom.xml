@@ -11,16 +11,32 @@
   <artifactId>NPandayIT0021</artifactId>  
   <packaging>library</packaging>  
   <build> 
-    <sourceDirectory>src/main/vb</sourceDirectory>  
+    <sourceDirectory>./</sourceDirectory>  
     <plugins> 
       <plugin> 
         <groupId>npanday.plugin</groupId>  
         <artifactId>maven-compile-plugin</artifactId>  
         <extensions>true</extensions>  
         <configuration> 
-          <language>VB</language> 
+          <language>VB</language> 		  
+          <includeSources>
+            <includeSource>it0021.vb</includeSource>
+          </includeSources>
         </configuration> 
       </plugin>
+	  <plugin>
+	    <groupId>npanday.plugin</groupId>
+		<artifactId>maven-resgen-plugin</artifactId>
+		<extensions>true</extensions>
+		<configuration>
+		  <embeddedResources>
+		    <resource>
+		      <sourceFile>src/main/resources/resgen/fix.txt</sourceFile>
+			</resource>
+		  </embeddedResources>
+		</configuration>
+	  </plugin>	  
     </plugins> 
   </build> 
 </project>
+
