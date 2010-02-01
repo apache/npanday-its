@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project> 
+  <modelVersion>4.0.0</modelVersion>  
+  <parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>    
+  <groupId>It0002</groupId>  
+  <artifactId>It0002</artifactId>  
+  <packaging>module</packaging>  
+  <build> 
+    <sourceDirectory>IT/src/main/csharp</sourceDirectory>  
+    <plugins> 
+      <plugin> 
+        <groupId>npanday.plugin</groupId>  
+        <artifactId>maven-compile-plugin</artifactId>  
+        <extensions>true</extensions> 
+      </plugin> 
+    </plugins> 
+  </build> 
+</project>
