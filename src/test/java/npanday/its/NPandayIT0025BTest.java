@@ -22,26 +22,23 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
-public class NPandayIT0007XSDVerification
+public class NPandayIT0025BTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0007XSDVerification()
+    public NPandayIT0025BTest()
     {
         super( "(1.1,)" );
     }
 
-    public void testIT0007InstalledXSD()
+    public void testIT0025NetModuleB()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0007" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0025/it" );
         Verifier verifier = getVerifier( testDir );
 		verifier.executeGoal( "install" );
 		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0007", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-			
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0007/generated-resources/registry-config", null, "xsd", null ) ).getAbsolutePath() );
-			
+			getAssemblyFile( "It0001", null, "netmodule", null ) ).getAbsolutePath() );
+		
 		verifier.verifyErrorFreeLog();
 		verifier.resetStreams();
     }

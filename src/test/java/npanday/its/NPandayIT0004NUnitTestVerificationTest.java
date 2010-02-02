@@ -22,22 +22,29 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
-public class NPandayIT0025Test
+public class NPandayIT0004NUnitTestVerificationTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0025Test()
+    public NPandayIT0004NUnitTestVerificationTest()
     {
         super( "(1.1,)" );
     }
 
-    public void testIT0025NetModule()
+    public void testIT0004NUnitVerification()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0025" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0004" );
         Verifier verifier = getVerifier( testDir );
 		verifier.executeGoal( "install" );
+		
 		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0025", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+			getAssemblyFile( "NPandayIT0004-test", "0.0.0.0", "dll", null ) ).getAbsolutePath() );
+
+		verifier.assertFilePresent( new File( testDir + "/" +
+			getAssemblyFile( "nunit-reports/TEST-NPandayIT0004-1-SNAPSHOT", null, "xml", null ) ).getAbsolutePath() );	
+		
+		verifier.assertFilePresent( new File( testDir + "/" +
+			getAssemblyFile( "test-assemblies/NUnit.Framework", null, "dll", null ) ).getAbsolutePath() );
 			
 		verifier.verifyErrorFreeLog();
 		verifier.resetStreams();

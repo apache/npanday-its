@@ -22,29 +22,25 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
-public class NPandayIT0004NUnitTestVerification
+public class NPandayIT0007XSDVerificationTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0004NUnitTestVerification()
+    public NPandayIT0007XSDVerificationTest()
     {
         super( "(1.1,)" );
     }
 
-    public void testIT0004NUnitVerification()
+    public void testIT0007InstalledXSD()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0004" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0007" );
         Verifier verifier = getVerifier( testDir );
 		verifier.executeGoal( "install" );
-		
 		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0004-test", "0.0.0.0", "dll", null ) ).getAbsolutePath() );
-
+			getAssemblyFile( "NPandayIT0007", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+			
 		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0004/nunit-reports/TEST-NPandayIT0004-1-SNAPSHOT", null, "xml", null ) ).getAbsolutePath() );	
-		
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0004/test-assemblies/NUnit.Framework", null, "dll", null ) ).getAbsolutePath() );
+			getAssemblyFile( "generated-resources/registry-config", null, "xsd", null ) ).getAbsolutePath() );
 			
 		verifier.verifyErrorFreeLog();
 		verifier.resetStreams();
