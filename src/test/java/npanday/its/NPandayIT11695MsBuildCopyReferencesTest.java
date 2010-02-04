@@ -29,7 +29,7 @@ public class NPandayIT11695MsBuildCopyReferencesTest
         super( "(1.1,)" );
     }
 
-    public void testMsBuildErrorsHandled()
+    public void testMsBuildCopyReferences()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT11695" );
