@@ -38,8 +38,8 @@ public class NPandayIT11695MsBuildCopyReferencesTest
         verifier.executeGoal( "compile" );
         verifier.assertFilePresent(
             new File( testDir + "/.references/test/test-snapshot-1.0-SNAPSHOT/test-snapshot.dll" ).getAbsolutePath() );
-        verifier.assertFilePresent(
-            new File( testDir + "/" + getAssemblyFile( "NPandayIT11695", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir + "/bin/Debug/NPandayIT11695.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir + "/bin/Debug/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
