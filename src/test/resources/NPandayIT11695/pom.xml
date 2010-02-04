@@ -24,7 +24,7 @@
   </parent>
   <groupId>NPanday.IT11695</groupId>
   <artifactId>NPandayIT11695</artifactId>
-  <Version>1.0-SNAPSHOT</Version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <build>
     <sourceDirectory>./</sourceDirectory>
