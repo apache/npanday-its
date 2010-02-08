@@ -1,6 +1,6 @@
 namespace NPanday.IT {
 
-public class Main {
+public class Lib {
     private It0002 it;
 }
 }

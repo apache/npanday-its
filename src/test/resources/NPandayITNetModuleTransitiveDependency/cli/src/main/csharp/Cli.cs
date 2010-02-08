@@ -1,6 +1,10 @@
 namespace NPanday.IT {
 
 public class Cli {
-    private Main main;
+    private Lib lib;
+
+	public static void Main () { 
+		System.Console.Write("Hello!!!");
+	}
 }
 }
