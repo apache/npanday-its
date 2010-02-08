@@ -29,7 +29,7 @@ public class NPandayIT0001VerifyInstallatioinTest
         super( "[1.1,)" );
     }
 
-    public void testInstalledArtifact()
+    public void testCompiler()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0001" );
