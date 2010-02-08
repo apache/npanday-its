@@ -27,7 +27,7 @@ public class NPandayIT0003Test
 {
     public NPandayIT0003Test()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
     public void testNetModuleDependencyNotTransitive()
@@ -46,8 +46,6 @@ public class NPandayIT0003Test
         testModuleDir = new File( testDir, "library" );
         verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
-                                                                              null ) ).getAbsolutePath() );
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
@@ -58,8 +56,6 @@ public class NPandayIT0003Test
         verifier.executeGoal( "install" );
         verifier.assertFileNotPresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
                                                                                  null ) ).getAbsolutePath() );
-        verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "cli", "1.0.0.0", "exe", null ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
@@ -74,6 +70,7 @@ public class NPandayIT0003Test
         }
         catch ( VerificationException e )
         {
+            verifier.verifyTextInLog( "The type or namespace name 'It0002' could not be found" );
             verifier.resetStreams();
         }
     }
