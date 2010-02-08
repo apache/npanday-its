@@ -33,7 +33,7 @@
       <groupId>NPandayITNetModuleDependency</groupId>
       <artifactId>dependency</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <type>library</type>
+      <type>module</type>
     </dependency>
   </dependencies>
   <build>

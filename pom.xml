@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>npanday.its</groupId>
@@ -58,7 +59,7 @@
             </property>
           </systemProperties>
         </configuration>
-      </plugin>      
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -84,13 +85,13 @@
   <properties>
     <npanday.version>${project.version}</npanday.version>
   </properties>
-  
-  <scm> 
-    <url>https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</url>  
-    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</connection>  
-    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</developerConnection>  
-  </scm> 
-  
+
+  <scm>
+    <url>https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</url>
+    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</connection>
+    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</developerConnection>
+  </scm>
+
   <profiles>
     <profile>
       <id>run-its</id>
@@ -101,6 +102,9 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <skip>false</skip>
+              <excludes>
+                <exclude>**/NPandayIT0002Test.*</exclude>
+              </excludes>
             </configuration>
           </plugin>
         </plugins>

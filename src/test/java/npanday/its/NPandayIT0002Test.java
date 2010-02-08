@@ -26,7 +26,7 @@ public class NPandayIT0002Test
 {
     public NPandayIT0002Test()
     {
-        super( "[1.1,)" );
+        super( "(1.1,)" );
     }
 
     public void testNetModuleDependency()
@@ -36,8 +36,8 @@ public class NPandayIT0002Test
         File testModuleDir = new File( testDir, "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
+                                                                              null ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
 
