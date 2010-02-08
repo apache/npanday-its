@@ -232,7 +232,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         return getTestSourcesMain( fileName );
     }
 
-    private String getBuildFile( String buildDirectory, String fileName )
+    protected String getBuildFile( String buildDirectory, String fileName )
     {
         return "target/" + buildDirectory + "/" + fileName;
     }
@@ -357,5 +357,10 @@ public abstract class AbstractNPandayIntegrationTestCase
         sb.append( "." );
         sb.append( type );
         return sb.toString();
+    }
+
+    protected String getAssemblyResourceFile( String fileName )
+    {
+        return getBuildFile( "assembly-resources", fileName );
     }
 }

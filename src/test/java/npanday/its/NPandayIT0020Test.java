@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0020Test
@@ -27,18 +26,21 @@ public class NPandayIT0020Test
 {
     public NPandayIT0020Test()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
     public void testIT0020InstalledArtifacts()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0001" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0001", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyResourceFile( "it0020.resx" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyResourceFile( "resource/it0020.resources" ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }
