@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0007XSDVerificationTest
@@ -27,22 +26,24 @@ public class NPandayIT0007XSDVerificationTest
 {
     public NPandayIT0007XSDVerificationTest()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testIT0007InstalledXSD()
+    public void testGenerateXsdFromXml()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0007" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0007", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-			
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "generated-resources/registry-config", null, "xsd", null ) ).getAbsolutePath() );
-			
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "install" );
+
+        verifier.assertFilePresent(
+            new File( testDir, "target/generated-resources/registry-config.xsd" ).getAbsolutePath() );
+
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0007", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
+        assertClassPresent( assembly, "registryconfig" );
+
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }
