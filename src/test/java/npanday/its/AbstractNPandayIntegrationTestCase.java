@@ -18,6 +18,8 @@ package npanday.its;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +31,11 @@ import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
+import org.apache.maven.it.util.cli.CommandLineException;
+import org.apache.maven.it.util.cli.CommandLineUtils;
+import org.apache.maven.it.util.cli.Commandline;
+import org.apache.maven.it.util.cli.StreamConsumer;
+import org.apache.maven.it.util.cli.WriterStreamConsumer;
 
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
@@ -254,5 +261,67 @@ public abstract class AbstractNPandayIntegrationTestCase
         throws IOException
     {
         FileUtils.deleteDirectory( new File( System.getProperty( "user.home" ), ".m2/uac/rdfRepository" ) );
+    }
+
+    protected void assertClassPresent( String assembly, String className )
+        throws VerificationException
+    {
+        String output = execute( "ildasm", "/noil /text " + assembly );
+
+        boolean foundClasses = false;
+        for ( String line : output.split( "\n" ) )
+        {
+            if ( line.startsWith( "//~~" ) )
+            {
+                foundClasses = !foundClasses;
+            }
+            else if ( foundClasses )
+            {
+                if ( line.startsWith( className ) )
+                {
+                    return;
+                }
+            }
+        }
+        System.out.println( output );
+        fail( "Unable to find class " + className + " in output" );
+    }
+
+    private String execute( String executable, String args )
+        throws VerificationException
+    {
+        try
+        {
+            Commandline cli = new Commandline();
+            cli.setExecutable( executable );
+            cli.createArgument().setLine( args );
+
+            Writer logWriter = new StringWriter();
+
+            StreamConsumer out = new WriterStreamConsumer( logWriter );
+
+            StreamConsumer err = new WriterStreamConsumer( logWriter );
+
+            System.out.println( "Command: " + Commandline.toString( cli.getCommandline() ) );
+
+            int ret = CommandLineUtils.executeCommandLine( cli, out, err );
+
+            logWriter.close();
+
+            if ( ret > 0 )
+            {
+                throw new VerificationException( "Exit code: " + ret );
+            }
+
+            return logWriter.toString();
+        }
+        catch ( CommandLineException e )
+        {
+            throw new VerificationException( e );
+        }
+        catch ( IOException e )
+        {
+            throw new VerificationException( e );
+        }
     }
 }
