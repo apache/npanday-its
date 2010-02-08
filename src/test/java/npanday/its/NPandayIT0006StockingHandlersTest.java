@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0006StockingHandlersTest
@@ -28,18 +27,21 @@ public class NPandayIT0006StockingHandlersTest
 {
     public NPandayIT0006StockingHandlersTest()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testStockingHandlers()
+    public void testXsdPlugin()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0006" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0006", "1.0.0.0", "dll", null ) ).getAbsolutePath() );			
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent(
+            new File( testDir, getBuildSourcesGenerated( "StockingHandlers_1_0.cs" ) ).getAbsolutePath() );
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0006", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
+        assertClassPresent( assembly, "stockingHandlersType" );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }
