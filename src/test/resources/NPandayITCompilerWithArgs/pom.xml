@@ -8,7 +8,7 @@
     <version>1-SNAPSHOT</version>
   </parent>
   <groupId>NPandayITCompilerWithArgs</groupId>
-  <artifactId>NPandayIT0001</artifactId>
+  <artifactId>NPandayITCompilerWithArgs</artifactId>
   <packaging>library</packaging>
   <build>
     <sourceDirectory>src/main/csharp</sourceDirectory>
@@ -19,7 +19,7 @@
         <extensions>true</extensions>
         <configuration>
           <includeSources>
-            <includeSource>It0001.cs</includeSource>
+            <includeSource>src/main/csharp/It0001.cs</includeSource>
           </includeSources>
         </configuration>
       </plugin>
