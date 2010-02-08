@@ -266,7 +266,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void assertClassPresent( String assembly, String className )
         throws VerificationException
     {
-        String output = execute( "ildasm", new String[]{"/noil", "/text", assembly} );
+        String output = execute( "ildasm", new String[]{"/classlist", "/noil", "/text", assembly} );
 
         boolean foundClasses = false;
         for ( String line : output.split( "\n" ) )
