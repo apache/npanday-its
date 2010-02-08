@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0004NUnitTestVerificationTest
@@ -27,26 +26,27 @@ public class NPandayIT0004NUnitTestVerificationTest
 {
     public NPandayIT0004NUnitTestVerificationTest()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testIT0004NUnitVerification()
+    public void testNUnitTestsRun()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0004" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0004-test", "0.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.executeGoal( "install" );
 
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "nunit-reports/TEST-NPandayIT0004-1-SNAPSHOT", null, "xml", null ) ).getAbsolutePath() );	
-		
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "test-assemblies/NUnit.Framework", null, "dll", null ) ).getAbsolutePath() );
-			
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPandayIT0004-test", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+
+        verifier.assertFilePresent(
+            new File( testDir, "target/nunit-reports/TEST-NPandayIT0004-1.0-SNAPSHOT.xml" ).getAbsolutePath() );
+
+        File nunitAssembly =
+            new File( testDir, getAssemblyFile( "test-assemblies/NUnit.Framework", "2.2.8.0", "dll", null ) );
+        verifier.assertFilePresent( nunitAssembly.getAbsolutePath() );
+
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }
