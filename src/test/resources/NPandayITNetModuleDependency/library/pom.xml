@@ -30,7 +30,7 @@
   <packaging>library</packaging>
   <dependencies>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>NPandayITNetModuleDependency</groupId>
       <artifactId>dependency</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>library</type>
