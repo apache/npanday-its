@@ -266,7 +266,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void assertClassPresent( String assembly, String className )
         throws VerificationException
     {
-        String output = execute( "ildasm", "/noil /text " + assembly );
+        String output = execute( "ildasm", new String[]{"/noil", "/text", assembly} );
 
         boolean foundClasses = false;
         for ( String line : output.split( "\n" ) )
@@ -287,14 +287,17 @@ public abstract class AbstractNPandayIntegrationTestCase
         fail( "Unable to find class " + className + " in output" );
     }
 
-    private String execute( String executable, String args )
+    private String execute( String executable, String[] args )
         throws VerificationException
     {
         try
         {
             Commandline cli = new Commandline();
             cli.setExecutable( executable );
-            cli.createArgument().setLine( args );
+            for ( String arg : args )
+            {
+                cli.createArgument().setValue( arg );
+            }
 
             Writer logWriter = new StringWriter();
 
