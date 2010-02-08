@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
          xmlns="http://maven.apache.org/POM/4.0.0">
-  <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>NPanday.ITs</groupId>
-    <artifactId>NPanday.ITs.Parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <artifactId>WebAppExample-parent</artifactId>
+    <groupId>NPanday.IT</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>..\pom.xml</relativePath>
   </parent>
-  <groupId>NPanday.IT</groupId>
-  <artifactId>WebAppExample-parent</artifactId>
-  <packaging>pom</packaging>
-  <name>NPanday.IT : WebAppExample-parent</name>
-  <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>WebAppExample</module>
-  </modules>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>WebAppExample</artifactId>
+  <packaging>asp</packaging>
+  <name>NPanday.IT : WebAppExample</name>
+  <build>
+    <sourceDirectory>.</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <version>${npanday.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>2.0.50727</frameworkVersion>
+          <includeSources>
+            <includeSource>Default.aspx.cs</includeSource>
+            <includeSource>Default.aspx.designer.cs</includeSource>
+            <includeSource>Properties\AssemblyInfo.cs</includeSource>
+          </includeSources>
+          <outputDirectory>bin</outputDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

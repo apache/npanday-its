@@ -35,8 +35,7 @@ public class NPandayITWebAppInstallTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/WebAppExample" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "WebAppExample/" +
-            getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
