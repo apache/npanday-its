@@ -283,7 +283,7 @@ public abstract class AbstractNPandayIntegrationTestCase
                 }
             }
         }
-        System.out.println( output );
+        System.err.println( output );
         fail( "Unable to find class " + className + " in output" );
     }
 
@@ -302,18 +302,20 @@ public abstract class AbstractNPandayIntegrationTestCase
 
             StreamConsumer err = new WriterStreamConsumer( logWriter );
 
-            System.out.println( "Command: " + Commandline.toString( cli.getCommandline() ) );
+            System.err.println( "Command: " + Commandline.toString( cli.getCommandline() ) );
 
             int ret = CommandLineUtils.executeCommandLine( cli, out, err );
 
             logWriter.close();
 
+            String output = logWriter.toString();
             if ( ret > 0 )
             {
+                System.err.println( output );
                 throw new VerificationException( "Exit code: " + ret );
             }
 
-            return logWriter.toString();
+            return output;
         }
         catch ( CommandLineException e )
         {
