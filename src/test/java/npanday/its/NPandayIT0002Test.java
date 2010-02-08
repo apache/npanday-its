@@ -36,18 +36,18 @@ public class NPandayIT0002Test
         File testModuleDir = new File( testDir, "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
-                                                                              null ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
 
         testModuleDir = new File( testDir, "library" );
         verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
-                                                                              null ) ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+            new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

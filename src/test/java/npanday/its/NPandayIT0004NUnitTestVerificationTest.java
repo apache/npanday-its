@@ -37,14 +37,13 @@ public class NPandayIT0004NUnitTestVerificationTest
         verifier.executeGoal( "install" );
 
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPandayIT0004-test", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+            new File( testDir, getAssemblyFile( "NPandayIT0004-test", "1.0.0.0", "dll" ) ).getAbsolutePath() );
 
         verifier.assertFilePresent(
             new File( testDir, "target/nunit-reports/TEST-NPandayIT0004-1.0-SNAPSHOT.xml" ).getAbsolutePath() );
 
-        File nunitAssembly =
-            new File( testDir, "test-assemblies/" + getAssemblyFile( "NUnit.Framework", "2.2.8.0", "dll", null ) );
-        verifier.assertFilePresent( nunitAssembly.getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getTestAssemblyFile( "NUnit.Framework", "2.2.8.0", "dll" ) ).getAbsolutePath() );
 
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();

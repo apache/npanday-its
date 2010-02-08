@@ -249,12 +249,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected String getAssemblyFile( String assemblyName, String version, String type, String classifier )
     {
-        StringBuilder sb = new StringBuilder();
-        sb.append( "target/" );
-        sb.append( assemblyName );
-        sb.append( "." );
-        sb.append( type );
-        return sb.toString();
+        return getAssemblyFilePath( "target", assemblyName, type );
     }
 
     protected void clearRdfCache()
@@ -345,5 +340,22 @@ public abstract class AbstractNPandayIntegrationTestCase
         {
             throw new VerificationException( e );
         }
+    }
+
+    protected String getTestAssemblyFile( String artifactId, String version, String type )
+    {
+        String basedir = "target/test-assemblies";
+        return getAssemblyFilePath( basedir, artifactId, type );
+    }
+
+    private String getAssemblyFilePath( String basedir, String artifactId, String type )
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append( basedir );
+        sb.append( "/" );
+        sb.append( artifactId );
+        sb.append( "." );
+        sb.append( type );
+        return sb.toString();
     }
 }

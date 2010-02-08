@@ -35,8 +35,7 @@ public class NPandayIT0001VerifyInstallatioinTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0001" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly =
-            new File( testDir, getAssemblyFile( "NPandayIT0001", "1.0.0.0", "dll", null ) ).getAbsolutePath();
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0001", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
         assertClassPresent( assembly, "It0001" );
         verifier.verifyErrorFreeLog();
