@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0002Test
@@ -27,21 +26,27 @@ public class NPandayIT0002Test
 {
     public NPandayIT0002Test()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testIT0002VerifyInstalledNetModule()
+    public void testNetModuleDependency()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0002" );
-        Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0002", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-		
-		//TODO: add assert file for .netmodule
-		
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleDependency" );
+        Verifier verifier = getVerifier( new File( testDir, "dependency" ) );
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "dependency", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
+
+        verifier = getVerifier( new File( testDir, "library" ) );
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule", null ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }

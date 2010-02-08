@@ -23,9 +23,18 @@
     <artifactId>NPanday.ITs.Parent</artifactId>
     <version>1-SNAPSHOT</version>
   </parent>
-  <groupId>NPandayIT0001</groupId>
-  <artifactId>NPandayIT0001</artifactId>
+  <groupId>NPandayITNetModuleDependency</groupId>
+  <version>1.0-SNAPSHOT</version>
+  <artifactId>library</artifactId>
   <packaging>library</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>dependency</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>module</type>
+    </dependency>
+  </dependencies>
   <build>
     <sourceDirectory>src/main/csharp</sourceDirectory>
     <plugins>
