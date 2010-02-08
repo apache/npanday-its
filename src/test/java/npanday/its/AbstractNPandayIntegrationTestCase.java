@@ -277,7 +277,7 @@ public abstract class AbstractNPandayIntegrationTestCase
             }
             else if ( foundClasses )
             {
-                if ( line.startsWith( className ) )
+                if ( line.startsWith( "// Class: " + className ) )
                 {
                     return;
                 }
