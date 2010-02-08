@@ -18,8 +18,8 @@ package npanday.its;
 
 import java.io.File;
 
-import org.apache.maven.it.Verifier;
 import org.apache.maven.it.VerificationException;
+import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0003Test
@@ -30,15 +30,51 @@ public class NPandayIT0003Test
         super( "(1.1,)" );
     }
 
-    public void testInstalledArtifactforIT0003()
+    public void testNetModuleDependencyNotTransitive()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0003" );
-        Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0003", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        File testDir =
+            ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleTransitiveDependency" );
+        File testModuleDir = new File( testDir, "dependency" );
+        Verifier verifier = getVerifier( testModuleDir );
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
+                                                                              null ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
+
+        testModuleDir = new File( testDir, "library" );
+        verifier = getVerifier( testModuleDir );
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
+                                                                              null ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
+
+        testModuleDir = new File( testDir, "cli" );
+        verifier = getVerifier( testModuleDir );
+        verifier.executeGoal( "install" );
+        verifier.assertFileNotPresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
+                                                                                 null ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testModuleDir, getAssemblyFile( "cli", "1.0.0.0", "exe", null ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
+
+        testModuleDir = new File( testDir, "cli-fail-transitive" );
+        verifier = getVerifier( testModuleDir );
+        try
+        {
+            verifier.executeGoal( "install" );
+            fail( "Should have failed to execute goal" );
+        }
+        catch ( VerificationException e )
+        {
+            verifier.resetStreams();
+        }
     }
 }
