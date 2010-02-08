@@ -266,6 +266,24 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void assertClassPresent( String assembly, String className )
         throws VerificationException
     {
+        if ( !isClassPresent( assembly, className ) )
+        {
+            fail( "Unable to find class " + className + " in assembly " + assembly );
+        }
+    }
+
+    protected void assertClassNotPresent( String assembly, String className )
+        throws VerificationException
+    {
+        if ( isClassPresent( assembly, className ) )
+        {
+            fail( "Found unexpected class " + className + " in assembly " + assembly );
+        }
+    }
+
+    private boolean isClassPresent( String assembly, String className )
+        throws VerificationException
+    {
         String output = execute( "ildasm", new String[]{"/classlist", "/noil", "/text", assembly} );
 
         boolean foundClasses = false;
@@ -279,12 +297,11 @@ public abstract class AbstractNPandayIntegrationTestCase
             {
                 if ( line.startsWith( "// Class " + className ) )
                 {
-                    return;
+                    return true;
                 }
             }
         }
-        System.err.println( output );
-        fail( "Unable to find class " + className + " in output" );
+        return false;
     }
 
     private String execute( String executable, String[] args )
