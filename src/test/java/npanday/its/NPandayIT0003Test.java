@@ -27,10 +27,10 @@ public class NPandayIT0003Test
 {
     public NPandayIT0003Test()
     {
-        super( "[1.1,)" );
+        super( "(1.1,)" );
     }
 
-    public void testNetModuleDependencyNotTransitive()
+    public void testNetModuleDependencyTransitivity()
         throws Exception
     {
         File testDir =
@@ -54,8 +54,10 @@ public class NPandayIT0003Test
         testModuleDir = new File( testDir, "cli" );
         verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
-        verifier.assertFileNotPresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
-                                                                                 null ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
+                                                                              null ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "cli", "1.0.0.0", "exe", null ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
