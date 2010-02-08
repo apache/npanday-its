@@ -33,19 +33,21 @@ public class NPandayIT0002Test
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleDependency" );
-        Verifier verifier = getVerifier( new File( testDir, "dependency" ) );
+        File testModuleDir = new File( testDir, "dependency" );
+        Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "dependency", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+            new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
 
-        verifier = getVerifier( new File( testDir, "library" ) );
+        testModuleDir = new File( testDir, "library" );
+        verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
+        verifier.assertFilePresent( new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule",
+                                                                              null ) ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule", null ) ).getAbsolutePath() );
-        verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
+            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

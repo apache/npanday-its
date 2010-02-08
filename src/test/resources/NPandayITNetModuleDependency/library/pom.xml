@@ -33,7 +33,7 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>dependency</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <type>module</type>
+      <type>library</type>
     </dependency>
   </dependencies>
   <build>
