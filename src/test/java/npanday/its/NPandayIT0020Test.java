@@ -26,10 +26,10 @@ public class NPandayIT0020Test
 {
     public NPandayIT0020Test()
     {
-        super( "[1.1,)" );
+        super( "(1.1,)" );
     }
 
-    public void testIT0020InstalledArtifacts()
+    public void testEmbeddedResources()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
@@ -37,9 +37,13 @@ public class NPandayIT0020Test
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, getAssemblyResourceFile( "it0020.resx" ) ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyResourceFile( "resource/it0020.resources" ) ).getAbsolutePath() );
+            new File( testDir, getAssemblyResourceFile( "resgen/fix.png" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyResourceFile( "resgen/my-prop.x-properties" ) ).getAbsolutePath() );
+
+        // TODO: test that DLL contains the embedded resource, probably by adding a NUnit test case that tries to load it
+
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

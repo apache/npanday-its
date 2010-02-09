@@ -106,6 +106,8 @@
                 <!-- These fail due to NPanday issue #11729 -->
                 <exclude>**/NPandayIT0002Test.*</exclude>
                 <exclude>**/NPandayIT0003Test.*</exclude>
+                <!-- These tests are incomplete due to NPanday issue #10603 -->
+                <exclude>**/NPandayIT0020Test.*</exclude>
               </excludes>
             </configuration>
           </plugin>
