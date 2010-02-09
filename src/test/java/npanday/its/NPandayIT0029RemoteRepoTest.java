@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0029RemoteRepoTest
@@ -27,20 +26,21 @@ public class NPandayIT0029RemoteRepoTest
 {
     public NPandayIT0029RemoteRepoTest()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testVerifyIT0029RemoteRepo()
+    public void testDeployNonSnapshotRemoteRepo()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0029" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "deploy" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0029", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "remoteSnapshotRepo/snapshots/NPandayIT0029/NPandayIT0029/1-SNAPSHOT/NPandayIT0029-1-SNAPSHOT", null, "dll", null ) ).getAbsolutePath() );
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "deploy" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPandayIT0029", "1.0.0.0", "dll" ) ).getAbsolutePath() );
+        String path = "target/remoteSnapshotRepo/snapshots/NPandayIT0029/NPandayIT0029/1.0/NPandayIT0029-1.0";
+        verifier.assertFilePresent( new File( testDir, path + ".dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, path + ".pom" ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }

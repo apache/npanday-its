@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project> 
-  <modelVersion>4.0.0</modelVersion>  
+<project>
+  <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>NPanday.ITs</groupId>
     <artifactId>NPanday.ITs.Parent</artifactId>
     <version>1-SNAPSHOT</version>
-  </parent>  
-  <groupId>NPandayIT0028</groupId>  
-  <artifactId>NPandayIT0028</artifactId>  
-  <packaging>library</packaging>  
-  <build> 
-    <sourceDirectory>src/main/csharp</sourceDirectory>  
-    <plugins> 
-      <plugin> 
-        <groupId>npanday.plugin</groupId>  
-        <artifactId>maven-compile-plugin</artifactId>  
-        <extensions>true</extensions> 
-      </plugin>  
-      <plugin> 
-        <groupId>npanday.plugin</groupId>  
-        <artifactId>maven-deploy-plugin</artifactId> 
-      </plugin> 
-    </plugins> 
-  </build>  
-  <distributionManagement> 
-    <snapshotRepository> 
-      <uniqueVersion>false</uniqueVersion>  
-      <id>snapshot repo</id>  
-      <name>snapshot repo</name>  
-      <url>file://${basedir}/target/remoteSnapshotRepo/snapshots</url>  
-      <layout>default</layout> 
-    </snapshotRepository> 
-  </distributionManagement> 
+  </parent>
+  <groupId>NPandayIT0028</groupId>
+  <artifactId>NPandayIT0028</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>library</packaging>
+  <build>
+    <sourceDirectory>src/main/csharp</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+  <distributionManagement>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>snapshot repo</id>
+      <name>snapshot repo</name>
+      <url>file://${basedir}/target/remoteSnapshotRepo/snapshots</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
