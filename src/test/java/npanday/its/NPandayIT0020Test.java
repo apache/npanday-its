@@ -38,7 +38,7 @@ public class NPandayIT0020Test
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyResourceFile( "resgen/fix.png" ) ).getAbsolutePath() );
+            new File( testDir, getAssemblyResourceFile( "resgen/fix.gif" ) ).getAbsolutePath() );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyResourceFile( "resgen/my-prop.x-properties" ) ).getAbsolutePath() );
 
