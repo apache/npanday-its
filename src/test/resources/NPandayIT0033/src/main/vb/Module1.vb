@@ -1,7 +1,2 @@
-NameSpace NPanday.IT
-Public Class Module1
-    Public Sub Main()
-        
-    End Sub
+Public Class VBClass
 End Class
-End NameSpace

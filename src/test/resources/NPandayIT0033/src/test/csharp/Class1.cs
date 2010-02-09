@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using UIApplication;
 
 namespace NPanday.IT
 {
@@ -12,7 +11,7 @@ namespace NPanday.IT
        [Test]
         public void testd()
         {
-        new Module1();
+            new Module1.VBClass();
             Assert.AreEqual(10, 10);
         }
     }
