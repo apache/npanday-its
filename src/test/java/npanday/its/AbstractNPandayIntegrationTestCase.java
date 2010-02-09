@@ -281,19 +281,11 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         String output = runILDisasm( assembly );
 
-        boolean foundClasses = false;
         for ( String line : output.split( "\n" ) )
         {
-            if ( line.startsWith( "//~~" ) )
+            if ( line.startsWith( ".class " ) && line.trim().endsWith( className ) )
             {
-                foundClasses = !foundClasses;
-            }
-            else if ( foundClasses )
-            {
-                if ( line.startsWith( ".class" ) && line.trim().endsWith( className ) )
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return false;
