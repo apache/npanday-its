@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0036Test
@@ -27,7 +26,7 @@ public class NPandayIT0036Test
 {
     public NPandayIT0036Test()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
     public void testIT0036InstalledArtifacts()
@@ -35,19 +34,41 @@ public class NPandayIT0036Test
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0036" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0036", null, "exe", null ) ).getAbsolutePath() );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0036-test", null, "dll", null ) ).getAbsolutePath() );			
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "test-assemblies/NPandayIT0036", null, "exe", null ) ).getAbsolutePath() );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "test-assemblies/NPandayIT0036-test", null, "dll", null ) ).getAbsolutePath() );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "test-assemblies/NUnit.Framework", null, "dll", null ) ).getAbsolutePath() );
-	
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPandayIT0036", "1.0.0.0", "exe" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPandayIT0036-test", "1.0.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-assemblies/NPandayIT0036", "1.0.0.0",
+                                                                        "exe" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-assemblies/NPandayIT0036-test", "1.0.0.0",
+                                                                        "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-assemblies/NUnit.Framework", "1.0.0.0",
+                                                                        "dll" ) ).getAbsolutePath() );
+
+        verifier.assertFilePresent( new File( testDir, getBuildSourcesMain( "Module1.vb" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getBuildSourcesMain( "folder/Module2.vb" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getBuildSourcesMain( "should-not-be-copied.txt" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getBuildSourcesMain( "should-not-be-copied.xml" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getBuildSourcesMain( "folder/should-not-be-copied-2.txt" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getBuildSourcesMain( "folder/should-not-be-copied-2.xml" ) ).getAbsolutePath() );
+
+        verifier.assertFilePresent( new File( testDir, getTestSourcesMain( "Module1.vb" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getTestSourcesMain( "folder/Module2.vb" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getTestSourcesMain( "should-not-be-copied-test.txt" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getTestSourcesMain( "should-not-be-copied-test.xml" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getTestSourcesMain( "folder/should-not-be-copied-test-2.txt" ) ).getAbsolutePath() );
+        verifier.assertFileNotPresent(
+            new File( testDir, getTestSourcesMain( "folder/should-not-be-copied--test-2.xml" ) ).getAbsolutePath() );
+
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }
