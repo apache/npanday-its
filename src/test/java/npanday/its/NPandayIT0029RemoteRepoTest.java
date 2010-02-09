@@ -37,7 +37,7 @@ public class NPandayIT0029RemoteRepoTest
         verifier.executeGoal( "deploy" );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "NPandayIT0029", "1.0.0.0", "dll" ) ).getAbsolutePath() );
-        String path = "target/remoteSnapshotRepo/snapshots/NPandayIT0029/NPandayIT0029/1.0/NPandayIT0029-1.0";
+        String path = "target/remoteRepo/NPandayIT0029/NPandayIT0029/1.0/NPandayIT0029-1.0";
         verifier.assertFilePresent( new File( testDir, path + ".dll" ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, path + ".pom" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
