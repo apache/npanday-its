@@ -294,8 +294,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private String runILDisasm( String assembly )
         throws VerificationException
     {
-        String output = execute( "ildasm", new String[]{"/text", assembly} );
-        return output;
+        return execute( "ildasm", new String[]{"/text", assembly} );
     }
 
     private String execute( String executable, String[] args )
