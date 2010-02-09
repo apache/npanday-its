@@ -363,4 +363,30 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         return getBuildFile( "assembly-resources", fileName );
     }
+
+    protected void assertResourcePresent( String assembly, String resource )
+        throws VerificationException
+    {
+        if ( !isResourcePresent( assembly, resource ) )
+        {
+            fail( "Unable to find resource " + resource + " in assembly " + assembly );
+        }
+    }
+
+    private boolean isResourcePresent( String assembly, String resource )
+        throws VerificationException
+    {
+        String output = execute( "ildasm", new String[]{"/text", assembly} );
+
+        String assemblyName = assembly.substring( assembly.lastIndexOf( '/' ), assembly.lastIndexOf( '.' ) );
+
+        for ( String line : output.split( "\n" ) )
+        {
+            if ( line.equals( ".mresource public " + assemblyName + "." + resource.replace( '/', '.' ) ) )
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

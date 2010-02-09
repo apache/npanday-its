@@ -36,13 +36,14 @@ public class NPandayIT0020Test
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent(
             new File( testDir, getAssemblyResourceFile( "resgen/fix.gif" ) ).getAbsolutePath() );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyResourceFile( "resgen/my-prop.x-properties" ) ).getAbsolutePath() );
 
-        // TODO: test that DLL contains the embedded resource, probably by adding a NUnit test case that tries to load it
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
+        assertResourcePresent( assembly, "resgen/fix.gif" );
+        assertResourcePresent( assembly, "resgen/my-prop.x-properties" );
 
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
