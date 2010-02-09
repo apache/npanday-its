@@ -279,7 +279,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private boolean isClassPresent( String assembly, String className )
         throws VerificationException
     {
-        String output = execute( "ildasm", new String[]{"/classlist", "/noil", "/text", assembly} );
+        String output = runILDisasm( assembly );
 
         boolean foundClasses = false;
         for ( String line : output.split( "\n" ) )
@@ -290,13 +290,20 @@ public abstract class AbstractNPandayIntegrationTestCase
             }
             else if ( foundClasses )
             {
-                if ( line.startsWith( "// Class " + className ) )
+                if ( line.startsWith( ".class" ) && line.trim().endsWith( className ) )
                 {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    private String runILDisasm( String assembly )
+        throws VerificationException
+    {
+        String output = execute( "ildasm", new String[]{"/text", assembly} );
+        return output;
     }
 
     private String execute( String executable, String[] args )
@@ -376,7 +383,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private boolean isResourcePresent( String assembly, String resource )
         throws VerificationException
     {
-        String output = execute( "ildasm", new String[]{"/text", assembly} );
+        String output = runILDisasm( assembly );
 
         String assemblyName = getAssemblyName( assembly );
 
@@ -408,7 +415,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private boolean hasPublicKey( String assembly )
         throws VerificationException
     {
-        String output = execute( "ildasm", new String[]{"/text", assembly} );
+        String output = runILDisasm( assembly );
 
         boolean insideCorrectAssembly = false;
         for ( String line : output.split( "\n" ) )
