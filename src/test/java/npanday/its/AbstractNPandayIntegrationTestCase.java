@@ -379,11 +379,12 @@ public abstract class AbstractNPandayIntegrationTestCase
         String output = execute( "ildasm", new String[]{"/text", assembly} );
 
         String assemblyName =
-            assembly.substring( assembly.lastIndexOf( File.separatorChar ), assembly.lastIndexOf( '.' ) );
+            assembly.substring( assembly.lastIndexOf( File.separatorChar ) + 1, assembly.lastIndexOf( '.' ) );
 
+        String s = ".mresource public " + assemblyName + "." + resource.replace( '/', '.' );
         for ( String line : output.split( "\n" ) )
         {
-            if ( line.equals( ".mresource public " + assemblyName + "." + resource.replace( '/', '.' ) ) )
+            if ( line.equals( s ) )
             {
                 return true;
             }
