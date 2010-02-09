@@ -35,8 +35,13 @@ public class NPandayIT0033Test
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0033" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPandayIT0033", "1.0.0.0", "exe" ) ).getAbsolutePath() );
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0033", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
+        assertClassPresent( assembly, "VBClass" );
+        String testAssembly =
+            new File( testDir, getTestAssemblyFile( "NPandayIT0033", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( testAssembly );
+        assertClassPresent( testAssembly, "Class1" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
