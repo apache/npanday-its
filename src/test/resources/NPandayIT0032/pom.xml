@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project> 
-  <modelVersion>4.0.0</modelVersion>  
+<project>
+  <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>NPanday.ITs</groupId>
     <artifactId>NPanday.ITs.Parent</artifactId>
     <version>1-SNAPSHOT</version>
-  </parent>    
-  <groupId>NPandayIT0032</groupId>  
-  <artifactId>NPandayIT0032</artifactId>  
-  <packaging>library</packaging>  
-  <dependencies> 
-    <dependency> 
-      <groupId>NUnit</groupId>  
-      <artifactId>NUnit.Framework</artifactId>  
-      <version>2.2.8.0</version>  
-      <type>library</type> 
-    </dependency> 
-  </dependencies>  
-  <build> 
-    <sourceDirectory>src/main/csharp</sourceDirectory>  
-    <testSourceDirectory>src/test</testSourceDirectory>  
-    <plugins> 
-      <plugin> 
-        <groupId>npanday.plugin</groupId>  
-        <artifactId>maven-compile-plugin</artifactId>  
-        <extensions>true</extensions>  
-        <configuration> 
-          <excludes> 
-            <exclude>**/notToBeIncluded.cs</exclude> 
-          </excludes>  
-          <testExcludes> 
-            <exclude>**/notToBeIncluded.txt</exclude> 
-          </testExcludes> 
-        </configuration> 
-      </plugin>  
-      <plugin> 
-        <groupId>npanday.plugin</groupId>  
-        <artifactId>maven-test-plugin</artifactId> 
-      </plugin> 
-    </plugins> 
-  </build> 
+  </parent>
+  <groupId>NPandayIT0032</groupId>
+  <artifactId>NPandayIT0032</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>library</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>NUnit</groupId>
+      <artifactId>NUnit.Framework</artifactId>
+      <version>2.2.8.0</version>
+      <type>library</type>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src/main/csharp</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <excludes>
+            <exclude>**/notToBeIncluded.cs</exclude>
+          </excludes>
+          <testExcludes>
+            <exclude>**/noTouchy.cs</exclude>
+          </testExcludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-test-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>
