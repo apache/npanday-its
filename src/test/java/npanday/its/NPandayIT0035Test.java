@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0035Test
@@ -27,18 +26,19 @@ public class NPandayIT0035Test
 {
     public NPandayIT0035Test()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testIT0035InstalledEXEFile()
+    public void testVBRootNamespace()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0035" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0035", null, "exe", null ) ).getAbsolutePath() );
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "install" );
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0035", "1.0.0.0", "exe" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
+        assertClassPresent( assembly, "it0035.Module1" );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }
