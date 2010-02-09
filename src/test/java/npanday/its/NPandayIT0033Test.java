@@ -39,7 +39,7 @@ public class NPandayIT0033Test
         verifier.assertFilePresent( assembly );
         assertClassPresent( assembly, "VBClass" );
         String testAssembly =
-            new File( testDir, getTestAssemblyFile( "NPandayIT0033", "1.0.0.0", "dll" ) ).getAbsolutePath();
+            new File( testDir, getTestAssemblyFile( "NPandayIT0033-test", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( testAssembly );
         assertClassPresent( testAssembly, "Class1" );
         verifier.verifyErrorFreeLog();
