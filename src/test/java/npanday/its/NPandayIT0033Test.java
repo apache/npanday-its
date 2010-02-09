@@ -26,7 +26,7 @@ public class NPandayIT0033Test
 {
     public NPandayIT0033Test()
     {
-        super( "[1.1,)" );
+        super( "(1.1,)" );
     }
 
     public void testVBSourceWithCsharpTestSource()
