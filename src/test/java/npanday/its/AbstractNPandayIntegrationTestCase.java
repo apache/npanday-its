@@ -378,7 +378,8 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         String output = execute( "ildasm", new String[]{"/text", assembly} );
 
-        String assemblyName = assembly.substring( assembly.lastIndexOf( '/' ), assembly.lastIndexOf( '.' ) );
+        String assemblyName =
+            assembly.substring( assembly.lastIndexOf( File.separatorChar ), assembly.lastIndexOf( '.' ) );
 
         for ( String line : output.split( "\n" ) )
         {
