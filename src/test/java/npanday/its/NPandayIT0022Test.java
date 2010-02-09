@@ -19,7 +19,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPandayIT0022Test
@@ -27,18 +26,19 @@ public class NPandayIT0022Test
 {
     public NPandayIT0022Test()
     {
-        super( "(1.1,)" );
+        super( "[1.1,)" );
     }
 
-    public void testInstalledArtifactforIT0022withSNK()
+    public void testStrongNameKeyAddedToAssembly()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022" );
         Verifier verifier = getVerifier( testDir );
-		verifier.executeGoal( "install" );
-		verifier.assertFilePresent( new File( testDir + "/" +
-			getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll", null ) ).getAbsolutePath() );
-		verifier.verifyErrorFreeLog();
-		verifier.resetStreams();
+        verifier.executeGoal( "install" );
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
+        assertPublicKey( assembly );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
     }
 }

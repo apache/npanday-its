@@ -378,13 +378,50 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         String output = execute( "ildasm", new String[]{"/text", assembly} );
 
-        String assemblyName =
-            assembly.substring( assembly.lastIndexOf( File.separatorChar ) + 1, assembly.lastIndexOf( '.' ) );
+        String assemblyName = getAssemblyName( assembly );
 
         String s = ".mresource public " + assemblyName + "." + resource.replace( '/', '.' );
         for ( String line : output.split( "\n" ) )
         {
-            if ( line.equals( s ) )
+            if ( line.startsWith( s ) )
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String getAssemblyName( String assembly )
+    {
+        return assembly.substring( assembly.lastIndexOf( File.separatorChar ) + 1, assembly.lastIndexOf( '.' ) );
+    }
+
+    protected void assertPublicKey( String assembly )
+        throws VerificationException
+    {
+        if ( !hasPublicKey( assembly ) )
+        {
+            fail( "Couldn't find public key in assembly " + assembly );
+        }
+    }
+
+    private boolean hasPublicKey( String assembly )
+        throws VerificationException
+    {
+        String output = execute( "ildasm", new String[]{"/text", assembly} );
+
+        boolean insideCorrectAssembly = false;
+        for ( String line : output.split( "\n" ) )
+        {
+            if ( line.startsWith( ".assembly " + getAssemblyName( assembly ) ) )
+            {
+                insideCorrectAssembly = true;
+            }
+            else if ( line.startsWith( "}" ) )
+            {
+                insideCorrectAssembly = false;
+            }
+            else if ( insideCorrectAssembly && line.trim().startsWith( ".publickey" ) )
             {
                 return true;
             }
