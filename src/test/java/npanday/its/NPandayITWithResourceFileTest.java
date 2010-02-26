@@ -35,10 +35,13 @@ public class NPandayITWithResourceFileTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/WithResourceFile" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "test" );
-        verifier.assertFilePresent( new File( testDir, "ClassLibrary1/" +
-            getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath() );
+        String assembly = new File( testDir, "ClassLibrary1/" +
+            getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
         String path = "ClassLibrary1/target/assembly-resources/resource/ClassLibrary1.Resource1.resources";
         verifier.assertFilePresent( new File( testDir, path ).getAbsolutePath() );
+        assertResourcePresent( assembly, "Resource1.resources" );
+        assertClassPresent( assembly, "ClassLibrary1.Resource1" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
