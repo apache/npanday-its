@@ -378,12 +378,18 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         String assemblyName = getAssemblyName( assembly );
 
-        String s = ".mresource public " + assemblyName + "." + resource.replace( '/', '.' );
+        String prefix = ".mresource public ";
+        String value = assemblyName + "." + resource.replace( '/', '.' );
         for ( String line : output.split( "\n" ) )
         {
-            if ( line.startsWith( s ) )
+            line = line.trim();
+            if ( line.startsWith( prefix ) )
             {
-                return true;
+                line = line.substring( prefix.length() );
+                if ( line.equals( value ) || line.equals( "'" + value + "'" ) )
+                {
+                    return true;
+                }
             }
         }
         return false;

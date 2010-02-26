@@ -43,6 +43,7 @@ public class NPandayIT0020Test
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
         assertResourcePresent( assembly, "resgen/fix.gif" );
+        assertClassNotPresent( assembly, "ClassLibrary1.resgen.fix.gif" );
         assertResourcePresent( assembly, "resgen/my-prop.x-properties" );
 
         verifier.verifyErrorFreeLog();
