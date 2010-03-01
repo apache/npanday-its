@@ -32,20 +32,18 @@ public class NPandayIT0020Test
     public void testEmbeddedResources()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
-        Verifier verifier = getVerifier( testDir );
+        
+		File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
+		Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
+		verifier.assertFilePresent(
+            new File( testDir, "target/assembly-resources/resource/NPandayIT0020.fix.gif" ).getAbsolutePath());
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyResourceFile( "resgen/fix.gif" ) ).getAbsolutePath() );
-        verifier.assertFilePresent(
-            new File( testDir, getAssemblyResourceFile( "resgen/my-prop.x-properties" ) ).getAbsolutePath() );
-
+            new File( testDir, "target/assembly-resources/resource/NPandayIT0020.my-prop.x-properties").getAbsolutePath());
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertResourcePresent( assembly, "resgen/fix.gif" );
-        assertClassNotPresent( assembly, "ClassLibrary1.resgen.fix.gif" );
-        assertResourcePresent( assembly, "resgen/my-prop.x-properties" );
-
+        verifier.assertFilePresent( assembly );  
+		assertResourcePresent( assembly, "fix.gif" );
+		assertResourcePresent( assembly, "my-prop.x-properties" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
