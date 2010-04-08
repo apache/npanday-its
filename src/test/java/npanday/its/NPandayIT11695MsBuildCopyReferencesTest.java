@@ -16,17 +16,17 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
+
+import java.io.File;
 
 public class NPandayIT11695MsBuildCopyReferencesTest
     extends AbstractNPandayIntegrationTestCase
 {
     public NPandayIT11695MsBuildCopyReferencesTest()
     {
-        super( "(1.1,)" );
+        super( "[1.2,)" );
     }
 
     public void testMsBuildCopyReferences()

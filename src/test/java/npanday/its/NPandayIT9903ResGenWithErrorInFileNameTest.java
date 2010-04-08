@@ -16,17 +16,17 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
+
+import java.io.File;
 
 public class NPandayIT9903ResGenWithErrorInFileNameTest
     extends AbstractNPandayIntegrationTestCase
 {
     public NPandayIT9903ResGenWithErrorInFileNameTest()
     {
-        super( "(1.0,)" ); // 1.0.1+
+        super( "[1.0.2,)" );
     }
 
     public void testResGenWithErrorInFileName()

@@ -16,18 +16,18 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
+
+import java.io.File;
 
 public class NPandayIT0003Test
     extends AbstractNPandayIntegrationTestCase
 {
     public NPandayIT0003Test()
     {
-        super( "(1.1,)" );
+        super( "[1.0.2,)" );
     }
 
     public void testNetModuleDependencyTransitivity()

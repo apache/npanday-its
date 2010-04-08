@@ -16,17 +16,17 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
+
+import java.io.File;
 
 public class NPandayIT0028RemoteSnapshotRepoTest
     extends AbstractNPandayIntegrationTestCase
 {
     public NPandayIT0028RemoteSnapshotRepoTest()
     {
-        super( "[1.1,)" );
+        super( "[1.0.2,)" );
     }
 
     public void testSnapDeploymentRemoteRepoNotUnique()

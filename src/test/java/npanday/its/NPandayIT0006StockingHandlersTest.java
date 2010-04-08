@@ -16,10 +16,10 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
+
+import java.io.File;
 
 public class NPandayIT0006StockingHandlersTest
 
@@ -27,7 +27,7 @@ public class NPandayIT0006StockingHandlersTest
 {
     public NPandayIT0006StockingHandlersTest()
     {
-        super( "[1.1,)" );
+        super( "[1.0.2,)" );
     }
 
     public void testXsdPlugin()

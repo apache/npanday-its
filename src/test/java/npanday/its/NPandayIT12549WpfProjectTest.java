@@ -26,7 +26,7 @@ public class NPandayIT12549WpfProjectTest
 {
     public NPandayIT12549WpfProjectTest()
     {
-        super( "(1.1,)", "[v3.5,)" ); // 1.2+
+        super( "[1.2,)", "[v3.5,)" ); // 1.2+
     }
 
     public void testWpfProject()

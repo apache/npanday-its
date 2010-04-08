@@ -16,17 +16,17 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
+
+import java.io.File;
 
 public class NPandayITNet35Test
     extends AbstractNPandayIntegrationTestCase
 {
     public NPandayITNet35Test()
     {
-        super( "(1.0,)", "[v3.5,)" ); // 1.0.1+
+        super( "[1.0.2,)", "[v3.5,)" );
     }
 
     public void testNet35Project()
