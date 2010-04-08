@@ -16,14 +16,6 @@ package npanday.its;
  * limitations under the License.
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import junit.framework.TestCase;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
@@ -31,11 +23,17 @@ import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
-import org.apache.maven.it.util.cli.CommandLineException;
-import org.apache.maven.it.util.cli.CommandLineUtils;
-import org.apache.maven.it.util.cli.Commandline;
-import org.apache.maven.it.util.cli.StreamConsumer;
-import org.apache.maven.it.util.cli.WriterStreamConsumer;
+import org.apache.maven.it.util.cli.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
@@ -54,6 +52,8 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static boolean forceVersion = Boolean.valueOf( System.getProperty( "npanday.version.force", "false" ) );
 
+    private static final Pattern PATTERN = Pattern.compile( "(.*?)-(RC[0-9]+|SNAPSHOT)" );
+
     protected AbstractNPandayIntegrationTestCase()
     {
         this( "(0,)" );
@@ -63,10 +63,24 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         VersionRange versionRange = createVersionRange( versionRangeStr );
 
-        if ( !versionRange.containsVersion( version ) && !forceVersion )
+        if ( !checkNPandayVersion(versionRange, version) && !forceVersion )
         {
             skip = true;
             skipReason = "NPanday version " + version + " not in range " + versionRange;
+        }
+    }
+
+    protected static boolean checkNPandayVersion(VersionRange versionRange, DefaultArtifactVersion version) {
+        String v = version.toString();
+
+        Matcher m = PATTERN.matcher( v );
+        if ( m.matches() )
+        {
+            return versionRange.containsVersion(new DefaultArtifactVersion(m.group(1)));
+        }
+        else
+        {
+            return versionRange.containsVersion(version);
         }
     }
 
@@ -150,7 +164,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         return version;
     }
 
-    private static VersionRange createVersionRange( String versionRangeStr )
+    protected static VersionRange createVersionRange( String versionRangeStr )
     {
         VersionRange versionRange;
         try
