@@ -386,12 +386,23 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
     }
 
+    protected void assertResourcePresent( String assembly, String assemblyName, String resource )
+        throws VerificationException
+    {
+        if ( !isResourcePresent( assembly, assemblyName, resource ) )
+        {
+            fail( "Unable to find resource " + resource + " in assembly " + assembly );
+        }
+    }
+
     private boolean isResourcePresent( String assembly, String resource )
         throws VerificationException
     {
-        String output = runILDisasm( assembly );
+        return isResourcePresent(assembly, getAssemblyName( assembly ), resource);
+    }
 
-        String assemblyName = getAssemblyName( assembly );
+    private boolean isResourcePresent(String assembly, String assemblyName, String resource) throws VerificationException {
+        String output = runILDisasm( assembly );
 
         String prefix = ".mresource public ";
         String value = assemblyName + "." + resource.replace( '/', '.' );
@@ -446,5 +457,9 @@ public abstract class AbstractNPandayIntegrationTestCase
             }
         }
         return false;
+    }
+
+    protected static boolean checkNPandayVersion(String versionRangeStr) {
+        return checkNPandayVersion(createVersionRange(versionRangeStr), version) || forceVersion;
     }
 }
