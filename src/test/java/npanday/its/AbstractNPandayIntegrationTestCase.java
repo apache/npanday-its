@@ -283,7 +283,8 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         for ( String line : output.split( "\n" ) )
         {
-            if ( line.startsWith( ".class " ) && line.trim().endsWith( className ) )
+            line = line.trim();
+            if ( line.startsWith( ".class " ) && line.endsWith( className ) )
             {
                 return true;
             }
