@@ -20,8 +20,6 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 public class NPandayIT0020Test
     extends AbstractNPandayIntegrationTestCase
@@ -34,7 +32,6 @@ public class NPandayIT0020Test
     public void testEmbeddedResources()
         throws Exception
     {
-        
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
