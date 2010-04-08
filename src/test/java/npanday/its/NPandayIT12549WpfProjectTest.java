@@ -43,9 +43,11 @@ public class NPandayIT12549WpfProjectTest
         path = "target/assembly-resources/resource/NPandayIT12549.g.resources";
         verifier.assertFilePresent( new File( testDir, path ).getAbsolutePath() );
         assertResourcePresent( assembly, "Properties.Resources.resources" );
-        assertResourcePresent( assembly, "NPandayIT12549.g.resources" );
+        assertResourcePresent( assembly, "g.resources" );
         assertClassPresent( assembly, "NPandayIT12549.Properties.Resources" );
-        assertClassPresent( assembly, "NPandayIT12549.g" );
+        assertClassPresent( assembly, "NPandayIT12549.Properties.Settings" );
+        assertClassPresent( assembly, "NPandayIT12549.App" );
+        assertClassPresent( assembly, "NPandayIT12549.Window1" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
