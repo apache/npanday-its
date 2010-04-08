@@ -20,6 +20,8 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class NPandayIT0020Test
     extends AbstractNPandayIntegrationTestCase
@@ -37,15 +39,15 @@ public class NPandayIT0020Test
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testDir, "target/assembly-resources/resource/NPandayIT0020.fix.gif" ).getAbsolutePath());
+            new File( testDir, "target/assembly-resources/resource/resgen/fix.gif" ).getAbsolutePath());
         verifier.assertFilePresent(
-            new File( testDir, "target/assembly-resources/resource/NPandayIT0020.my-prop.x-properties").getAbsolutePath());
+            new File( testDir, "target/assembly-resources/resource/resgen/my-prop.x-properties").getAbsolutePath());
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );  
-        assertResourcePresent( assembly, "fix.gif" );
+        assertResourcePresent( assembly, "resgen/fix.gif" );
+        assertResourcePresent( assembly, "resgen/my-prop.x-properties" );
         assertClassNotPresent( assembly, "NPandayIT0020.resgen.fix.gif" );
         assertClassNotPresent( assembly, "NPandayIT0020.fix.gif" );
-        assertResourcePresent( assembly, "my-prop.x-properties" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
