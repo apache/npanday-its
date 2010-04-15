@@ -99,7 +99,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         VersionRange versionRange = createVersionRange( frameworkVersionStr );
 
-        if ( !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
+        if ( frameworkVersion != null && !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
         {
             skip = true;
             skipReason = "Framework version " + frameworkVersion + " not in range " + versionRange;
@@ -136,7 +136,8 @@ public abstract class AbstractNPandayIntegrationTestCase
             // TODO: this is not necessarily accurate. While it gets all those available, the max should actually be
             //       the one in the path (which can be obtained from the output for csc, but there may be other better
             //       ways such as a small C# app to interrogate it.
-            //       It may be best to have an NPanday plugin that can reveal it then call that first to set it
+            //       It may be best to have an NPanday plugin that can reveal it then call that first to set it,
+            //       reusing the vendor info
 
             File versions = new File( System.getenv( "systemroot" ) + "\\Microsoft.NET\\Framework" );
             if ( versions.exists() )
