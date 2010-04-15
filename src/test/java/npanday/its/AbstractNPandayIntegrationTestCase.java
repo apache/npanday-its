@@ -304,10 +304,19 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         String output = runILDisasm( assembly );
 
+        String currentClassName = className;
+
+        String namespace = className.substring( 0, className.indexOf( '.' ) );
         for ( String line : output.split( "\n" ) )
         {
             line = line.trim();
-            if ( line.startsWith( ".class " ) && line.endsWith( className ) )
+            // mono disassembles like this instead
+            if ( line.startsWith( ".namespace " + namespace ) )
+            {
+                currentClassName = className.substring( namespace.length() + 1 );
+            }
+
+            if ( line.startsWith( ".class " ) && line.endsWith( currentClassName ) )
             {
                 return true;
             }
