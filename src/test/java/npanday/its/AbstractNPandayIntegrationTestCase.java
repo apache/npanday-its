@@ -306,7 +306,8 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         String currentClassName = className;
 
-        String namespace = className.substring( 0, className.indexOf( '.' ) );
+        int index = className.indexOf( '.' );
+        String namespace = index > 0 ? className.substring( 0, index ) : "";
         for ( String line : output.split( "\n" ) )
         {
             line = line.trim();
