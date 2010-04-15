@@ -23,7 +23,11 @@ import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
-import org.apache.maven.it.util.cli.*;
+import org.apache.maven.it.util.cli.CommandLineException;
+import org.apache.maven.it.util.cli.CommandLineUtils;
+import org.apache.maven.it.util.cli.Commandline;
+import org.apache.maven.it.util.cli.StreamConsumer;
+import org.apache.maven.it.util.cli.WriterStreamConsumer;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +58,10 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static final Pattern PATTERN = Pattern.compile( "(.*?)-(RC[0-9]+|SNAPSHOT)" );
 
+    private static String disasmArg;
+
+    private static String disasmExec;
+
     protected AbstractNPandayIntegrationTestCase()
     {
         this( "(0,)" );
@@ -63,24 +71,25 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         VersionRange versionRange = createVersionRange( versionRangeStr );
 
-        if ( !checkNPandayVersion(versionRange, version) && !forceVersion )
+        if ( !checkNPandayVersion( versionRange, version ) && !forceVersion )
         {
             skip = true;
             skipReason = "NPanday version " + version + " not in range " + versionRange;
         }
     }
 
-    protected static boolean checkNPandayVersion(VersionRange versionRange, DefaultArtifactVersion version) {
+    protected static boolean checkNPandayVersion( VersionRange versionRange, DefaultArtifactVersion version )
+    {
         String v = version.toString();
 
         Matcher m = PATTERN.matcher( v );
         if ( m.matches() )
         {
-            return versionRange.containsVersion(new DefaultArtifactVersion(m.group(1)));
+            return versionRange.containsVersion( new DefaultArtifactVersion( m.group( 1 ) ) );
         }
         else
         {
-            return versionRange.containsVersion(version);
+            return versionRange.containsVersion( version );
         }
     }
 
@@ -140,8 +149,8 @@ public abstract class AbstractNPandayIntegrationTestCase
                         File f = new File( parent, name );
                         // Mscorlib.dll can be used to detect 2.0 SDK, Microsoft.CompactFramework.Build.Tasks.dll for 3.5 SDK
                         // Having just the runtime (without these files) is not sufficient
-                        return f.isDirectory() && ( new File( f, "Mscorlib.dll" ).exists() ||
-                            new File( f, "Microsoft.CompactFramework.Build.Tasks.dll" ).exists() );
+                        return f.isDirectory() && ( new File( f, "Mscorlib.dll" ).exists() || new File( f,
+                                                                                                        "Microsoft.CompactFramework.Build.Tasks.dll" ).exists() );
                     }
                 } );
                 if ( list != null && list.length > 0 )
@@ -309,7 +318,32 @@ public abstract class AbstractNPandayIntegrationTestCase
     private String runILDisasm( String assembly )
         throws VerificationException
     {
-        return execute( "ildasm", new String[]{"/text", assembly} );
+        if ( disasmExec != null )
+        {
+            if ( disasmArg != null )
+            {
+                return execute( disasmExec, new String[]{disasmArg, assembly} );
+            }
+            else
+            {
+                return execute( disasmExec, new String[]{assembly} );
+            }
+        }
+
+        String value = null;
+        try
+        {
+            value = execute( "ildasm", new String[]{"/text", assembly} );
+            disasmExec = "ildasm";
+            disasmArg = "/text";
+        }
+        catch ( VerificationException e )
+        {
+            value = execute( "monodis", new String[]{assembly} );
+            disasmExec = "monodis";
+            disasmArg = null;
+        }
+        return value;
     }
 
     private String execute( String executable, String[] args )
@@ -398,10 +432,12 @@ public abstract class AbstractNPandayIntegrationTestCase
     private boolean isResourcePresent( String assembly, String resource )
         throws VerificationException
     {
-        return isResourcePresent(assembly, getAssemblyName( assembly ), resource);
+        return isResourcePresent( assembly, getAssemblyName( assembly ), resource );
     }
 
-    private boolean isResourcePresent(String assembly, String assemblyName, String resource) throws VerificationException {
+    private boolean isResourcePresent( String assembly, String assemblyName, String resource )
+        throws VerificationException
+    {
         String output = runILDisasm( assembly );
 
         String prefix = ".mresource public ";
@@ -459,7 +495,8 @@ public abstract class AbstractNPandayIntegrationTestCase
         return false;
     }
 
-    protected static boolean checkNPandayVersion(String versionRangeStr) {
-        return checkNPandayVersion(createVersionRange(versionRangeStr), version) || forceVersion;
+    protected static boolean checkNPandayVersion( String versionRangeStr )
+    {
+        return checkNPandayVersion( createVersionRange( versionRangeStr ), version ) || forceVersion;
     }
 }
