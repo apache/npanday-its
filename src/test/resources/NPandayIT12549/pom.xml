@@ -65,8 +65,6 @@
       <version>3.0.0.0</version>
       <type>gac_msil</type>
       <classifier>31bf3856ad364e35</classifier>
-      <scope>system</scope>
-      <systemPath>C:\Windows\assembly\GAC_MSIL\WindowsBase\3.0.0.0__31bf3856ad364e35\WindowsBase.dll</systemPath>
     </dependency>
     <dependency>
       <groupId>PresentationCore</groupId>
@@ -74,8 +72,6 @@
       <version>3.0.0.0</version>
       <type>gac_32</type>
       <classifier>31bf3856ad364e35</classifier>
-      <scope>system</scope>
-      <systemPath>C:\Windows\assembly\GAC_32\PresentationCore\3.0.0.0__31bf3856ad364e35\PresentationCore.dll</systemPath>
     </dependency>
     <dependency>
       <groupId>PresentationFramework</groupId>
@@ -83,8 +79,6 @@
       <version>3.0.0.0</version>
       <type>gac_msil</type>
       <classifier>31bf3856ad364e35</classifier>
-      <scope>system</scope>
-      <systemPath>C:\Windows\assembly\GAC_MSIL\PresentationFramework\3.0.0.0__31bf3856ad364e35\PresentationFramework.dll</systemPath>
     </dependency>
   </dependencies>
 </project>
