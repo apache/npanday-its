@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
   <modelVersion>4.0.0</modelVersion>  
   <groupId>test</groupId>  
@@ -24,11 +25,10 @@
       </plugin>
     </plugins> 
   </build> 
-  <distributionManagement>
-    <repository>
-      <id>test</id>
-      <url>file:${basedir}/target/test-repo</url>
-      <uniqueVersion>false</uniqueVersion>
-    </repository>
-  </distributionManagement>
+<distributionManagement>
+  <repository>
+    <id>id</id>
+    <url>file://localhost/Users/brett/scm/codeplex/npanday-its/src/test/resources/NPandayIT12940/test-repo</url>
+  </repository>
+</distributionManagement>
 </project>
