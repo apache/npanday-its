@@ -21,18 +21,18 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT13018LadderBuildTest
+public class NPandayIT13018Test
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT13018LadderBuildTest()
+    public NPandayIT13018Test()
     {
         super( "[1.2,)" );
     }
 
-    public void testTransitiveDependencies()
+    public void testLadderBuild()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018LadderBuild" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018-LadderBuild" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "ladder1", "2.0.0.0", "dll" );
@@ -40,6 +40,23 @@ public class NPandayIT13018LadderBuildTest
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "ladder1", "2.0.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
+    }
+    
+    public void testTransitiveDependencies()
+        throws Exception
+    {
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018-TransDependency" );
+        Verifier verifier = getVerifier( testDir );
+
+        verifier.deleteArtifact( "test", "NPandayIT13018", "1.0.0.0", "dll" );
+
+        verifier.executeGoal( "install" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0",
+                                                                        "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

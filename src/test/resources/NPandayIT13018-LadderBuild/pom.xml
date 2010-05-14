@@ -18,15 +18,10 @@
 -->
 
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
-  <parent>
-    <groupId>NPanday.ITs</groupId>
-    <artifactId>NPanday.ITs.Parent</artifactId>
-    <version>1-SNAPSHOT</version>
-  </parent>
   <modelVersion>4.0.0</modelVersion>  
   <groupId>test</groupId>  
-  <artifactId>NPandayIT13018</artifactId>  
-  <version>1.0.0.0</version>
+  <artifactId>ladder1</artifactId>  
+  <version>2.0.0.0</version>
   <packaging>library</packaging>
     <dependencies>
     <dependency>
@@ -34,16 +29,10 @@
       <artifactId>NUnit.Framework</artifactId>
       <version>2.2.8.0</version>
       <type>library</type>
-    </dependency>
+    </dependency>  
     <dependency>
       <groupId>test</groupId>
-      <artifactId>translib2</artifactId>
-      <version>1.0.0.0</version>
-      <type>library</type>
-    </dependency>
-    <dependency>
-      <groupId>test</groupId>
-      <artifactId>transA</artifactId>
+      <artifactId>ladder2</artifactId>
       <version>1.0.0.0</version>
       <type>library</type>
     </dependency>
@@ -59,7 +48,7 @@
       </plugin>
     </plugins> 
   </build>
- <repositories>
+  <repositories>
     <repository>
       <id>test</id>
       <url>file:${basedir}/test-repo</url>
