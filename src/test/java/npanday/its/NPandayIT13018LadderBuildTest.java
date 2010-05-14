@@ -21,27 +21,25 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT13018TransitiveDependencies
+public class NPandayIT13018LadderBuildTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT13018TransitiveDependencies()
+    public NPandayIT13018LadderBuildTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
     public void testTransitiveDependencies()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018LadderBuild" );
         Verifier verifier = getVerifier( testDir );
 
-        verifier.deleteArtifact( "test", "NPandayIT13018", "1.0.0.0", "dll" );
+        verifier.deleteArtifact( "test", "ladder1", "2.0.0.0", "dll" );
 
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0",
-                                                                        "dll" ) ).getAbsolutePath() );
+            new File( testDir, getAssemblyFile( "ladder1", "2.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
