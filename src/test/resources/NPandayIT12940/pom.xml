@@ -37,7 +37,7 @@
     </dependency>
     <dependency>
       <groupId>test</groupId>
-      <artifactId>TestLib</artifactId>
+      <artifactId>TestLibrary</artifactId>
       <version>1.0.0.0</version>
       <type>library</type>
     </dependency>
