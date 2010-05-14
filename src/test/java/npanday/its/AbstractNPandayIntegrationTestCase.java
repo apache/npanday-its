@@ -42,9 +42,9 @@ import java.util.regex.Pattern;
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
 {
-    private boolean skip;
+    protected boolean skip;
 
-    private String skipReason;
+    protected String skipReason;
 
     private static final String NPANDAY_MAX_FRAMEWORK_VERSION_PROPERTY = "npanday.framework.version";
 

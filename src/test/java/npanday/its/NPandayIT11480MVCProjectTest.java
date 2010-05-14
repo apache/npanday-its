@@ -28,7 +28,7 @@ public class NPandayIT11480MVCProjectTest
     {
         super( "[1.2,)", "[v3.5,)" ); 
 
-        File f = new File( getenv( "SYSTEMROOT" ), "assembly/GAC_MSIL/System.Web.MVC" );
+        File f = new File( System.getenv( "SYSTEMROOT" ), "assembly/GAC_MSIL/System.Web.MVC" );
         if ( !f.exists() || !f.isDirectory() )
         {
             skipReason = "MVC.NET is not installed";
