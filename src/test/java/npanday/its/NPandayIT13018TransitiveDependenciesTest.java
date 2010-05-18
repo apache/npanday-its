@@ -17,9 +17,18 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
+import org.apache.maven.it.util.FileUtils;
+import org.apache.maven.it.util.IOUtil;
 import org.apache.maven.it.util.ResourceExtractor;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public class NPandayIT13018TransitiveDependenciesTest
     extends AbstractNPandayIntegrationTestCase
@@ -32,29 +41,29 @@ public class NPandayIT13018TransitiveDependenciesTest
     public void testLadderBuild()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018/LadderBuild" );
+        File testDir = unzipResources( "/NPandayIT13018/LadderBuild.zip" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "ladder1", "2.0.0.0", "dll" );
 
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "ladder1", "2.0.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "ladder1", "2.0.0.0",
+                                                                        "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
-    
+
     public void testTransitiveDependenciesNotOnCompile()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT13018/TransDependency" );
+        File testDir = unzipResources( "/NPandayIT13018/TransDependency.zip" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "NPandayIT13018", "1.0.0.0", "dll" );
 
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0",
+                                                                        "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0",
                                                                         "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();

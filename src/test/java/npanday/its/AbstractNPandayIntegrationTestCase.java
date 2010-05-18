@@ -23,21 +23,29 @@ import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
+import org.apache.maven.it.util.IOUtil;
+import org.apache.maven.it.util.ResourceExtractor;
 import org.apache.maven.it.util.cli.CommandLineException;
 import org.apache.maven.it.util.cli.CommandLineUtils;
 import org.apache.maven.it.util.cli.Commandline;
 import org.apache.maven.it.util.cli.StreamConsumer;
 import org.apache.maven.it.util.cli.WriterStreamConsumer;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
@@ -509,5 +517,55 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected static boolean checkNPandayVersion( String versionRangeStr )
     {
         return checkNPandayVersion( createVersionRange( versionRangeStr ), version ) || forceVersion;
+    }
+
+    protected File unzipResources( String resourcePath )
+        throws IOException
+    {
+        String tempDirPath = System.getProperty( "maven.test.tmpdir", System.getProperty( "java.io.tmpdir" ) );
+        File tempDir = new File( tempDirPath );
+
+        File testDir = new File( tempDir, resourcePath.substring( 0, resourcePath.length() - 4 ) );
+
+        FileUtils.deleteDirectory( testDir );
+
+        File f = ResourceExtractor.extractResourcePath( getClass(), resourcePath, tempDir, true );
+
+        ZipFile zipFile = new ZipFile( f );
+        try
+        {
+            for ( Enumeration entries = zipFile.entries(); entries.hasMoreElements(); )
+            {
+                ZipEntry entry = (ZipEntry) entries.nextElement();
+
+                File file = new File( testDir.getParentFile(), entry.getName() );
+                file.getParentFile().mkdirs();
+                if ( entry.isDirectory() )
+                {
+                    file.mkdir();
+                    continue;
+                }
+
+                InputStream inputStream = null;
+                FileOutputStream outputStream = null;
+                try
+                {
+                    inputStream = zipFile.getInputStream( entry );
+                    outputStream = new FileOutputStream( file );
+                    IOUtil.copy( inputStream, outputStream );
+                }
+                finally
+                {
+                    IOUtil.close( inputStream );
+                    IOUtil.close( outputStream );
+                }
+            }
+        }
+        finally
+        {
+            zipFile.close();
+        }
+
+        return testDir;
     }
 }
