@@ -19,8 +19,6 @@ package npanday.its;
  * under the License.
  */
 
-import java.io.PrintStream;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -28,10 +26,7 @@ import junit.framework.TestSuite;
 public class IntegrationTestSuite
     extends TestCase
 {
-    private static PrintStream out = System.out;
-
     public static Test suite()
-        throws VerificationException
     {
         TestSuite suite = new TestSuite();
 
