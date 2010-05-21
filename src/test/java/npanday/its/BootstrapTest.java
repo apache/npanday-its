@@ -24,7 +24,7 @@ import java.io.File;
 public class BootstrapTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0001VerifyInstallationTest()
+    public BootstrapTest()
     {
         super( "[1.0.2,)" );
     }
