@@ -102,13 +102,9 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <skip>false</skip>
-              <excludes>
-                <!-- These fail due to NPanday issue #11729 -->
-                <exclude>**/NPandayIT0002Test.*</exclude>
-                <exclude>**/NPandayIT0003Test.*</exclude>
-                <!-- Fails due to NPanday issue #11732 -->
-                <exclude>**/NPandayIT0033Test.*</exclude>
-              </excludes>
+              <includes>
+                <include>**/IntegrationTestSuite.java</include>
+              </includes>
             </configuration>
           </plugin>
         </plugins>
