@@ -67,11 +67,6 @@
         </plugin>
         <plugin>
           <groupId>npanday.plugin</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>${npanday.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>npanday.plugin</groupId>
           <artifactId>maven-fxcop-plugin</artifactId>
           <version>${npanday.version}</version>
         </plugin>
