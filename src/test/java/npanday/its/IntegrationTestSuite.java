@@ -66,7 +66,6 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPandayITClassLibWithWebRefInstallTest.class );
         suite.addTestSuite( NPandayIT0036Test.class );
         suite.addTestSuite( NPandayIT0035Test.class );
-        suite.addTestSuite( NPandayIT0033Test.class );
         suite.addTestSuite( NPandayIT0032VerifyInstallationTest.class );
         suite.addTestSuite( NPandayIT0029RemoteRepoTest.class );
         suite.addTestSuite( NPandayIT0028RemoteSnapshotRepoTest.class );
@@ -76,8 +75,6 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPandayIT0007XSDVerificationTest.class );
         suite.addTestSuite( NPandayIT0006StockingHandlersTest.class );
         suite.addTestSuite( NPandayIT0004NUnitTestVerificationTest.class );
-        suite.addTestSuite( NPandayIT0003Test.class );
-        suite.addTestSuite( NPandayIT0002Test.class );
         suite.addTestSuite( NPandayIT0001VerifyInstallationTest.class );
 
         return suite;
