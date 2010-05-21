@@ -34,6 +34,8 @@ public class NPandayIT11695MsBuildCopyReferencesTest
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT11695" );
         Verifier verifier = getVerifier( testDir );
+        // TODO: would be better to ensure each IT has unique IDs for required test artifacts in a better namespace for deleting
+        verifier.deleteArtifacts( "test" );
 
         verifier.executeGoal( "compile" );
         verifier.assertFilePresent(
