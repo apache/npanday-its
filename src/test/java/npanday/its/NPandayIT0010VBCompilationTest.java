@@ -21,23 +21,23 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0035Test
+public class NPandayIT0010VBCompilationTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0035Test()
+    public NPandayIT0010VBCompilationTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testVBRootNamespace()
+    public void testVBCompilation()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0035" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0010" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0035", "1.0.0.0", "exe" ) ).getAbsolutePath();
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0010", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
-        assertClassPresent( assembly, "it0035.Module1" );
+        assertClassPresent( assembly, "HelloWorld" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

@@ -21,10 +21,10 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0036Test
+public class NPandayIT0036InstalledArtifactsVerificationTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0036Test()
+    public NPandayIT0036InstalledArtifactsVerificationTest()
     {
         super( "[1.0.2,)" );
     }

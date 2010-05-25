@@ -16,25 +16,23 @@ package npanday.its;
  * limitations under the License.
  */
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0003Test
+public class NPandayIT0002NetModuleDependencyTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0003Test()
+    public NPandayIT0002NetModuleDependencyTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testNetModuleDependencyTransitivity()
+    public void testNetModuleDependency()
         throws Exception
     {
-        File testDir =
-            ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleTransitiveDependency" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleDependency" );
         File testModuleDir = new File( testDir, "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
@@ -47,33 +45,10 @@ public class NPandayIT0003Test
         verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
-
-        testModuleDir = new File( testDir, "cli" );
-        verifier = getVerifier( testModuleDir );
-        verifier.executeGoal( "install" );
-        verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "cli", "1.0.0.0", "exe" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
-
-        testModuleDir = new File( testDir, "cli-fail-transitive" );
-        verifier = getVerifier( testModuleDir );
-        try
-        {
-            verifier.executeGoal( "install" );
-            fail( "Should have failed to execute goal" );
-        }
-        catch ( VerificationException e )
-        {
-            verifier.verifyTextInLog( "The type or namespace name 'It0002' could not be found" );
-            verifier.resetStreams();
-        }
     }
 }

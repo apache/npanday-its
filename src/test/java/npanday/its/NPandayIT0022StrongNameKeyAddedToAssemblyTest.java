@@ -21,23 +21,23 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0010Test
+public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0010Test()
+    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testVBCompilation()
+    public void testStrongNameKeyAddedToAssembly()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0010" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0010", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
-        assertClassPresent( assembly, "HelloWorld" );
+        assertPublicKey( assembly );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

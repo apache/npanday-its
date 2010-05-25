@@ -21,33 +21,30 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0002Test
+public class NPandayIT0020EmbeddedResourcesTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0002Test()
+    public NPandayIT0020EmbeddedResourcesTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
-    public void testNetModuleDependency()
+    public void testEmbeddedResources()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleDependency" );
-        File testModuleDir = new File( testDir, "dependency" );
-        Verifier verifier = getVerifier( testModuleDir );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
+        Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
-        verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
-
-        testModuleDir = new File( testDir, "library" );
-        verifier = getVerifier( testModuleDir );
-        verifier.executeGoal( "install" );
+            new File( testDir, "target/assembly-resources/resource/resgen/fix.gif" ).getAbsolutePath());
         verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
-        verifier.assertFilePresent(
-            new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll" ) ).getAbsolutePath() );
+            new File( testDir, "target/assembly-resources/resource/resgen/my-prop.x-properties").getAbsolutePath());
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0020", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );  
+        assertResourcePresent( assembly, "resgen/fix.gif" );
+        assertResourcePresent( assembly, "resgen/my-prop.x-properties" );
+        assertClassNotPresent( assembly, "NPandayIT0020.resgen.fix.gif" );
+        assertClassNotPresent( assembly, "NPandayIT0020.fix.gif" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

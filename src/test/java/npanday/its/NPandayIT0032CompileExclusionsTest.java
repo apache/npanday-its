@@ -21,27 +21,27 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0033Test
+public class NPandayIT0032CompileExclusionsTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0033Test()
+    public NPandayIT0032CompileExclusionsTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testVBSourceWithCsharpTestSource()
+    public void testCompileExclusions()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0033" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0032" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0033", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0032", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
-        assertClassPresent( assembly, "VBClass" );
+        assertClassPresent( assembly, "It0032" );
         String testAssembly =
-            new File( testDir, getTestAssemblyFile( "NPandayIT0033-test", "1.0.0.0", "dll" ) ).getAbsolutePath();
+            new File( testDir, getTestAssemblyFile( "NPandayIT0032-test", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( testAssembly );
-        assertClassPresent( testAssembly, "Class1" );
+        assertClassPresent( testAssembly, "It0032Test1" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

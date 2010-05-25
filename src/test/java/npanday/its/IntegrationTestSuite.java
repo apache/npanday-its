@@ -42,9 +42,9 @@ public class IntegrationTestSuite
          */
 
         // Tests that currently don't pass for any Maven version, i.e. the corresponding issue hasn't been resolved yet
-        // suite.addTestSuite( NPandayIT0033Test.class ); // issue #11732
-        // suite.addTestSuite( NPandayIT0002Test.class ); // issue #11729
-        // suite.addTestSuite( NPandayIT0003Test.class ); // issue #11729
+        // suite.addTestSuite( NPandayIT0033VBSourceWithCSharpSourceTest.class ); // issue #11732
+        // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
+        // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
         suite.addTestSuite( NPandayIT13018TransitiveDependenciesTest.class );
         suite.addTestSuite( NPandayIT12940MixedVersionsTest.class );
@@ -64,18 +64,18 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPandayITConsoleApplicationTest.class );
         suite.addTestSuite( NPandayITCompilerWithArgsTest.class );
         suite.addTestSuite( NPandayITClassLibWithWebRefInstallTest.class );
-        suite.addTestSuite( NPandayIT0036Test.class );
-        suite.addTestSuite( NPandayIT0035Test.class );
-        suite.addTestSuite( NPandayIT0032VerifyInstallationTest.class );
+        suite.addTestSuite( NPandayIT0036InstalledArtifactsVerificationTest.class );
+        suite.addTestSuite( NPandayIT0035VBRootNamespaceTest.class );
+        suite.addTestSuite( NPandayIT0032CompileExclusionsTest.class );
         suite.addTestSuite( NPandayIT0029RemoteRepoTest.class );
         suite.addTestSuite( NPandayIT0028RemoteSnapshotRepoTest.class );
-        suite.addTestSuite( NPandayIT0022Test.class );
-        suite.addTestSuite( NPandayIT0020Test.class );
-        suite.addTestSuite( NPandayIT0010Test.class );
+        suite.addTestSuite( NPandayIT0022StrongNameKeyAddedToAssemblyTest.class );
+        suite.addTestSuite( NPandayIT0020EmbeddedResourcesTest.class );
+        suite.addTestSuite( NPandayIT0010VBCompilationTest.class );
         suite.addTestSuite( NPandayIT0007XSDVerificationTest.class );
         suite.addTestSuite( NPandayIT0006StockingHandlersTest.class );
         suite.addTestSuite( NPandayIT0004NUnitTestVerificationTest.class );
-        suite.addTestSuite( NPandayIT0001VerifyInstallationTest.class );
+        suite.addTestSuite( NPandayIT0001CompilerVerificationTest.class );
 
         return suite;
     }
