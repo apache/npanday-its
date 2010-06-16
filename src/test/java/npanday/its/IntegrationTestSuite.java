@@ -46,6 +46,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
+        suite.addTestSuite( NPandayIT10276ConflictingExtensionsTest.class );
         suite.addTestSuite( NPandayIT13018TransitiveDependenciesTest.class );
         suite.addTestSuite( NPandayIT12940MixedVersionsTest.class );
         suite.addTestSuite( NPandayIT11480MVCProjectTest.class );

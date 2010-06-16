@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>NPandayIT10276</artifactId>
+    <groupId>NPandayIT10276</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>flex-project</artifactId>
+  <packaging>swc</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.servebox.flex</groupId>
+        <artifactId>flex-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.core</groupId>
+      <artifactId>playerglobal</artifactId>
+      <scope>provided</scope>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.flex.sdkcore</groupId>
+      <artifactId>framework</artifactId>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
+</project>
