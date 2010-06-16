@@ -25,7 +25,7 @@ import java.io.File;
 public class NPandayIT10276ConflictingExtensionsTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT10276ConflictingExtensionsTest
+    public NPandayIT10276ConflictingExtensionsTest()
     {
         super( "[1.2,)" );
     }
