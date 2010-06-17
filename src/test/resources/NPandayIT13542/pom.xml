@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+  <parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>OptionInfer</artifactId>
+  <packaging>library</packaging>
+  <version>1.0.0.0</version>
+  <name>NPandayIT : OptionInfer</name>
+  <build>
+    <sourceDirectory>./</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>3.5</frameworkVersion>
+          <language>VB</language>
+          <rootNamespace>ClassLibrary1</rootNamespace>
+          <define>_MyType="Windows",PLATFORM="AnyCPU"</define>
+          <doc>ClassLibrary1.xml</doc>
+          <imports>
+            <import>Microsoft.VisualBasic</import>
+            <import>System</import>
+            <import>System.Collections</import>
+            <import>System.Collections.Generic</import>
+            <import>System.Data</import>
+            <import>System.Diagnostics</import>
+            <import>System.Linq</import>
+            <import>System.Xml.Linq</import>
+          </imports>
+          <parameters>
+            <parameter>/optioninfer-</parameter>
+          </parameters>
+          <includeSources>
+            <includeSource>CL1.vb</includeSource>
+          </includeSources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+ </project>
