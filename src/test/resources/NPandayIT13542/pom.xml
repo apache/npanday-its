@@ -18,7 +18,6 @@
         <artifactId>maven-compile-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <frameworkVersion>3.5</frameworkVersion>
           <language>VB</language>
           <rootNamespace>ClassLibrary1</rootNamespace>
           <define>_MyType="Windows",PLATFORM="AnyCPU"</define>
@@ -30,8 +29,6 @@
             <import>System.Collections.Generic</import>
             <import>System.Data</import>
             <import>System.Diagnostics</import>
-            <import>System.Linq</import>
-            <import>System.Xml.Linq</import>
           </imports>
           <parameters>
             <parameter>/optioninfer-</parameter>

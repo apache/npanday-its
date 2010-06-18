@@ -26,7 +26,7 @@ public class NPandayIT13542OptionInferTest
 {
     public NPandayIT13542OptionInferTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2.1,)" );
     }
 
     public void testWithOptionInfer()
