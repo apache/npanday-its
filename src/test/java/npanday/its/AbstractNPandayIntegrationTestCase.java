@@ -290,6 +290,13 @@ public abstract class AbstractNPandayIntegrationTestCase
         FileUtils.deleteDirectory( new File( System.getProperty( "user.home" ), ".m2/uac/rdfRepository" ) );
     }
 
+    protected void deleteArtifact( Verifier verifier, String groupId, String artifactId, String version, String type )
+        throws IOException
+    {
+        FileUtils.deleteDirectory( new File( System.getProperty( "user.home" ), ".m2/uac/gac_msil/" + artifactId + "/" + version + "__" + groupId ) );
+        verifier.deleteArtifact( groupId, artifactId, version, type );
+    }
+
     protected void assertClassPresent( String assembly, String className )
         throws VerificationException
     {
