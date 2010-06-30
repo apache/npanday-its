@@ -62,6 +62,8 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static DefaultArtifactVersion frameworkVersion = checkFrameworkVersion();
 
+    private static boolean debugMaven = Boolean.valueOf( System.getProperty( "debug.maven", "false" ) );
+
     private static boolean forceVersion = Boolean.valueOf( System.getProperty( "npanday.version.force", "false" ) );
 
     private static final Pattern PATTERN = Pattern.compile( "(.*?)-(RC[0-9]+|SNAPSHOT)" );
@@ -232,7 +234,17 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected Verifier getVerifier( File testDirectory )
         throws VerificationException
     {
-        Verifier verifier = new Verifier( testDirectory.getAbsolutePath() );
+        Verifier verifier;
+        if ( debugMaven )
+        {
+            verifier = new Verifier( testDirectory.getAbsolutePath() ) {
+                public String getExecutable() { return super.getExecutable() + "Debug"; }
+            };
+        }
+        else
+        {
+            verifier = new Verifier( testDirectory.getAbsolutePath() );
+        }
         List<String> cliOptions = new ArrayList<String>( 2 );
         cliOptions.add( "-Dnpanday.version=" + version );
         verifier.setCliOptions( cliOptions );
