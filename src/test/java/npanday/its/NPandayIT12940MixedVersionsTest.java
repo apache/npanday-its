@@ -26,7 +26,7 @@ public class NPandayIT12940MixedVersionsTest
 {
     public NPandayIT12940MixedVersionsTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
     public void testMixedVersionResolution()
