@@ -34,6 +34,10 @@
               <name>npanday.version.force</name>
               <value>${npanday.version.force}</value>
             </property>
+            <property>
+              <name>debug.maven</name>
+              <value>${debug.maven}</value>
+            </property>
           </systemProperties>
         </configuration>
       </plugin>
