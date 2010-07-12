@@ -87,12 +87,14 @@
   </dependencies>
   <properties>
     <npanday.version>${project.version}</npanday.version>
+    <npanday.snapshots.url>http://repo.npanday.org/archiva/repository/npanday-snapshots</npanday.snapshots.url>
+    <npanday.releases.url>http://repo.npanday.org/archiva/repository/npanday-releases</npanday.releases.url>
   </properties>
 
   <scm>
-    <url>https://npanday.svn.codeplex.com/svn/npanday-its/tags/npanday-its-1.2</url>
-    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/tags/npanday-its-1.2</connection>
-    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/tags/npanday-its-1.2</developerConnection>
+    <url>https://npanday.svn.codeplex.com/svn/npanday-its/trunk</url>
+    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk</connection>
+    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk</developerConnection>
   </scm>
 
   <profiles>
@@ -113,5 +115,63 @@
         </plugins>
       </build>
     </profile>
+	<profile>
+      <id>npanday-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <passphrase>${gpg.passphrase}</passphrase>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins> 
+      </build>
+    </profile>	
   </profiles>
+   
+  <distributionManagement>
+    <snapshotRepository>
+      <id>npanday.snapshots</id>
+      <name>NPanday Snapshots Repository</name>
+      <url>${npanday.snapshots.url}</url>
+    </snapshotRepository>
+    <repository>
+      <id>npanday.releases</id>
+      <name>NPanday Releases Repository</name>
+      <url>${npanday.releases.url}</url>
+    </repository>
+  </distributionManagement>
+  
+  <!-- TODO: need to get these into central after 1.1 -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>npanday.releases</id>
+      <name>NPanday Releases Repository</name>
+      <url>${npanday.releases.url}</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  <repositories>
+    <repository>
+      <id>npanday.releases</id>
+      <name>NPanday Releases Repository</name>
+      <url>${npanday.releases.url}</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>  
+  
 </project>
