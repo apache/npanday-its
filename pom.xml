@@ -3,7 +3,7 @@
 
   <groupId>npanday.its</groupId>
   <artifactId>npanday-its</artifactId>
-  <version>1.2</version>
+  <version>1.2.1-SNAPSHOT</version>
 
   <name>NPanday Integration Tests Parent</name>
 
