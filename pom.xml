@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>npanday.its</groupId>
+  <artifactId>npanday-its</artifactId>
+  <version>1.2</version>
+
+  <name>NPanday Integration Tests Parent</name>
+
+  <!--
+  By default, the project just packages the tests in an artifact. To actually run them, activate the profile "run-its":
+    mvn clean test -Prun-its
+  
+  This will subject the NPanday version that matches the current ITs to the integration tests.
+  If you would like to test a different NPanday distribution, you can use the system property "npanday.version" to specify
+  the version to test:
+    mvn clean test -Prun-its -Dnpanday.version=1.1
+  -->
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+          <systemProperties>
+            <property>
+              <name>npanday.version</name>
+              <value>${npanday.version}</value>
+            </property>
+            <property>
+              <name>npanday.version.force</name>
+              <value>${npanday.version.force}</value>
+            </property>
+            <property>
+              <name>debug.maven</name>
+              <value>${debug.maven}</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <systemProperties>
+            <property>
+              <name>npanday.version</name>
+              <value>${npanday.version}</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-verifier</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>2.0</version>
+    </dependency>
+  </dependencies>
+  <properties>
+    <npanday.version>${project.version}</npanday.version>
+  </properties>
+
+  <scm>
+    <url>https://npanday.svn.codeplex.com/svn/npanday-its/tags/npanday-its-1.2</url>
+    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/tags/npanday-its-1.2</connection>
+    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/tags/npanday-its-1.2</developerConnection>
+  </scm>
+
+  <profiles>
+    <profile>
+      <id>run-its</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <skip>false</skip>
+              <includes>
+                <include>**/IntegrationTestSuite.java</include>
+              </includes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
