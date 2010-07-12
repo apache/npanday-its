@@ -3,7 +3,7 @@
 
   <groupId>npanday.its</groupId>
   <artifactId>npanday-its</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2</version>
 
   <name>NPanday Integration Tests Parent</name>
 
@@ -93,9 +93,9 @@
   </properties>
 
   <scm>
-    <url>https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</url>
-    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</connection>
-    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/trunk/</developerConnection>
+    <url>https://npanday.svn.codeplex.com/svn/npanday-its/releases/npanday-its-1.2</url>
+    <connection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/releases/npanday-its-1.2</connection>
+    <developerConnection>scm:svn:https://npanday.svn.codeplex.com/svn/npanday-its/releases/npanday-its-1.2</developerConnection>
   </scm>
 
   <profiles>
