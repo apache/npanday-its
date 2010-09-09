@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2010
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>NPanday.ITs</groupId>
+  <artifactId>NPanday.ITs.Parent</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <build>
+    <plugins>
+      <!-- all projects need the extensions loaded -->
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>NPanday.Plugin.Addin.JavaBinding</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>NPanday.Plugin.Devenv.JavaBinding</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>NPanday.Plugin.Settings.JavaBinding</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>NPanday.Plugin.SysRef.JavaBinding</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>NPanday.Plugin.Msbuild.JavaBinding</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-compile-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-aspx-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-fxcop-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-link-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-mojo-generator-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-resgen-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-repository-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-resolver-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-test-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-vsinstaller-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-webapp-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-xsd-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-xsp-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>maven-wsdl-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>npanday.plugin</groupId>
+          <artifactId>wix-maven-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

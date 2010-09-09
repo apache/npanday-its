@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+  <parent>
+    <artifactId>NPanday11579Dependency-parent</artifactId>
+    <groupId>NPanday.ITs11579</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>..\pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>NPanday11579Dependency</artifactId>
+  <packaging>library</packaging>
+  <name>NPanday.ITs11579 : NPanday11579Dependency</name>
+  <build>
+    <sourceDirectory>./</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>2.0.50727</frameworkVersion>
+          <includeSources>
+            <includeSource>Class1.cs</includeSource>
+            <includeSource>Properties\AssemblyInfo.cs</includeSource>
+          </includeSources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

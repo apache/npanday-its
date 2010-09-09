@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+  <parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>VBWebAppTest</artifactId>
+  <packaging>asp</packaging>
+  <name>G2ix.VBWebAppTest : VBWebAppTest</name>
+  <build>
+    <sourceDirectory>.</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <version>${npanday.version}</version>
+		<extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>3.0</frameworkVersion>
+          <language>VB</language>
+          <rootNamespace>VBWebAppTest</rootNamespace>
+          <define>_MyType="Custom",PLATFORM="AnyCPU"</define>
+          <doc>VBWebAppTest.xml</doc>
+          <imports>
+            <import>Microsoft.VisualBasic</import>
+            <import>System</import>
+            <import>System.Collections</import>
+            <import>System.Collections.Generic</import>
+            <import>System.Data</import>
+            <import>System.Linq</import>
+            <import>System.Xml.Linq</import>
+            <import>System.Diagnostics</import>
+            <import>System.Collections.Specialized</import>
+            <import>System.Configuration</import>
+            <import>System.Text</import>
+            <import>System.Text.RegularExpressions</import>
+            <import>System.Web</import>
+            <import>System.Web.Caching</import>
+            <import>System.Web.SessionState</import>
+            <import>System.Web.Security</import>
+            <import>System.Web.Profile</import>
+            <import>System.Web.UI</import>
+            <import>System.Web.UI.WebControls</import>
+            <import>System.Web.UI.WebControls.WebParts</import>
+            <import>System.Web.UI.HtmlControls</import>
+          </imports>
+          <includeSources>
+            <includeSource>Default.aspx.vb</includeSource>
+            <includeSource>Default.aspx.designer.vb</includeSource>
+            <includeSource>My Project\AssemblyInfo.vb</includeSource>
+            <includeSource>My Project\Application.Designer.vb</includeSource>
+            <includeSource>My Project\MyExtensions\MyWebExtension.vb</includeSource>
+            <includeSource>My Project\Resources.Designer.vb</includeSource>
+            <includeSource>My Project\Settings.Designer.vb</includeSource>
+          </includeSources>
+          <outputDirectory>bin</outputDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-resgen-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <embeddedResources>
+            <embeddedResource>
+              <sourceFile>My Project\Resources.resx</sourceFile>
+              <name>VBWebAppTest.Resources</name>
+            </embeddedResource>
+          </embeddedResources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
