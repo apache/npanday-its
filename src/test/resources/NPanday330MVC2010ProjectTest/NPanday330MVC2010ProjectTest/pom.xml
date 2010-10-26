@@ -30,26 +30,33 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
+   <dependencies>
     <dependency>
       <groupId>System.Web.DynamicData</groupId>
       <artifactId>System.Web.DynamicData</artifactId>
-      <version>3.5.0.0</version>
-      <type>gac_msil</type>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
       <classifier>31bf3856ad364e35</classifier>
     </dependency>
     <dependency>
       <groupId>System.Web.Entity</groupId>
       <artifactId>System.Web.Entity</artifactId>
-      <version>3.5.0.0</version>
-      <type>gac_msil</type>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
       <classifier>b77a5c561934e089</classifier>
+    </dependency>
+    <dependency>
+      <groupId>System.Web.ApplicationServices</groupId>
+      <artifactId>System.Web.ApplicationServices</artifactId>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
+      <classifier>31bf3856ad364e35</classifier>
     </dependency>
     <dependency>
       <groupId>System.ComponentModel.DataAnnotations</groupId>
       <artifactId>System.ComponentModel.DataAnnotations</artifactId>
-      <version>3.5.0.0</version>
-      <type>gac_msil</type>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
       <classifier>31bf3856ad364e35</classifier>
     </dependency>
     <dependency>
@@ -62,15 +69,15 @@
     <dependency>
       <groupId>System.Web.Abstractions</groupId>
       <artifactId>System.Web.Abstractions</artifactId>
-      <version>3.5.0.0</version>
-      <type>gac_msil</type>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
       <classifier>31bf3856ad364e35</classifier>
     </dependency>
     <dependency>
       <groupId>System.Web.Routing</groupId>
       <artifactId>System.Web.Routing</artifactId>
-      <version>3.5.0.0</version>
-      <type>gac_msil</type>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
       <classifier>31bf3856ad364e35</classifier>
     </dependency>
   </dependencies>
