@@ -2,14 +2,14 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
   <parent>
     <artifactId>NPanday330MVC2010ProjectTest-parent</artifactId>
-    <groupId>Microsoft.NPanday330MVC2010ProjectTest</groupId>
+    <groupId>NPanday.ITs.NPanday330MVC2010ProjectTest</groupId>
     <version>1.0-SNAPSHOT</version>
     <relativePath>..\pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>NPanday330MVC2010ProjectTest</artifactId>
   <packaging>library</packaging>
-  <name>Microsoft.NPanday330MVC2010ProjectTest : NPanday330MVC2010ProjectTest</name>
+  <name>NPanday.ITs.NPanday330MVC2010ProjectTest : NPanday330MVC2010ProjectTest</name>
   <build>
     <sourceDirectory>./</sourceDirectory>
     <plugins>
