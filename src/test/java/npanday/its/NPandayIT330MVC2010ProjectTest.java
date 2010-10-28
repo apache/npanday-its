@@ -30,7 +30,7 @@ public class NPandayIT330MVC2010ProjectTest
 {
     public NPandayIT330MVC2010ProjectTest()
     {
-        super( "[1.2,)", "[v4.0.30319,)" ); 
+        super( "[1.2.2-incubating,)", "[v4.0.30319,)" ); 
 
         File f = new File( System.getenv( "SYSTEMROOT" ), "assembly/GAC_MSIL/System.Web.MVC" );
         if ( !f.exists() || !f.isDirectory() )

@@ -30,7 +30,7 @@ public class NPandayITNet40Test
 {
     public NPandayITNet40Test()
     {
-        super( "[1.0.2,)", "[v4.0.30319,)" );
+        super( "[1.2.2-incubating,)", "[v4.0.30319,)" );
     }
 
     public void testNet40Project()
