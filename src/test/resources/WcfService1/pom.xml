@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+<parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>NPanday.ITs.WcfService1</groupId>  
+  <artifactId>WcfService1</artifactId>
+  <packaging>asp</packaging>
+  <name>NPanday.ITs.WcfService1 : WcfService1</name>
+  <build>
+    <sourceDirectory>.</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>4.0</frameworkVersion>
+          <includeSources>
+            <includeSource>Service1.svc.cs</includeSource>
+            <includeSource>IService1.cs</includeSource>
+            <includeSource>Properties\AssemblyInfo.cs</includeSource>
+          </includeSources>
+          <outputDirectory>bin</outputDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>npanday.plugin</groupId>
+        <artifactId>maven-aspx-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>4.0</frameworkVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>System.Web.DynamicData</groupId>
+      <artifactId>System.Web.DynamicData</artifactId>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
+      <classifier>31bf3856ad364e35</classifier>
+    </dependency>
+    <dependency>
+      <groupId>System.Web.Entity</groupId>
+      <artifactId>System.Web.Entity</artifactId>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
+      <classifier>b77a5c561934e089</classifier>
+    </dependency>
+    <dependency>
+      <groupId>System.Web.ApplicationServices</groupId>
+      <artifactId>System.Web.ApplicationServices</artifactId>
+      <version>4.0.0.0</version>
+      <type>gac_msil4</type>
+      <classifier>31bf3856ad364e35</classifier>
+    </dependency>
+  </dependencies>
+</project>
