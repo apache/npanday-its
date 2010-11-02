@@ -46,6 +46,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
+		suite.addTestSuite( NPandayIT328WPF2010ProjectTest.class );
 		suite.addTestSuite( NPandayIT330MVC2010ProjectTest.class );
 		suite.addTestSuite( NPandayITNet40Test.class );
         suite.addTestSuite( NPandayIT13635SnapshotUpdatesTest.class );
