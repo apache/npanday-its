@@ -41,12 +41,12 @@
         <configuration>
           <webreferences>
             <webreference>
-              <namespace>com.amazon.soap</namespace>
-              <path>Web References/com.amazon.soap/AmazonSearch.wsdl</path>
-              <output>Web References/com.amazon.soap</output>
+              <namespace>net.webservicex.www</namespace>
+              <path>WebReferences/net.webservicex.www/sendsmsworld.wsdl</path>
+              <output>WebReferences/net.webservicex.www/</output>
             </webreference>
           </webreferences>
-        </configuration>
+        </configuration>      
       </plugin>
     </plugins>
   </build>
