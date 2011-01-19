@@ -47,7 +47,7 @@ public class NPandayIT11637MsBuildErrorHandlingTest
         }
         catch ( VerificationException e )
         {
-            verifier.verifyTextInLog( "Class1.cs(9,28): error CS1002: ; expected" );
+            verifier.verifyTextInLog( "Class1.cs(29,28): error CS1002: ; expected" );
         }
         verifier.resetStreams();
     }
