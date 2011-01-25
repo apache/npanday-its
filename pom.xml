@@ -188,15 +188,9 @@ under the License.
   </profiles>
    
   <distributionManagement>
-    <snapshotRepository>
-      <id>npanday.snapshots</id>
-      <name>NPanday Snapshots Repository</name>
-      <url>${npanday.snapshots.url}</url>
-    </snapshotRepository>
     <repository>
-      <id>npanday.releases</id>
-      <name>NPanday Releases Repository</name>
-      <url>${npanday.releases.url}</url>
+      <id>vmbuild.staging</id>
+      <url>http://vmbuild.apache.org/archiva/repository/staged-npanday/</url>
     </repository>
   </distributionManagement>
   
