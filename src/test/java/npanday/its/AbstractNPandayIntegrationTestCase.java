@@ -205,22 +205,23 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void runTest()
         throws Throwable
     {
+        System.out.println();
         System.out.print( getITName() + "(" + getName() + ").." );
 
         if ( skip )
         {
-            System.out.println( " Skipping (" + skipReason + ")" );
+            System.out.print( " Skipping (" + skipReason + ")" );
             return;
         }
 
         try
         {
             super.runTest();
-            System.out.println( " Ok" );
+            System.out.print( " Ok" );
         }
         catch ( Throwable t )
         {
-            System.out.println( " Failure" );
+            System.out.print( " Failure" );
             throw t;
         }
     }
