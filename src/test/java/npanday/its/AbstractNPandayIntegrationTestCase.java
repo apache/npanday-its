@@ -206,7 +206,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         throws Throwable
     {
         System.out.println();
-        System.out.print( getITName() + "(" + getName() + ").." );
+        System.out.print( String.format("%1$-70s", getITName() + "." + getName()));
 
         if ( skip )
         {
@@ -217,11 +217,12 @@ public abstract class AbstractNPandayIntegrationTestCase
         try
         {
             super.runTest();
-            System.out.print( " Ok" );
+            System.out.print( "OK" );
         }
         catch ( Throwable t )
         {
-            System.out.print( " Failure" );
+            // TODO: this actually never happens on my machine. me@lcorneliussen.de
+            System.out.print( "FAILURE" );
             throw t;
         }
     }
