@@ -36,7 +36,7 @@ public class NPandayIT0033VBSourceWithCSharpSourceTest
     public void testVBSourceWithCsharpTestSource()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0033" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0033VBSourceWithCSharpSourceTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0033", "1.0.0.0", "dll" ) ).getAbsolutePath();

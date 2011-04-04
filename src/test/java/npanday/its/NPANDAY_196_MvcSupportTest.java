@@ -25,23 +25,35 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPANDAY_196_MvcSupportTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPANDAY_196_MvcSupportTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)", "[v3.5,)" ); 
+
+        File f = new File( System.getenv( "SYSTEMROOT" ), "assembly/GAC_MSIL/System.Web.MVC" );
+        if ( !f.exists() || !f.isDirectory() )
+        {
+            skipReason = "MVC.NET is not installed";
+            skip = true;
+        }
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testMVCProject()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_196_MvcSupportTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        		
+		String assembly = new File( testDir + "/NPanday11480",
+            getAssemblyFile( "NPanday11480", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+		
+		assertClassPresent( assembly, "NPanday11480.Controllers.AccountController" );
+        assertClassPresent( assembly, "NPanday11480.Controllers.HomeController" );
+        assertClassPresent( assembly, "NPanday11480.MvcApplication" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

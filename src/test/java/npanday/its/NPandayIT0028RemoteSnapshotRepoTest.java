@@ -36,7 +36,7 @@ public class NPandayIT0028RemoteSnapshotRepoTest
     public void testSnapDeploymentRemoteRepoNotUnique()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0028" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0028RemoteSnapshotRepoTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "deploy" );
         verifier.assertFilePresent(

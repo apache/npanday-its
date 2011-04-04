@@ -36,7 +36,7 @@ public class NPandayIT0007XSDVerificationTest
     public void testGenerateXsdFromXml()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0007" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0007XSDVerificationTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
 

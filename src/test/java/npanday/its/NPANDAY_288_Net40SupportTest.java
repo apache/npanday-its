@@ -25,20 +25,22 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class BootstrapTest
+public class NPANDAY_288_Net40SupportTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public BootstrapTest()
+    public NPANDAY_288_Net40SupportTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2.2-incubating,)", "[v4.0.30319,)" );
     }
 
-    public void testBootstrap()
+    public void testNet40Project()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/BootstrapTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_288_Net40SupportTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
+        verifier.assertFilePresent( new File( testDir, "ClassLibrary1/" +
+            getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

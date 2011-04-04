@@ -25,20 +25,31 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class BootstrapTest
+public class NPANDAY_302_SnapshotUpdatesTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public BootstrapTest()
+    public NPANDAY_302_SnapshotUpdatesTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2.1,)" );
     }
 
-    public void testBootstrap()
+    public void testUniqueSnapshotUpdates()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/BootstrapTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_302_SnapshotUpdatesTest/example1" );
         Verifier verifier = getVerifier( testDir );
-        verifier.executeGoal( "install" );
+
+        clearRdfCache();
+        deleteArtifact( verifier, "NPanday.ITs", "NPanday.IT13635.Dependency", "1.0-SNAPSHOT", "dll" );
+
+        verifier.executeGoal( "compile" );
+        verifier.verifyErrorFreeLog();
+        verifier.resetStreams();
+
+        testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_302_SnapshotUpdatesTest/example2" );
+        verifier = getVerifier( testDir );
+
+        verifier.executeGoal( "compile" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

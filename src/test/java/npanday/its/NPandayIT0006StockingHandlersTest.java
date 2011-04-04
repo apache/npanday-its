@@ -37,7 +37,7 @@ public class NPandayIT0006StockingHandlersTest
     public void testXsdPlugin()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0006" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0006StockingHandlersTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(

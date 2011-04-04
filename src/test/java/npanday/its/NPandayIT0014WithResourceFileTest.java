@@ -1,7 +1,7 @@
 package npanday.its;
 
 /*
- * Copyright 2010
+ * Copyright 2009
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -25,23 +25,27 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPandayIT0014WithResourceFileTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPandayIT0014WithResourceFileTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testWithResourceFile()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0014WithResourceFileTest" );
         Verifier verifier = getVerifier( testDir );
-        verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
+        verifier.executeGoal( "test" );
+        String assembly = new File( testDir, "ClassLibrary1/" +
+            getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+        String path = "ClassLibrary1/target/assembly-resources/resource/ClassLibrary1.Resource1.resources";
+        verifier.assertFilePresent( new File( testDir, path ).getAbsolutePath() );
+        assertResourcePresent( assembly, "Resource1.resources" );
+        assertClassPresent( assembly, "ClassLibrary1.Resource1" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

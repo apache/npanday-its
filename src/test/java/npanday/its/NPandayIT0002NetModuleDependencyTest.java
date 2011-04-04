@@ -36,7 +36,7 @@ public class NPandayIT0002NetModuleDependencyTest
     public void testNetModuleDependency()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleDependency" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0002NetModuleDependencyTest" );
         File testModuleDir = new File( testDir, "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );

@@ -3,13 +3,9 @@ package npanday.its;
 /*
  * Copyright 2010
  *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -25,20 +21,23 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class BootstrapTest
+public class NPANDAY_329_VS2010WcfProjectSupportTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public BootstrapTest()
+    public NPANDAY_329_VS2010WcfProjectSupportTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2.2-incubating,)", "[v4.0.30319,)" );
     }
 
-    public void testBootstrap()
+    public void testWCF2010Project()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/BootstrapTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_329_VS2010WcfProjectSupportTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
+        String assembly = new File( testDir,
+            getAssemblyFile( "WcfService1", "1.0.0", "zip" ) ).getAbsolutePath();
+        verifier.assertFilePresent( assembly );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

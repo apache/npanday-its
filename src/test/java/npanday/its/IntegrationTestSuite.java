@@ -46,31 +46,31 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
-        suite.addTestSuite( NPandayIT329WCF2010ProjectTest.class );
-        suite.addTestSuite( NPandayIT328WPF2010ProjectTest.class );
-        suite.addTestSuite( NPandayIT330MVC2010ProjectTest.class );
-        suite.addTestSuite( NPandayITNet40Test.class );
-        suite.addTestSuite( NPandayIT13635SnapshotUpdatesTest.class );
-        suite.addTestSuite( NPandayIT13542OptionInferTest.class );
-        suite.addTestSuite( NPandayIT10276ConflictingExtensionsTest.class );
-        suite.addTestSuite( NPandayIT13018TransitiveDependenciesTest.class );
-        suite.addTestSuite( NPandayIT12940MixedVersionsTest.class );
-        suite.addTestSuite( NPandayIT11480MVCProjectTest.class );
-        suite.addTestSuite( NPandayIT12549WpfProjectTest.class );
-        suite.addTestSuite( NPandayIT11579MissingGroupOrVersionTest.class );
-        suite.addTestSuite( NPandayIT11695MsBuildCopyReferencesTest.class );
-        suite.addTestSuite( NPandayIT11637MsBuildErrorHandlingTest.class );
-        suite.addTestSuite( NPandayIT9903ResGenWithErrorInFileNameTest.class );
+        suite.addTestSuite( NPANDAY_329_VS2010WcfProjectSupportTest.class );
+        suite.addTestSuite( NPANDAY_328_VS2010WpfProjectSupportTest.class );
+        suite.addTestSuite( NPANDAY_330_VS2010MvcProjectSupportTest.class );
+        suite.addTestSuite( NPANDAY_288_Net40SupportTest.class );
+        suite.addTestSuite( NPANDAY_302_SnapshotUpdatesTest.class );
+        suite.addTestSuite( NPANDAY_292_CompilerParamForOptioninferTest.class );
+        suite.addTestSuite( NPANDAY_140_ConflictingExtensionsTest.class );
+        suite.addTestSuite( NPANDAY_268_TransitiveDependenciesTest.class );
+        suite.addTestSuite( NPANDAY_262_ResolvingMixedVersionsTest.class );
+        suite.addTestSuite( NPANDAY_196_MvcSupportTest.class );
+        suite.addTestSuite( NPANDAY_245_WpfGeneratedResourcesHandlingTest.class );
+        suite.addTestSuite( NPANDAY_198_MissingGroupOrVersionTest.class );
+        suite.addTestSuite( NPANDAY_208_MsBuildCopyReferencesTest.class );
+        suite.addTestSuite( NPANDAY_202_MsBuildErrorHandlingTest.class );
+        suite.addTestSuite( NPANDAY_121_ResGenWithErrorInFileNameTest.class );
 
-        suite.addTestSuite( NPandayITWithResourceFileTest.class );
-        suite.addTestSuite( NPandayITWebAppInstallTest.class );
-        suite.addTestSuite( NPandayITVBWebAppTest.class );
-        suite.addTestSuite( NPandayITSnapshotResolutionTest.class );
-        suite.addTestSuite( NPandayITNet35Test.class );
-        suite.addTestSuite( NPandayITIntraProjectDependencyTest.class );
-        suite.addTestSuite( NPandayITConsoleApplicationTest.class );
-        suite.addTestSuite( NPandayITCompilerWithArgsTest.class );
-        suite.addTestSuite( NPandayITClassLibWithWebRefInstallTest.class );
+        suite.addTestSuite( NPandayIT0014WithResourceFileTest.class );
+        suite.addTestSuite( NPandayIT0013WebAppInstallTest.class );
+        suite.addTestSuite( NPandayIT0012VBWebAppTest.class );
+        suite.addTestSuite( NPandayIT0011SnapshotResolutionTest.class );
+        suite.addTestSuite( NPandayIT0041Net35Test.class );
+        suite.addTestSuite( NPandayIT0040IntraProjectDependencyTest.class );
+        suite.addTestSuite( NPandayIT0039ConsoleApplicationTest.class );
+        suite.addTestSuite( NPandayIT0038CompilerWithArgsTest.class );
+        suite.addTestSuite( NPandayIT0037ClassLibWithWebRefInstallTest.class );
         suite.addTestSuite( NPandayIT0036InstalledArtifactsVerificationTest.class );
         suite.addTestSuite( NPandayIT0035VBRootNamespaceTest.class );
         suite.addTestSuite( NPandayIT0032CompileExclusionsTest.class );

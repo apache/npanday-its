@@ -36,7 +36,7 @@ public class NPandayIT0035VBRootNamespaceTest
     public void testVBRootNamespace()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0035" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0035VBRootNamespaceTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0035", "1.0.0.0", "exe" ) ).getAbsolutePath();

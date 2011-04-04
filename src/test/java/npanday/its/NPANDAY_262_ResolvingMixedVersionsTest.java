@@ -25,23 +25,32 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPANDAY_262_ResolvingMixedVersionsTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPANDAY_262_ResolvingMixedVersionsTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testMixedVersionResolution()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_262_ResolvingMixedVersionsTest" );
         Verifier verifier = getVerifier( testDir );
+
+        verifier.deleteArtifact( "test", "test-snapshot", "1.0-SNAPSHOT", "dll" );
+
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "test-mixed-versions", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-mixed-versions-test", "1.0-SNAPSHOT",
+                                                                        "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/test-mixed-versions.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/test-mixed-versions-test.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "target/test-assemblies/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

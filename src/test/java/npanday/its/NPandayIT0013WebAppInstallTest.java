@@ -1,7 +1,7 @@
 package npanday.its;
 
 /*
- * Copyright 2010
+ * Copyright 2009
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -25,23 +25,21 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPandayIT0013WebAppInstallTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPandayIT0013WebAppInstallTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testWebAppInstall()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0013WebAppInstallTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

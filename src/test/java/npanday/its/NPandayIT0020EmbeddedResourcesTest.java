@@ -36,7 +36,7 @@ public class NPandayIT0020EmbeddedResourcesTest
     public void testEmbeddedResources()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020EmbeddedResourcesTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(

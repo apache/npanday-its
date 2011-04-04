@@ -36,7 +36,7 @@ public class NPandayIT0001CompilerVerificationTest
     public void testCompiler()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0001" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0001CompilerVerificationTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0001", "1.0.0.0", "dll" ) ).getAbsolutePath();

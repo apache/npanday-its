@@ -36,7 +36,7 @@ public class NPandayIT0010VBCompilationTest
     public void testVBCompilation()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0010" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0010VBCompilationTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0010", "1.0.0.0", "dll" ) ).getAbsolutePath();

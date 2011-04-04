@@ -38,7 +38,7 @@ public class NPandayIT0003NetModuleTransitiveDependencyTest
         throws Exception
     {
         File testDir =
-            ResourceExtractor.simpleExtractResources( getClass(), "/NPandayITNetModuleTransitiveDependency" );
+            ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0003NetModuleTransitiveDependencyTest" );
         File testModuleDir = new File( testDir, "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );

@@ -36,7 +36,7 @@ public class NPandayIT0004NUnitTestVerificationTest
     public void testNUnitTestsRun()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0004" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0004NUnitTestVerificationTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
 

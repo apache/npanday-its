@@ -228,10 +228,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private String getITName()
     {
-        String simpleName = getClass().getName();
-        int idx = simpleName.lastIndexOf( '.' );
-        simpleName = idx >= 0 ? simpleName.substring( idx + 1 ) : simpleName;
-        simpleName = simpleName.startsWith( "NPandayIT" ) ? simpleName.substring( "NPandayIT".length() ) : simpleName;
+        String simpleName = getClass().getSimpleName();
         simpleName = simpleName.endsWith( "Test" ) ? simpleName.substring( 0, simpleName.length() - 4 ) : simpleName;
         return simpleName;
     }

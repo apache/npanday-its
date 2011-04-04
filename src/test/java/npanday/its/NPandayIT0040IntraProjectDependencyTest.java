@@ -1,7 +1,7 @@
 package npanday.its;
 
 /*
- * Copyright 2010
+ * Copyright 2009
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -25,23 +25,28 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPandayIT0040IntraProjectDependencyTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPandayIT0040IntraProjectDependencyTest()
     {
         super( "[1.0.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testIntraProjectDependency()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0040IntraProjectDependencyTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+        File libDir = new File( testDir, "ClassLibrary3" );
+        verifier.assertFilePresent(
+            new File( libDir, getAssemblyFile( "ClassLibrary3", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( libDir, "target/test-assemblies/ClassLibrary1.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( libDir, "target/test-assemblies/ClassLibrary2.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( libDir, "target/test-assemblies/ClassLibrary3.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( libDir, "target/test-assemblies/NUnit.Framework.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

@@ -25,23 +25,27 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPANDAY_208_MsBuildCopyReferencesTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPANDAY_208_MsBuildCopyReferencesTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testMsBuildCopyReferences()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_208_MsBuildCopyReferencesTest" );
         Verifier verifier = getVerifier( testDir );
-        verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+        // TODO: would be better to ensure each IT has unique IDs for required test artifacts in a better namespace for deleting
+        verifier.deleteArtifacts( "test" );
+
+        verifier.executeGoal( "compile" );
+        verifier.assertFilePresent(
+            new File( testDir + "/.references/test/test-snapshot-1.0-SNAPSHOT/test-snapshot.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir + "/bin/Debug/NPandayIT11695.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir + "/bin/Debug/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

@@ -1,7 +1,7 @@
 package npanday.its;
 
 /*
- * Copyright 2010
+ * Copyright 2009
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -25,23 +25,21 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPANDAY_292_CompilerParamForOptioninferTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPANDAY_292_CompilerParamForOptioninferTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testWithOptionInfer()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_292_CompilerParamForOptioninferTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "OptionInfer", "1.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

@@ -20,29 +20,35 @@ package npanday.its;
  * limitations under the License.
  */
 
+import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPANDAY_202_MsBuildErrorHandlingTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPANDAY_202_MsBuildErrorHandlingTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.2,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testMsBuildErrorsHandled()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_202_MsBuildErrorHandlingTest" );
         Verifier verifier = getVerifier( testDir );
-        verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
-        verifier.verifyErrorFreeLog();
+
+        try
+        {
+            verifier.executeGoal( "compile" );
+            fail( "Expected build to fail" );
+        }
+        catch ( VerificationException e )
+        {
+            verifier.verifyTextInLog( "Class1.cs(29,28): error CS1002: ; expected" );
+        }
         verifier.resetStreams();
     }
 }

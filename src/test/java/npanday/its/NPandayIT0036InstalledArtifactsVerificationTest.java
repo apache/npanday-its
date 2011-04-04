@@ -36,7 +36,7 @@ public class NPandayIT0036InstalledArtifactsVerificationTest
     public void testIT0036InstalledArtifacts()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0036" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0036InstalledArtifactsVerificationTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(

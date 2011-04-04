@@ -20,28 +20,38 @@ package npanday.its;
  * limitations under the License.
  */
 
+import java.io.File;
+
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
-import java.io.File;
-
-public class NPandayIT0022StrongNameKeyAddedToAssemblyTest  
+public class NPANDAY_198_MissingGroupOrVersionTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0022StrongNameKeyAddedToAssemblyTest()
+    public NPANDAY_198_MissingGroupOrVersionTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.1,)" );
     }
 
-    public void testStrongNameKeyAddedToAssembly()
+    public void testMissingGroupIdAndVersionShouldBeInherited()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
+        clearRdfCache();
+
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_198_MissingGroupOrVersionTest" );
         Verifier verifier = getVerifier( testDir );
-        verifier.executeGoal( "install" );
-        String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
-        verifier.assertFilePresent( assembly );
-        assertPublicKey( assembly );
+
+        verifier.executeGoal( "package" );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPanday.ITs11579", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, getAssemblyFile( "NPanday.ITs11579-test", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/NPanday.ITs11579.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/NPanday.ITs11579-test.dll" ).getAbsolutePath() );
+        verifier.assertFilePresent(
+            new File( testDir, "target/test-assemblies/NPanday11579Dependency.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
