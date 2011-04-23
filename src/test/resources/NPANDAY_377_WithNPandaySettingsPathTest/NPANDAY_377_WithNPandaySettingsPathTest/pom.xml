@@ -27,6 +27,6 @@
     </plugins>
   </build>
   <properties>
-    <npanday.settings>${basedir}/path</npanday.settings>
+    <npanday.settings>${basedir}</npanday.settings>
   </properties>  
 </project>

@@ -41,6 +41,7 @@ public class NPANDAY_377_WithNPandaySettingsPathTest
         verifier.executeGoal( "install" );
         verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithNPandaySettingsPathTest/" +
             getAssemblyFile( "NPANDAY377WithNPandaySettingsPathTest", "1.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithNPandaySettingsPathTest/npanday-settings.xml").getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
