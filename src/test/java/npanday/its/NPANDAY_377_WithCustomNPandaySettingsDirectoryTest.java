@@ -33,7 +33,7 @@ public class NPANDAY_377_WithCustomNPandaySettingsDirectoryTest
         super( "[1.3.1-incubating,)" );
     }
 
-    public void testWithConfiguredNPandaySettingsPath()
+    public void test()
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_377_WithCustomNPandaySettingsDirectoryTest" );
