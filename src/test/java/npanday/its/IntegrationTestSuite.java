@@ -46,7 +46,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
         
-        suite.addTestSuite( NPANDAY_377_WithNPandaySettingsPathTest.class );
+        suite.addTestSuite( NPANDAY_377_WithNPandaySettingsDirectoryPathTest.class );
         suite.addTestSuite( NPANDAY_329_VS2010WcfProjectSupportTest.class );
         suite.addTestSuite( NPANDAY_328_VS2010WpfProjectSupportTest.class );
         suite.addTestSuite( NPANDAY_330_VS2010MvcProjectSupportTest.class );
