@@ -45,7 +45,8 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0033VBSourceWithCSharpSourceTest.class ); // issue #11732
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
-        
+
+        suite.addTestSuite( NPANDAY_377_WithCustomNPandaySettingsFileTest.class );
         suite.addTestSuite( NPANDAY_377_WithCustomNPandaySettingsDirectoryTest.class );
         suite.addTestSuite( NPANDAY_329_VS2010WcfProjectSupportTest.class );
         suite.addTestSuite( NPANDAY_328_VS2010WpfProjectSupportTest.class );

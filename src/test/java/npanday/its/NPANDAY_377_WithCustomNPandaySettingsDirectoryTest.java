@@ -25,10 +25,10 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPANDAY_377_WithNPandaySettingsDirectoryPathTest
+public class NPANDAY_377_WithCustomNPandaySettingsDirectoryTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPANDAY_377_WithNPandaySettingsDirectoryPathTest()
+    public NPANDAY_377_WithCustomNPandaySettingsDirectoryTest()
     {
         super( "[1.3.1-incubating,)" );
     }
@@ -36,12 +36,12 @@ public class NPANDAY_377_WithNPandaySettingsDirectoryPathTest
     public void testWithConfiguredNPandaySettingsPath()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_377_WithNPandaySettingsDirectoryPathTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_377_WithCustomNPandaySettingsDirectoryTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithNPandaySettingsDirectoryPathTest/" +
-            getAssemblyFile( "NPANDAY377WithNPandaySettingsDirectoryPathTest", "1.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithNPandaySettingsDirectoryPathTest/npanday-settings.xml").getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/" +
+            getAssemblyFile( "NPANDAY377WithCustomNPandaySettingsDirectoryTest", "1.0.0", "dll" ) ).getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/npanday-settings.xml").getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }
