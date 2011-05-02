@@ -26,7 +26,7 @@ under the License.
     <artifactId>NPanday.ITs.Parent</artifactId>
     <version>1-SNAPSHOT</version>
   </parent>
-  <groupId>npanday.its</groupId>
+  <groupId>org.apache.npanday.its</groupId>
   <artifactId>test-non-unique-snapshot</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>library</packaging>
@@ -49,7 +49,7 @@ under the License.
     <testSourceDirectory>src/test/csharp</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
         <version>${npanday.version}</version>
         <extensions>true</extensions>

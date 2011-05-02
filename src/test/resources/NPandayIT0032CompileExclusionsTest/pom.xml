@@ -41,7 +41,7 @@ under the License.
     <testSourceDirectory>src/test</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
@@ -54,7 +54,7 @@ under the License.
         </configuration>
       </plugin>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-test-plugin</artifactId>
       </plugin>
     </plugins>

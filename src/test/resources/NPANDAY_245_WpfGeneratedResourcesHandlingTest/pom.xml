@@ -33,7 +33,7 @@ under the License.
     <sourceDirectory>./</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
@@ -50,7 +50,7 @@ under the License.
         </configuration>
       </plugin>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>NPanday.Plugin.Msbuild.JavaBinding</artifactId>
         <extensions>true</extensions>
         <executions>
@@ -62,7 +62,7 @@ under the License.
         </executions>
       </plugin>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-resgen-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>

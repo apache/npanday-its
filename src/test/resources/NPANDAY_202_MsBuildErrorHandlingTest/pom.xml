@@ -31,7 +31,7 @@ under the License.
     <sourceDirectory>./</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>NPanday.Plugin.Msbuild.JavaBinding</artifactId>
         <executions>
           <execution>

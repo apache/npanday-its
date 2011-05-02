@@ -33,7 +33,7 @@ under the License.
     <sourceDirectory>./</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-compile-plugin</artifactId>
         <version>${npanday.version}</version>
         <extensions>true</extensions>
@@ -46,7 +46,7 @@ under the License.
         </configuration>
       </plugin>
       <plugin>
-        <groupId>npanday.plugin</groupId>
+        <groupId>org.apache.npanday.plugin</groupId>
         <artifactId>maven-wsdl-plugin</artifactId>
         <version>${npanday.version}</version>
         <executions>
