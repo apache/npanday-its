@@ -150,6 +150,7 @@ under the License.
                 <exclude>**/**.sha1</exclude>
                 <exclude>**/**.x-properties</exclude>
                 <exclude>**/**.snk</exclude>
+                <exclude>**/**.sln</exclude>                
               </excludes>
             </configuration>
             <executions>
