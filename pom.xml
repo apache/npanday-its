@@ -20,7 +20,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.npanday.its</groupId>
   <artifactId>npanday-its</artifactId>
-  <version>2.0-SNAPSHOT</version>
+  <version>1.4.0-incubating-SNAPSHOT</version>
 
   <name>NPanday Integration Tests Parent</name>
 
