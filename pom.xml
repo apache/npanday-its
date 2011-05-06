@@ -20,7 +20,7 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.npanday.its</groupId>
   <artifactId>npanday-its</artifactId>
-  <version>1.4.0-incubating-SNAPSHOT</version>
+  <version>1.4.0-incubating</version>
 
   <name>NPanday Integration Tests Parent</name>
 
@@ -111,9 +111,9 @@ under the License.
   </properties>
 
   <scm>
-    <url>http://svn.apache.org/viewvc/incubator/npanday/npanday-its/trunk/</url>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/incubator/npanday/npanday-its/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/npanday/npanday-its/trunk/</developerConnection>
+    <url>http://svn.apache.org/viewvc/incubator/npanday/npanday-its/tags/npanday-1.4.0-incubating</url>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/incubator/npanday/npanday-its/tags/npanday-1.4.0-incubating</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/npanday/npanday-its/tags/npanday-1.4.0-incubating</developerConnection>
   </scm>
 
   <profiles>
