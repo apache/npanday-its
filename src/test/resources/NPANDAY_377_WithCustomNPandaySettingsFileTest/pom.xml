@@ -19,6 +19,11 @@ under the License.
 -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
   <groupId>Microsoft.NPANDAY377WithCustomNPandaySettingsFileTest</groupId>
   <artifactId>NPANDAY377WithCustomNPandaySettingsFileTest-parent</artifactId>
   <packaging>pom</packaging>
