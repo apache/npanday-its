@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+  <parent>
+    <artifactId>NPANDAY459MSBuildProjectReferences-parent</artifactId>
+    <groupId>NPanday.ITs.NPanday459</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>..\pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>ConsoleApplication1</artifactId>
+  <packaging>exe</packaging>
+  <name>NPanday.ITs.NPanday459 : ConsoleApplication1</name>
+  <build>
+    <sourceDirectory>./</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <includeSources>
+            <includeSource>Program.cs</includeSource>
+            <includeSource>Properties\AssemblyInfo.cs</includeSource>
+          </includeSources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>NPanday.Plugin.Msbuild.JavaBinding</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>NPanday.ITs.NPanday459</groupId>
+      <artifactId>ClassLibrary1</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>library</type>
+    </dependency>
+  </dependencies>
+</project>
