@@ -30,7 +30,7 @@ public class NPANDAY_377_WithCustomNPandaySettingsDirectoryTest
 {
     public NPANDAY_377_WithCustomNPandaySettingsDirectoryTest()
     {
-        super( "[1.3.1-incubating,)" );
+        super( "[1.4.0-incubating,)" );
     }
 
     public void test()

@@ -30,7 +30,7 @@ public class NPANDAY_288_Net40SupportTest
 {
     public NPANDAY_288_Net40SupportTest()
     {
-        super( "[1.2.2-incubating,)", "[v4.0.30319,)" );
+        super( "[1.4.0-incubating,)", "[v4.0.30319,)" );
     }
 
     public void testNet40Project()

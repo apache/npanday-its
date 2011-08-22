@@ -26,7 +26,7 @@ public class NPANDAY_329_VS2010WcfProjectSupportTest
 {
     public NPANDAY_329_VS2010WcfProjectSupportTest()
     {
-        super( "[1.2.2-incubating,)", "[v4.0.30319,)" );
+        super( "[1.4.0-incubating,)", "[v4.0.30319,)" );
     }
 
     public void testWCF2010Project()
