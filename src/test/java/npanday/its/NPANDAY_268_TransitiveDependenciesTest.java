@@ -31,8 +31,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 public class NPANDAY_268_TransitiveDependenciesTest
     extends AbstractNPandayIntegrationTestCase
@@ -45,7 +43,7 @@ public class NPANDAY_268_TransitiveDependenciesTest
     public void testLadderBuild()
         throws Exception
     {
-        File testDir = unzipResources( "/NPANDAY_268_TransitiveDependenciesTest/LadderBuild.zip" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_268_TransitiveDependenciesTest/LadderBuild" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "ladder1", "2.0.0.0", "dll" );
@@ -60,7 +58,7 @@ public class NPANDAY_268_TransitiveDependenciesTest
     public void testTransitiveDependenciesNotOnCompile()
         throws Exception
     {
-        File testDir = unzipResources( "/NPANDAY_268_TransitiveDependenciesTest/TransDependency.zip" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_268_TransitiveDependenciesTest/TransDependency" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "NPandayIT13018", "1.0.0.0", "dll" );
