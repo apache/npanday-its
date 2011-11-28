@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
+  <groupId>NPanday.ITs.NPANDAY_480</groupId>
+  <artifactId>NPANDAY_480_AzureCloudService-parent</artifactId>
+  <packaging>pom</packaging>
+  <name>NPANDAY_480_AzureCloudService : NPANDAY_480_AzureCloudService-parent</name>
+  
+  <properties>
+    <npandayVersion>1.4.1-incubating-SNAPSHOT</npandayVersion>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.npanday.plugins</groupId>
+          <artifactId>maven-compile-plugin</artifactId>
+          <version>${npandayVersion}</version>
+          <configuration>
+            <frameworkVersion>4.0</frameworkVersion>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.npanday.plugins</groupId>
+          <artifactId>custom-lifecycle-maven-plugin</artifactId>
+          <version>${npandayVersion}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.npanday.plugins</groupId>
+          <artifactId>maven-webapp-plugin</artifactId>
+          <version>${npandayVersion}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  <modules>
+	<module>HelloWorld</module>
+	<module>HelloWorld_WebRole</module>
+  </modules>
+</project>

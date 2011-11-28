@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>NPanday.ITs.NPANDAY_480</groupId>
+    <artifactId>NPANDAY_480_AzureCloudService-parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>HelloWorld_CloudService</artifactId>
+  <packaging>azure-cloud-service</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>NPanday.ITs.NPANDAY_480 :: Hello World Cloud Service</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>NPanday.ITs.NPANDAY_480</groupId>
+      <artifactId>HelloWorld_WebRole</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>msdeploy-package</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>custom-lifecycle-maven-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <stripVersion>true</stripVersion>
+              <!-- configure the plugin here -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <id>msdeploy-unpack</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>msdeploy</executable>
+              <arguments>
+                <argument>-verb:sync</argument>
+                <argument>-source:package=${build.directory}\dependency\HelloWorld_WebRole.msdeploy.zip</argument>
+                <argument>-dest:dirPath=${build.directory}\prepare-package\HelloWorld_WebRole</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cspack</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>cmd</executable>
+              <arguments>
+                <argument>/C</argument>
+                <argument>cspack</argument>
+                <argument>ServiceDefinition.csdef</argument>
+                <argument>"/out:target\HelloWorld_CloudService-1.0.0-SNAPSHOT.cspkg"</argument>
+                <argument>"/role:HelloWorld_WebRole;${build.directory}\prepare-package\HelloWorld_WebRole"</argument>
+                <argument>"/sites:HelloWorld_WebRole;Web;${build.directory}\prepare-package\HelloWorld_WebRole"</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!--<plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>add-msdeploy-package</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${build.directory}/${artifactId}.msdeploy.zip</file>
+                  <type>msdeploy-package</type>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>-->
+    </plugins>
+  </build>
+</project>  

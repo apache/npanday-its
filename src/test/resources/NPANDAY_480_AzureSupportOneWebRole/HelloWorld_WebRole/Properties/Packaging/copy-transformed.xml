@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" 
+         DefaultTargets="TransformAndCopy">
+
+  <PropertyGroup>
+    <!-- set these from the outside!-->
+    <WorkDirectory Condition="'$(WorkDirectory)' == ''">target\packaging-workdir</WorkDirectory>
+    <TransformationFileIdentifiers Condition="'$(TransformationFileIdentifiers)' == ''">package</TransformationFileIdentifiers>
+  </PropertyGroup>
+
+  <Import Project="ChainedXdtTransform.targets"/>
+
+</Project>
