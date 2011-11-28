@@ -17,8 +17,13 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 :LicenseComment
+
 @echo off
 if X%1==X set test=
 if not X%1==X set test=-Dtest=*%1*
+
+if X%2==X set version=1.4.1-incubating-SNAPSHOT
+if not X%2==X set version=%2
 @echo on
-mvn test -Prun-its -Dnpanday.version=1.4.0-incubating-SNAPSHOT %test%
+
+mvn test -Prun-its -Dnpanday.version=%version% %test%
