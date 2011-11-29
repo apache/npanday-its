@@ -590,4 +590,22 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         return testDir;
     }
+
+    protected NPandayIntegrationTestContext createDefaultTestContext()
+        throws IOException, VerificationException
+    {
+        NPandayIntegrationTestContext context = new NPandayIntegrationTestContext();
+
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/" + getClass().getSimpleName() );
+
+        context.setGroupId("NPanday.ITs." + getClass().getSimpleName());
+        context.setTestDir(testDir);
+
+        Verifier verifier = getVerifier( testDir );
+        verifier.deleteArtifacts( context.getGroupId() );
+
+        context.setVerifier(verifier);
+
+        return context;
+    }
 }
