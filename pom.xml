@@ -18,6 +18,11 @@ specific language governing permissions and limitations
 under the License.
 -->
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>8</version>
+  </parent>  
   <groupId>org.apache.npanday.its</groupId>
   <artifactId>npanday-its</artifactId>
   <version>1.4.1-incubating-SNAPSHOT</version>
@@ -188,34 +193,54 @@ under the License.
     </profile>	
   </profiles>
    
+  <!-- TODO: set up a common parent with NPanday again to store these -->
   <distributionManagement>
     <repository>
-      <id>vmbuild.staging</id>
-      <url>http://vmbuild.apache.org/archiva/repository/staged-npanday/</url>
+      <id>vmbuild.releases</id>
+      <url>http://vmbuild.apache.org/archiva/repository/npanday-releases/</url>
     </repository>
+    <snapshotRepository>
+      <id>vmbuild.snapshots</id>
+      <url>http://vmbuild.apache.org/archiva/repository/npanday-snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
   
-  <!-- TODO: need to get these into central after 1.1 -->
   <pluginRepositories>
     <pluginRepository>
-      <id>npanday.releases</id>
-      <name>NPanday Releases Repository</name>
-      <url>${npanday.releases.url}</url>
-      <snapshots>
+      <releases>
         <enabled>false</enabled>
-      </snapshots>
+      </releases>
+      <id>npanday.snapshots</id>
+      <name>NPanday Snapshot Repository</name>
+      <url>http://vmbuild.apache.org/archiva/repository/npanday-snapshots</url>
     </pluginRepository>
   </pluginRepositories>
   
   <repositories>
+    <!-- Temporary solution until we figure out where to house these properly -->
     <repository>
-      <id>npanday.releases</id>
-      <name>NPanday Releases Repository</name>
-      <url>${npanday.releases.url}</url>
+      <id>3rdparty</id>
+      <name>3rd Party .NET Repository</name>
+      <url>http://repo.npanday.org/3rdparty</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
     </repository>
-  </repositories>  
-  
+    <repository>
+      <id>openrdf</id>
+      <name>OpenRDF Repository</name>
+      <url>http://repository.aduna-software.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <id>npanday.snapshots</id>
+      <name>NPanday Snapshot Repository</name>
+      <url>http://vmbuild.apache.org/archiva/repository/npanday-snapshots</url>
+    </repository>
+  </repositories>
 </project>
