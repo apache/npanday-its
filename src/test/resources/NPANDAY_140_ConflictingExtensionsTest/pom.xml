@@ -61,4 +61,22 @@ under the License.
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>servebox</id>
+      <url>http://maven.servebox.org/repository</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+  <repositories>
+    <repository>
+      <id>servebox</id>
+      <url>http://maven.servebox.org/repository</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>
