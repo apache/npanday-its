@@ -54,8 +54,8 @@ public class NPandayIT0012VBWebAppTest
 
         assertZipEntries( zipFile, expectedEntries );
 
-        String assembly = new File( testDir, "target/VBWebAppTest/bin/VBWebAppTest.dll" ).getAbsolutePath();
-        assertResourcePresent( assembly, "VBWebAppTest.Resources.resources" );
-        assertClassPresent( assembly, "VBWebAppTest._Default" );
+        String assembly = new File( testDir, "target/VBWebAppTest/bin/VBWebAppTest.dll" ).getCanonicalPath();
+        assertResourcePresent( assembly, "Resources.resources" );
+        assertClassPresent( assembly, "_Default" );
     }
 }
