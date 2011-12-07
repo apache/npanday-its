@@ -55,8 +55,8 @@ public class NPANDAY_121_ResGenWithErrorInFileNameTest
         assertZipEntries( zipFile, expectedEntries );
 
         String assembly = new File( testDir, "npanday-9903/target/npanday-9903/bin/npanday-9903.dll" ).getCanonicalPath();
-        assertResourcePresent( assembly, "Resources.resources" );
-        assertResourcePresent( assembly, "error.asp.resources" );
+        assertResourcePresent( assembly, "npanday_9903", "Resources.resources" );
+        assertResourcePresent( assembly, "npanday_9903","error.asp.resources" );
         assertClassPresent( assembly, "_Default" );
         assertClassPresent( assembly, "_error" );
         assertClassPresent( assembly, "My.MyApplication" );
