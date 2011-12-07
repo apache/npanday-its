@@ -422,7 +422,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
             StreamConsumer err = new WriterStreamConsumer( logWriter );
 
-            System.err.println( "Command: " + Commandline.toString( cli.getCommandline() ) );
+//            System.err.println( "Command: " + Commandline.toString( cli.getCommandline() ) );
 
             int ret = CommandLineUtils.executeCommandLine( cli, out, err );
 
