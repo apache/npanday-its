@@ -202,6 +202,23 @@ public abstract class AbstractNPandayIntegrationTestCase
         return versionRange;
     }
 
+    protected static void assertZipEntries( File zipFile, List<String> expectedEntries )
+        throws IOException
+    {
+        ZipFile zip = new ZipFile( zipFile );
+        try
+        {
+            for ( String name : expectedEntries )
+            {
+                assertNotNull( zip.getEntry( name ) );
+            }
+        }
+        finally
+        {
+            zip.close();
+        }
+    }
+
     protected void runTest()
         throws Throwable
     {
@@ -539,56 +556,6 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected static boolean checkNPandayVersion( String versionRangeStr )
     {
         return checkNPandayVersion( createVersionRange( versionRangeStr ), version ) || forceVersion;
-    }
-
-    protected File unzipResources( String resourcePath )
-        throws IOException
-    {
-        String tempDirPath = System.getProperty( "maven.test.tmpdir", System.getProperty( "java.io.tmpdir" ) );
-        File tempDir = new File( tempDirPath );
-
-        File testDir = new File( tempDir, resourcePath.substring( 0, resourcePath.length() - 4 ) );
-
-        FileUtils.deleteDirectory( testDir );
-
-        File f = ResourceExtractor.extractResourcePath( getClass(), resourcePath, tempDir, true );
-
-        ZipFile zipFile = new ZipFile( f );
-        try
-        {
-            for ( Enumeration entries = zipFile.entries(); entries.hasMoreElements(); )
-            {
-                ZipEntry entry = (ZipEntry) entries.nextElement();
-
-                File file = new File( testDir.getParentFile(), entry.getName() );
-                file.getParentFile().mkdirs();
-                if ( entry.isDirectory() )
-                {
-                    file.mkdir();
-                    continue;
-                }
-
-                InputStream inputStream = null;
-                FileOutputStream outputStream = null;
-                try
-                {
-                    inputStream = zipFile.getInputStream( entry );
-                    outputStream = new FileOutputStream( file );
-                    IOUtil.copy( inputStream, outputStream );
-                }
-                finally
-                {
-                    IOUtil.close( inputStream );
-                    IOUtil.close( outputStream );
-                }
-            }
-        }
-        finally
-        {
-            zipFile.close();
-        }
-
-        return testDir;
     }
 
     protected NPandayIntegrationTestContext createDefaultTestContext()

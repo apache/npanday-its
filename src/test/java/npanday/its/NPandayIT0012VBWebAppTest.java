@@ -24,6 +24,10 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.zip.ZipFile;
 
 public class NPandayIT0012VBWebAppTest
     extends AbstractNPandayIntegrationTestCase
@@ -39,8 +43,19 @@ public class NPandayIT0012VBWebAppTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0012VBWebAppTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "VBWebAppTest", "1.0.0", "zip" ) ).getAbsolutePath() );
+        File zipFile = new File( testDir, getAssemblyFile( "VBWebAppTest", "1.0.0", "zip" ) );
+        verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
+
+        List<String> expectedEntries = Arrays.asList( "bin/VBWebAppTest.dll", "Default.aspx",
+                                                      "My Project/Application.myapp", "My Project/Resources.resx",
+                                                      "My Project/Settings.settings", "Web.config" );
+
+        assertZipEntries( zipFile, expectedEntries );
+
+        String assembly = new File( testDir, "target/bin/VBWebAppTest.dll" ).getAbsolutePath();
+        assertResourcePresent( assembly, "VBWebAppTest.Resources.resources" );
+        assertClassPresent( assembly, "VBWebAppTest._Default" );
     }
 }
