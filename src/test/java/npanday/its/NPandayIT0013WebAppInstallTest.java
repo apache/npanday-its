@@ -24,6 +24,8 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class NPandayIT0013WebAppInstallTest
     extends AbstractNPandayIntegrationTestCase
@@ -39,8 +41,16 @@ public class NPandayIT0013WebAppInstallTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0013WebAppInstallTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent( new File( testDir, getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) ).getAbsolutePath() );
+        File zipFile = new File( testDir, getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) );
+        verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
+
+        List<String> expectedEntries = Arrays.asList( "bin/WebAppExample.dll", "Default.aspx", "Web.config" );
+
+        assertZipEntries( zipFile, expectedEntries );
+
+        String assembly = new File( testDir, "target/WebAppExample/bin/WebAppExample.dll" ).getCanonicalPath();
+        assertClassPresent( assembly, "_Default" );
     }
 }
