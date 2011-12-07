@@ -57,5 +57,7 @@ public class NPandayIT0012VBWebAppTest
         String assembly = new File( testDir, "target/VBWebAppTest/bin/VBWebAppTest.dll" ).getCanonicalPath();
         assertResourcePresent( assembly, "Resources.resources" );
         assertClassPresent( assembly, "_Default" );
+        assertClassPresent( assembly, "My.MyApplication" );
+        assertClassPresent( assembly, "My.MySettings" );
     }
 }
