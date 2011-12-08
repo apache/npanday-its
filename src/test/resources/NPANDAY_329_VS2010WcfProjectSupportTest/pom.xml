@@ -17,14 +17,15 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
-<parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
     <groupId>NPanday.ITs</groupId>
     <artifactId>NPanday.ITs.Parent</artifactId>
     <version>1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>NPanday.ITs.WcfService1</groupId>  
+  <groupId>NPanday.ITs.WcfService1</groupId>
   <artifactId>WcfService1</artifactId>
   <packaging>asp</packaging>
   <name>NPanday.ITs.WcfService1 : WcfService1</name>

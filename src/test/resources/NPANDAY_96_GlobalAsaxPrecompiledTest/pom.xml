@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>NPanday.ITs</groupId>
+    <artifactId>NPanday.ITs.Parent</artifactId>
+    <version>1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>NPanday.ITs.GlobalASAXExample</groupId>
+  <artifactId>GlobalASAXExample</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>asp</packaging>
+  <name>NPanday.ITs.GlobalASAXExample : GlobalASAXExample</name>
+  <build>
+    <sourceDirectory>.</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>3.5</frameworkVersion>
+          <includeSources>
+            <includeSource>Default.aspx.cs</includeSource>
+            <includeSource>Default.aspx.designer.cs</includeSource>
+            <includeSource>Global.asax.cs</includeSource>
+            <includeSource>Properties\AssemblyInfo.cs</includeSource>
+          </includeSources>
+          <outputDirectory>bin</outputDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

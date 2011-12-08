@@ -205,12 +205,31 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected static void assertZipEntries( File zipFile, List<String> expectedEntries )
         throws IOException
     {
+        assertZipEntries( zipFile, expectedEntries, true );
+    }
+
+    protected static void assertNoZipEntries( File zipFile, List<String> unexpectedEntries )
+        throws IOException
+    {
+        assertZipEntries( zipFile, unexpectedEntries, false );
+    }
+
+    protected static void assertZipEntries( File zipFile, List<String> expectedEntries, boolean expected )
+        throws IOException
+    {
         ZipFile zip = new ZipFile( zipFile );
         try
         {
             for ( String name : expectedEntries )
             {
-                assertNotNull( zip.getEntry( name ) );
+                if ( expected )
+                {
+                    assertNotNull( zip.getEntry( name ) );
+                }
+                else
+                {
+                    assertNull( zip.getEntry( name ) );
+                }
             }
         }
         finally
