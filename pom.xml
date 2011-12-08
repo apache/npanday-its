@@ -59,6 +59,10 @@ under the License.
               <name>debug.maven</name>
               <value>${debug.maven}</value>
             </property>
+            <property>
+              <name>npanday.log.debug</name>
+              <value>${npanday.log.debug}</value>
+            </property>
           </systemProperties>
         </configuration>
       </plugin>
