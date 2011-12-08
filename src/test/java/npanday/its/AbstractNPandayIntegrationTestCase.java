@@ -68,6 +68,8 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static boolean debugMaven = Boolean.valueOf( System.getProperty( "debug.maven", "false" ) );
 
+    private static boolean debugOutput = Boolean.valueOf( System.getProperty( "npanday.log.debug", "false" ) );
+
     private static boolean forceVersion = Boolean.valueOf( System.getProperty( "npanday.version.force", "false" ) );
 
     private static final Pattern PATTERN = Pattern.compile( "(.*?)-(RC[0-9]+|SNAPSHOT)" );
@@ -224,11 +226,11 @@ public abstract class AbstractNPandayIntegrationTestCase
             {
                 if ( expected )
                 {
-                    assertNotNull( zip.getEntry( name ) );
+                    assertNotNull( "expected " + name + " to be present in zip", zip.getEntry( name ) );
                 }
                 else
                 {
-                    assertNull( zip.getEntry( name ) );
+                    assertNull( "expected " + name + " to be absent in zip", zip.getEntry( name ) );
                 }
             }
         }
@@ -286,6 +288,10 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
         List<String> cliOptions = new ArrayList<String>( 2 );
         cliOptions.add( "-Dnpanday.version=" + version );
+        if ( debugOutput )
+        {
+            cliOptions.add( "-X" );
+        }
         verifier.setCliOptions( cliOptions );
         return verifier;
     }
