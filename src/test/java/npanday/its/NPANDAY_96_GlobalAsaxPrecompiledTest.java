@@ -54,5 +54,6 @@ public class NPANDAY_96_GlobalAsaxPrecompiledTest
 
         String assembly = new File( testDir, "target/GlobalASAXExample/bin/GlobalASAXExample.dll" ).getCanonicalPath();
         assertClassPresent( assembly, "_Default" );
+        assertClassPresent( assembly, "Global" );
     }
 }
