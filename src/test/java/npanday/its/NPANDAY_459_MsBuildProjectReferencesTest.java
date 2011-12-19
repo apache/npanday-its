@@ -39,7 +39,9 @@ public class NPANDAY_459_MsBuildProjectReferencesTest
         // TODO: would be better to ensure each IT has unique IDs for required test artifacts in a better namespace for deleting
         verifier.deleteArtifacts( "test" );
 
-        verifier.executeGoal( "install" );
+        // Can only run up until package, because currently "install" deletes
+        // the bin directory (though perhaps shouldn't)
+        verifier.executeGoal( "package" );
         verifier.assertFileNotPresent(
             new File( testDir, "ClassLibrary1/.references/test/test-snapshot-1.0-SNAPSHOT/test-snapshot.dll" ).getAbsolutePath() );
         verifier.assertFilePresent(
