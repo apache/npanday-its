@@ -46,6 +46,10 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
+        suite.addTestSuite( NPANDAY_459_MsBuildProjectReferencesTest.lass );
+        suite.addTestSuite( NPANDAY_465_AspxDisablePrecompilationTest.lass );
+        suite.addTestSuite( NPANDAY_488_MSDeployPackageSimpleWebApp.class );
+        suite.addTestSuite( NPANDAY_96_GlobalAsaxPrecompiledTest.class );
         suite.addTestSuite( NPANDAY_377_WithCustomNPandaySettingsFileTest.class );
         suite.addTestSuite( NPANDAY_377_WithCustomNPandaySettingsDirectoryTest.class );
         suite.addTestSuite( NPANDAY_329_VS2010WcfProjectSupportTest.class );
