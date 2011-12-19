@@ -25,7 +25,7 @@ public class NPANDAY_488_MSDeployPackageSimpleWebApp
 {
     public NPANDAY_488_MSDeployPackageSimpleWebApp()
     {
-        super( "[1.4.1-incubating,)" );
+        super( "[1.5.0-incubating,)" );
     }
 
     public void test()
