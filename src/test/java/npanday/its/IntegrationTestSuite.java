@@ -46,7 +46,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
-        suite.addTestSuite( NPANDAY_474_AspxExcludeWorkingDirectoriesTest.class);
+        suite.addTestSuite( NPANDAY_474_AspxExcludeWorkingDirectoriesTest.class );
         suite.addTestSuite( NPANDAY_459_MsBuildProjectReferencesTest.class );
         suite.addTestSuite( NPANDAY_465_AspxDisablePrecompilationTest.class );
         suite.addTestSuite( NPANDAY_488_MSDeployPackageSimpleWebApp.class );
@@ -90,6 +90,8 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPandayIT0006StockingHandlersTest.class );
         suite.addTestSuite( NPandayIT0004NUnitTestVerificationTest.class );
         suite.addTestSuite( NPandayIT0001CompilerVerificationTest.class );
+
+        suite.addTestSuite( AddInInstallationTest.class );
 
         return suite;
     }

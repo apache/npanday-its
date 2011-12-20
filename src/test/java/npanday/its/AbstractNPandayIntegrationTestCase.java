@@ -62,7 +62,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static final String NPANDAY_VERSION_SYSTEM_PROPERTY = "npanday.version";
 
-    private static DefaultArtifactVersion version = checkVersion();
+    protected static DefaultArtifactVersion version = checkVersion();
 
     private static DefaultArtifactVersion frameworkVersion = checkFrameworkVersion();
 
@@ -576,6 +576,42 @@ public abstract class AbstractNPandayIntegrationTestCase
             }
         }
         return false;
+    }
+
+    private String getAssemblyFrameworkVersion( File assembly )
+        throws VerificationException
+    {
+        String output = runILDisasm( assembly.getAbsolutePath() );
+
+        String prefix = "// Metadata version: v";
+        for ( String line : output.split( "\n" ) )
+        {
+            line = line.trim();
+            if ( line.startsWith( prefix ) )
+            {
+                return line.substring( prefix.length() ).trim();
+            }
+        }
+        return null;
+    }
+
+    private boolean isAssemblyFrameworkVersion( File assembly, String versionRangeStr )
+        throws VerificationException
+    {
+        String frameworkVersion = getAssemblyFrameworkVersion( assembly );
+        VersionRange versionRange = createVersionRange( versionRangeStr );
+        return versionRange.containsVersion( new DefaultArtifactVersion( frameworkVersion ) );
+    }
+
+    protected void assertAssemblyFrameworkVersion( File assembly, String versionRangeStr )
+        throws VerificationException
+    {
+        String frameworkVersion = getAssemblyFrameworkVersion( assembly );
+        VersionRange versionRange = createVersionRange( versionRangeStr );
+        if ( !versionRange.containsVersion( new DefaultArtifactVersion( frameworkVersion ) ) )
+        {
+            fail( "Framework version " + frameworkVersion + " is not in range " + versionRangeStr );
+        }
     }
 
     protected static boolean checkNPandayVersion( String versionRangeStr )
