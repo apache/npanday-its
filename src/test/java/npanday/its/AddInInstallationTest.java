@@ -35,9 +35,12 @@ public class AddInInstallationTest
         super( "[1.0.2,)" );
     }
 
-    public void testBootstrap()
+    public void testAddInInstallation()
         throws Exception
     {
+        // TODO: these tests are still useful even if we remove the vsinstaller plugin - in that case, we need an
+        //       alternate way to obtain the visualstudio.addin artifact from the repository
+
         List<String> artifacts;
         String groupId;
         if ( checkNPandayVersion( createVersionRange( "(,1.4.0)" ), version ) ) 
