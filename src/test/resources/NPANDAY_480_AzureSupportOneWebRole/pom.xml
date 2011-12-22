@@ -8,14 +8,28 @@
     <artifactId>NPanday.ITs.Parent</artifactId>
     <version>1-SNAPSHOT</version>
   </parent>
-  <groupId>NPanday.ITs.NPANDAY_480</groupId>
-  <artifactId>NPANDAY_480_AzureCloudService-parent</artifactId>
+  <groupId>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole</groupId>
+  <artifactId>NPANDAY_480_AzureSupportOneWebRole-parent</artifactId>
   <packaging>pom</packaging>
-  <name>NPANDAY_480_AzureCloudService : NPANDAY_480_AzureCloudService-parent</name>
-  
+  <name>NPANDAY_480_AzureSupportOneWebRole : NPANDAY_480_AzureSupportOneWebRole-parent</name>
+
   <properties>
-    <npandayVersion>1.4.1-incubating-SNAPSHOT</npandayVersion>
+    <frameworkVersion>4.0</frameworkVersion>
   </properties>
+
+  <profiles>
+    <profile>
+      <id>standalone</id>
+      <activation>
+        <property>
+          <name>!npanday.version</name>
+        </property>
+      </activation>
+      <properties>
+        <npanday.version>1.5.0-incubating-SNAPSHOT</npanday.version>
+      </properties>
+    </profile>
+  </profiles>
 
   <build>
     <pluginManagement>
@@ -23,27 +37,29 @@
         <plugin>
           <groupId>org.apache.npanday.plugins</groupId>
           <artifactId>maven-compile-plugin</artifactId>
-          <version>${npandayVersion}</version>
-          <configuration>
-            <frameworkVersion>4.0</frameworkVersion>
-          </configuration>
+          <version>${npanday.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.npanday.plugins</groupId>
           <artifactId>custom-lifecycle-maven-plugin</artifactId>
-          <version>${npandayVersion}</version>
+          <version>${npanday.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.npanday.plugins</groupId>
-          <artifactId>maven-webapp-plugin</artifactId>
-          <version>${npandayVersion}</version>
+          <artifactId>msdeploy-maven-plugin</artifactId>
+          <version>${npanday.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.npanday.plugins</groupId>
+          <artifactId>azure-maven-plugin</artifactId>
+          <version>${npanday.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
   
   <modules>
-	<module>HelloWorld</module>
-	<module>HelloWorld_WebRole</module>
+    <module>HelloWorld</module>
+    <module>HelloWorld_WebRole</module>
   </modules>
 </project>

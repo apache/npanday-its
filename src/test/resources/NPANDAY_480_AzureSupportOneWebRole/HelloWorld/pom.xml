@@ -7,8 +7,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>NPanday.ITs.NPANDAY_480</groupId>
-    <artifactId>NPANDAY_480_AzureCloudService-parent</artifactId>
+    <groupId>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole</groupId>
+    <artifactId>NPANDAY_480_AzureSupportOneWebRole-parent</artifactId>
     <version>1-SNAPSHOT</version>
   </parent>
 
@@ -16,11 +16,11 @@
   <packaging>azure-cloud-service</packaging>
   <version>1.0.0-SNAPSHOT</version>
 
-  <name>NPanday.ITs.NPANDAY_480 :: Hello World Cloud Service</name>
+  <name>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole :: Hello World Cloud Service</name>
 
   <dependencies>
     <dependency>
-      <groupId>NPanday.ITs.NPANDAY_480</groupId>
+      <groupId>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole</groupId>
       <artifactId>HelloWorld_WebRole</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>msdeploy-package</type>
@@ -33,9 +33,39 @@
         <groupId>org.apache.npanday.plugins</groupId>
         <artifactId>custom-lifecycle-maven-plugin</artifactId>
         <extensions>true</extensions>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>msdeploy-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>azure-maven-plugin</artifactId>
+        <configuration>
+
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>create-cloud-service-package</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
-      <plugin>
+      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>2.3</version>
@@ -48,7 +78,6 @@
             </goals>
             <configuration>
               <stripVersion>true</stripVersion>
-              <!-- configure the plugin here -->
             </configuration>
           </execution>
         </executions>
@@ -76,7 +105,7 @@
           </execution>
           <execution>
             <id>cspack</id>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>exec</goal>
             </goals>
@@ -93,7 +122,8 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin-->
+
       <!--<plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
