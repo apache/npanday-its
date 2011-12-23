@@ -32,6 +32,8 @@ public class NPANDAY_488_MSDeployPackageSimpleWebApp
     public void test()
         throws Exception
     {
+        // TODO: enable only if msdeploy is installed
+
         NPandayIntegrationTestContext context = createDefaultTestContext();
         Verifier verifier = context.getPreparedVerifier();
 
