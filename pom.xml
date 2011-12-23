@@ -172,7 +172,7 @@ under the License.
             <version>0.8</version>
             <configuration>
               <excludes>
-                <exclude>.gitignore</exclude>
+                <exclude>.git*</exclude>
                 <exclude>.idea/**</exclude>
                 <exclude>**/**.md5</exclude>
                 <exclude>**/**.sha1</exclude>
