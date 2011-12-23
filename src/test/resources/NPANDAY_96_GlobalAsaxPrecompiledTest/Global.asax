@@ -16,5 +16,4 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-
 <%@ Application Codebehind="Global.asax.cs" Inherits="TestGlobal.Global" Language="C#" %>
