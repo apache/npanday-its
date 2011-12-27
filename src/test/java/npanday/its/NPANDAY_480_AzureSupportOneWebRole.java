@@ -44,7 +44,13 @@ public class NPANDAY_480_AzureSupportOneWebRole
 
         verifier.assertFilePresent(
             verifier.getArtifactPath(
-                context.getGroupId(), a, v, "cscfg", "configtemplate"
+                context.getGroupId(), a, v, "cscfg", "generated"
+            )
+        );
+
+        verifier.assertFilePresent(
+            verifier.getArtifactPath(
+                context.getGroupId(), a, v, "cscfg", "package"
             )
         );
 
