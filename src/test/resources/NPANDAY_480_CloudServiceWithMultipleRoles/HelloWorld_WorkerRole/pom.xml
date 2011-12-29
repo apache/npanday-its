@@ -26,8 +26,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>NPanday.ITs.NPANDAY_480_CloudServiceWithWorkerRole</groupId>
-    <artifactId>NPANDAY_480_CloudServiceWithWorkerRole-parent</artifactId>
+    <groupId>NPanday.ITs.NPANDAY_480_CloudServiceWithMultipleRoles</groupId>
+    <artifactId>NPANDAY_480_CloudServiceWithMultipleRoles-parent</artifactId>
     <version>1-SNAPSHOT</version>
   </parent>
 
@@ -35,7 +35,7 @@
   <packaging>dotnet-library</packaging>
   <version>1.0.0-SNAPSHOT</version>
 
-  <name>NPanday.ITs.NPANDAY_480_CloudServiceWithWorkerRole :: Hello World Worker Role</name>
+  <name>NPanday.ITs.NPANDAY_480_CloudServiceWithMultipleRoles :: Hello World Worker Role</name>
 
   <properties>
     <frameworkVersion>4.0</frameworkVersion>

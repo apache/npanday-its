@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="web.package.config" />
     <None Include="Properties\Packaging\ChainedXdtTransform.targets" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

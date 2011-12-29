@@ -37,6 +37,10 @@
 
   <name>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole :: Hello World Web Role</name>
 
+  <properties>
+    <frameworkVersion>4.0</frameworkVersion>
+  </properties>
+
   <build>
     <sourceDirectory>.</sourceDirectory>
     <plugins>
@@ -53,6 +57,7 @@
           <execution>
             <goals>
               <goal>assemble-package-files</goal>
+              <goal>process-web-config</goal>
             </goals>
           </execution>
         </executions>
