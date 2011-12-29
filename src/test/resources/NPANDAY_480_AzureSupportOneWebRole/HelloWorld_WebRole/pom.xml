@@ -51,8 +51,6 @@
         <artifactId>aspnet-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>prepare-package</id>
-            <phase>prepare-package</phase>
             <goals>
               <goal>assemble-package-files</goal>
             </goals>
@@ -64,10 +62,8 @@
         <artifactId>msdeploy-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>create-msdeploy-package</id>
-            <phase>package</phase>
             <goals>
-              <goal>create-package</goal>
+              <goal>package</goal>
             </goals>
           </execution>
         </executions>

@@ -21,10 +21,10 @@ package npanday.its;
 
 import org.apache.maven.it.Verifier;
 
-public class NPANDAY_480_AzureSupportOneWebRole
+public class NPANDAY_480_CloudServiceWithWorkerRole
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPANDAY_480_AzureSupportOneWebRole()
+    public NPANDAY_480_CloudServiceWithWorkerRole()
     {
         super( "[1.5.0-incubating,)" );
     }
@@ -53,6 +53,9 @@ public class NPANDAY_480_AzureSupportOneWebRole
                 context.getGroupId(), a, v, "cscfg", "package"
             )
         );
+
+        verifier.assertArtifactPresent( context.getGroupId(), "HelloWorld_WorkerRole", v, "dll" );
+        verifier.assertArtifactPresent( context.getGroupId(), "HelloWorld_WorkerRole", v, "app.zip" );
 
         // TODO: check package contents
 
