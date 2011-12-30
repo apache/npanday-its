@@ -40,6 +40,16 @@
     <frameworkVersion>4.0</frameworkVersion>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>azure-it-repo</id>
+      <url>file:${basedir}/../../AzureBootstrap/azure-repo</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>Microsoft.WindowsAzure</groupId>

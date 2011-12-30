@@ -34,6 +34,7 @@ public class IntegrationTestSuite
          * This must be the first one to ensure the local repository is properly setup.
          */
         suite.addTestSuite( BootstrapTest.class );
+        suite.addTestSuite( AzureBootstrap.class );
 
         /*
          * Add tests in order of newest first.
