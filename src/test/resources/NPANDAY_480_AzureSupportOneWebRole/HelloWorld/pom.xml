@@ -28,12 +28,11 @@
   <parent>
     <groupId>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole</groupId>
     <artifactId>NPANDAY_480_AzureSupportOneWebRole-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>HelloWorld_CloudService</artifactId>
   <packaging>azure-cloud-service</packaging>
-  <version>1.0.0-SNAPSHOT</version>
 
   <name>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole :: Hello World Cloud Service</name>
 

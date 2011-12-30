@@ -29,6 +29,7 @@
   </parent>
   <groupId>NPanday.ITs.NPANDAY_480_AzureSupportOneWebRole</groupId>
   <artifactId>NPANDAY_480_AzureSupportOneWebRole-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>NPANDAY_480_AzureSupportOneWebRole : NPANDAY_480_AzureSupportOneWebRole-parent</name>
 

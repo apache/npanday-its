@@ -28,12 +28,11 @@
   <parent>
     <groupId>NPanday.ITs.NPANDAY_480_CloudServiceWithMultipleRoles</groupId>
     <artifactId>NPANDAY_480_CloudServiceWithMultipleRoles-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>HelloWorld_WorkerRole</artifactId>
   <packaging>dotnet-library</packaging>
-  <version>1.0.0-SNAPSHOT</version>
 
   <name>NPanday.ITs.NPANDAY_480_CloudServiceWithMultipleRoles :: Hello World Worker Role</name>
 

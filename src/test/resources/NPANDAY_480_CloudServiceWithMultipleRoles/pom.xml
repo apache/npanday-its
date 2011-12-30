@@ -29,6 +29,7 @@
   </parent>
   <groupId>NPanday.ITs.NPANDAY_480_CloudServiceWithMultipleRoles</groupId>
   <artifactId>NPANDAY_480_CloudServiceWithMultipleRoles-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>NPANDAY_480_CloudServiceWithMultipleRoles : NPANDAY_480_CloudServiceWithMultipleRoles-parent</name>
 
