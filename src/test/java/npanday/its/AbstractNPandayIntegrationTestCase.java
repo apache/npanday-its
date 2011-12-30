@@ -636,10 +636,19 @@ public abstract class AbstractNPandayIntegrationTestCase
         return context;
     }
 
-
-    protected void skipIfMissing( String gac, String message )
+    protected void skipIfMissingGAC( String gac, String message )
     {
         File f = new File( System.getenv( "SYSTEMROOT" ), "assembly/GAC_MSIL/" + gac );
+        if ( !f.exists() || !f.isDirectory() )
+        {
+            skipReason = message;
+            skip = true;
+        }
+    }
+
+    protected void skipIfMissingProgramFilesDirectory( String directory, String message )
+    {
+        File f = new File( System.getenv( "PROGRAMFILES" ), directory );
         if ( !f.exists() || !f.isDirectory() )
         {
             skipReason = message;

@@ -31,14 +31,12 @@ public class AzureBootstrap
     {
         super( "[1.5.0-incubating,)", "[v4.0,)" );
 
-        skipIfMissing( "Microsoft.WindowsAzure.ServiceRuntime", "Azure SDK is not installed" );
+        skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
     }
 
     public void testBootstrap()
         throws Exception
     {
-        // TODO: only run if Azure SDK is installed
-
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/AzureBootstrap" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "package" );

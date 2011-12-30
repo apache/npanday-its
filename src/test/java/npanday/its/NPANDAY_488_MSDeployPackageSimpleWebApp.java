@@ -30,12 +30,7 @@ public class NPANDAY_488_MSDeployPackageSimpleWebApp
     {
         super( "[1.5.0-incubating,)" );
 
-        File f = new File( System.getenv( "PROGRAMFILES" ), "IIS/Microsoft Web Deploy V2" );
-        if ( !f.exists() || !f.isDirectory() )
-        {
-            skipReason = "Web Deploy 2.0 not installed";
-            skip = true;
-        }
+        skipIfMissingProgramFilesDirectory( "IIS/Microsoft Web Deploy V2", "Web Deploy 2.0 not installed" );
     }
 
     public void test()

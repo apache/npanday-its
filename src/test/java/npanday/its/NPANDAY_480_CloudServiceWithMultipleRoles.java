@@ -28,7 +28,7 @@ public class NPANDAY_480_CloudServiceWithMultipleRoles
     {
         super( "[1.5.0-incubating,)", "[v4.0,)" );
 
-        skipIfMissing( "Microsoft.WindowsAzure.ServiceRuntime", "Azure SDK is not installed" );
+        skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
     }
 
     public void test()

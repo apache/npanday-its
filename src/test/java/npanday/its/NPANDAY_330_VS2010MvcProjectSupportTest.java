@@ -31,7 +31,7 @@ public class NPANDAY_330_VS2010MvcProjectSupportTest
     {
         super( "[1.4.0-incubating,)", "[v4.0.30319,)" ); 
 
-        skipIfMissing( "System.Web.MVC", "MVC.NET is not installed" );
+        skipIfMissingGAC( "System.Web.MVC", "MVC.NET is not installed" );
     }
 
     public void testMVC2010Project()
