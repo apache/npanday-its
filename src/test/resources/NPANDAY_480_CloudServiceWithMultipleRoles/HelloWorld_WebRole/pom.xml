@@ -46,7 +46,6 @@
       <plugin>
         <groupId>org.apache.npanday.plugins</groupId>
         <artifactId>maven-compile-plugin</artifactId>
-        <version>${npanday.version}</version>
         <extensions>true</extensions>
       </plugin>
       <plugin>
@@ -67,7 +66,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>package</goal>
+              <goal>create-package</goal>
             </goals>
           </execution>
         </executions>
