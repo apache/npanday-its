@@ -66,6 +66,7 @@ public class AddInInstallationTest
         testDir.mkdirs();
         Verifier verifier = getVerifier( testDir );
         verifier.setAutoclean( false );
+        verifier.getCliOptions().add( "-DinstallationLocation=" + new File( testDir, "vsinstaller" ).getAbsolutePath() );
         verifier.executeGoal( groupId + ":maven-vsinstaller-plugin:" + version.toString() + ":install" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
