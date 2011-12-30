@@ -26,7 +26,7 @@ public class NPANDAY_480_CloudServiceWithMultipleRoles
 {
     public NPANDAY_480_CloudServiceWithMultipleRoles()
     {
-        super( "[1.5.0-incubating,)", "[v4.0,)" );
+        super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
 
         skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
     }
