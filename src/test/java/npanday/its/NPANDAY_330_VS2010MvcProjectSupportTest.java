@@ -31,12 +31,7 @@ public class NPANDAY_330_VS2010MvcProjectSupportTest
     {
         super( "[1.4.0-incubating,)", "[v4.0.30319,)" ); 
 
-        File f = new File( System.getenv( "SYSTEMROOT" ), "assembly/GAC_MSIL/System.Web.MVC" );
-        if ( !f.exists() || !f.isDirectory() )
-        {
-            skipReason = "MVC.NET is not installed";
-            skip = true;
-        }
+        skipIfMissing( "System.Web.MVC", "MVC.NET is not installed" );
     }
 
     public void testMVC2010Project()

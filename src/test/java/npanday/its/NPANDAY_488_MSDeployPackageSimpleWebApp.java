@@ -21,19 +21,26 @@ package npanday.its;
 
 import org.apache.maven.it.Verifier;
 
+import java.io.File;
+
 public class NPANDAY_488_MSDeployPackageSimpleWebApp
     extends AbstractNPandayIntegrationTestCase
 {
     public NPANDAY_488_MSDeployPackageSimpleWebApp()
     {
         super( "[1.5.0-incubating,)" );
+
+        File f = new File( System.getenv( "PROGRAMFILES" ), "IIS/Microsoft Web Deploy V2" );
+        if ( !f.exists() || !f.isDirectory() )
+        {
+            skipReason = "Web Deploy 2.0 not installed";
+            skip = true;
+        }
     }
 
     public void test()
         throws Exception
     {
-        // TODO: enable only if msdeploy is installed
-
         NPandayIntegrationTestContext context = createDefaultTestContext();
         Verifier verifier = context.getPreparedVerifier();
 

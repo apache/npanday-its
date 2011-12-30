@@ -29,7 +29,9 @@ public class AzureBootstrap
 {
     public AzureBootstrap()
     {
-        super( "[1.5.0-incubating,)" );
+        super( "[1.5.0-incubating,)", "[v4.0,)" );
+
+        skipIfMissing( "Microsoft.WindowsAzure.ServiceRuntime", "Azure SDK is not installed" );
     }
 
     public void testBootstrap()

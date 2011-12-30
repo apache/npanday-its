@@ -26,14 +26,14 @@ public class NPANDAY_480_AzureSupportOneWebRole
 {
     public NPANDAY_480_AzureSupportOneWebRole()
     {
-        super( "[1.5.0-incubating,)" );
+        super( "[1.5.0-incubating,)", "[v4.0,)" );
+
+        skipIfMissing( "Microsoft.WindowsAzure.ServiceRuntime", "Azure SDK is not installed" );
     }
 
     public void test()
         throws Exception
     {
-        // TODO: enable only if azure is installed
-
         NPandayIntegrationTestContext context = createDefaultTestContext();
         Verifier verifier = context.getPreparedVerifier();
 
