@@ -42,39 +42,6 @@
     <frameworkVersion>4.0</frameworkVersion>
   </properties>
 
-  <profiles>
-    <profile>
-      <id>standalone</id>
-      <activation>
-        <property>
-          <name>!npanday.version</name>
-        </property>
-      </activation>
-      <properties>
-        <npanday.version>1.5.0-incubating-SNAPSHOT</npanday.version>
-      </properties>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.npanday.plugins</groupId>
-              <artifactId>maven-compile-plugin</artifactId>
-              <version>${npanday.version}</version>
-              <configuration>
-                <frameworkVersion>4.0</frameworkVersion>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.npanday.plugins</groupId>
-              <artifactId>custom-lifecycle-maven-plugin</artifactId>
-              <version>${npanday.version}</version>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-  </profiles>
-
   <build>
     <sourceDirectory>.</sourceDirectory>
     <plugins>
@@ -86,7 +53,6 @@
       <plugin>
         <groupId>org.apache.npanday.plugins</groupId>
         <artifactId>aspnet-maven-plugin</artifactId>
-        <version>${npanday.version}</version>
         <executions>
           <execution>
             <id>prepare-package</id>

@@ -36,47 +36,6 @@
     <frameworkVersion>4.0</frameworkVersion>
   </properties>
 
-  <profiles>
-    <profile>
-      <id>standalone</id>
-      <activation>
-        <property>
-          <name>!npanday.version</name>
-        </property>
-      </activation>
-      <properties>
-        <npanday.version>1.5.0-incubating-SNAPSHOT</npanday.version>
-      </properties>
-    </profile>
-  </profiles>
-
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.npanday.plugins</groupId>
-          <artifactId>maven-compile-plugin</artifactId>
-          <version>${npanday.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.npanday.plugins</groupId>
-          <artifactId>custom-lifecycle-maven-plugin</artifactId>
-          <version>${npanday.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.npanday.plugins</groupId>
-          <artifactId>msdeploy-maven-plugin</artifactId>
-          <version>${npanday.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.npanday.plugins</groupId>
-          <artifactId>azure-maven-plugin</artifactId>
-          <version>${npanday.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-  
   <modules>
     <module>HelloWorld</module>
     <module>HelloWorld_WebRole</module>
