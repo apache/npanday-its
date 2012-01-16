@@ -61,12 +61,12 @@ public class AddInInstallationTest
             );
         }
 
-        String tmpdir = System.getProperty( "maven.test.tmpdir", System.getProperty( "java.io.tmpdir" ) );
-        File testDir = new File( tmpdir, "AddInInstallationTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/AddInInstallationTest" );
+        File vsinstaller = new File( testDir, "vsinstaller" );
         testDir.mkdirs();
         Verifier verifier = getVerifier( testDir );
         verifier.setAutoclean( false );
-        verifier.getCliOptions().add( "-DinstallationLocation=" + new File( testDir, "vsinstaller" ).getAbsolutePath() );
+        verifier.getCliOptions().add( "-DinstallationLocation=" + vsinstaller.getAbsolutePath() );
         verifier.executeGoal( groupId + ":maven-vsinstaller-plugin:" + version.toString() + ":install" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
@@ -77,7 +77,10 @@ public class AddInInstallationTest
         {
             File assembly = new File( verifier.getArtifactPath( "org.apache.logging", "log4net", "1.2.11", "dll",
                                                                 "net-2.0" ) );
-            assertTrue( "Check " + assembly + " exists", assembly.exists() );
+            assertTrue( "Check " + assembly.getAbsolutePath() + " exists", assembly.exists() );
+            
+            assembly = new File( vsinstaller, "log4net.dll" );
+            assertTrue( "Check " + assembly.getAbsolutePath() + " exists", assembly.exists() );
         }
 
         // check correct framework version of libraries in the local repository
@@ -90,6 +93,9 @@ public class AddInInstallationTest
             assertTrue( "Check " + assembly + " exists", assembly.exists() );
 
             assertAssemblyFrameworkVersion( assembly, "[2.0.50727]" );
+
+            assembly = new File( vsinstaller, parts[1] + ".dll" );
+            assertTrue( "Check " + assembly.getAbsolutePath() + " exists", assembly.exists() );
         }
     }
 }

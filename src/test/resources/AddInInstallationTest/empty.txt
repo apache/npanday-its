@@ -1,0 +1,1 @@
+deliberately empty directory to check that installation works
