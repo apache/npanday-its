@@ -71,15 +71,14 @@ public class AddInInstallationTest
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
 
-        // TODO: check the AddIn files
-
+        File vsinstallerBin = new File( vsinstaller, "bin" );
         if ( checkNPandayVersion( createVersionRange( "[1.5.0,)" ), version ) )
         {
             File assembly = new File( verifier.getArtifactPath( "org.apache.logging", "log4net", "1.2.11", "dll",
                                                                 "net-2.0" ) );
             assertTrue( "Check " + assembly.getAbsolutePath() + " exists", assembly.exists() );
             
-            assembly = new File( vsinstaller, "log4net.dll" );
+            assembly = new File( vsinstallerBin, "log4net.dll" );
             assertTrue( "Check " + assembly.getAbsolutePath() + " exists", assembly.exists() );
         }
 
@@ -94,7 +93,7 @@ public class AddInInstallationTest
 
             assertAssemblyFrameworkVersion( assembly, "[2.0.50727]" );
 
-            assembly = new File( vsinstaller, parts[1] + ".dll" );
+            assembly = new File( vsinstallerBin, parts[1] + ".dll" );
             assertTrue( "Check " + assembly.getAbsolutePath() + " exists", assembly.exists() );
         }
     }
