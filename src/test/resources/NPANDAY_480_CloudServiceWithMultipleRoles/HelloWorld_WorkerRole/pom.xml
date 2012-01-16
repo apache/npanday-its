@@ -89,8 +89,8 @@
           <execution>
             <goals>
               <goal>assemble-package-files</goal>
-              <goal>process-app-config</goal>
-              <goal>package</goal>
+              <goal>process-configs</goal>
+              <goal>create-package</goal>
             </goals>
           </execution>
         </executions>

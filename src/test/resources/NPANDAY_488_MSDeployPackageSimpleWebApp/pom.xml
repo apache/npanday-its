@@ -70,7 +70,6 @@
         <executions>
           <execution>
             <id>create-msdeploy-package</id>
-            <phase>package</phase>
             <goals>
               <goal>create-package</goal>
             </goals>

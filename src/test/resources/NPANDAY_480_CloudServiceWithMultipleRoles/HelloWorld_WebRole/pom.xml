@@ -55,7 +55,7 @@
           <execution>
             <goals>
               <goal>assemble-package-files</goal>
-              <goal>process-web-config</goal>
+              <goal>process-configs</goal>
             </goals>
           </execution>
         </executions>
