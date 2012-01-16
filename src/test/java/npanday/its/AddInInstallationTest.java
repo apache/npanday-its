@@ -73,6 +73,13 @@ public class AddInInstallationTest
 
         // TODO: check the AddIn files
 
+        if ( checkNPandayVersion( createVersionRange( "[1.5.0,)" ), version ) )
+        {
+            File assembly = new File( verifier.getArtifactPath( "org.apache.logging", "log4net", "1.2.11", "dll",
+                                                                "net-2.0" ) );
+            assertTrue( "Check " + assembly + " exists", assembly.exists() );
+        }
+
         // check correct framework version of libraries in the local repository
         for ( String artifact : artifacts )
         {
