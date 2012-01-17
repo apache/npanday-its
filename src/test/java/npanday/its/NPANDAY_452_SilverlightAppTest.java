@@ -27,6 +27,9 @@ public class NPANDAY_452_SilverlightAppTest
     public NPANDAY_452_SilverlightAppTest()
     {
         super( "[1.5.0-incubating,)" );
+
+        skipIfMissingMSBuildTask( "Microsoft/Silverlight/v3.0/Microsoft.Silverlight.CSharp.targets",
+                                  "Silverlight v3.0 SDK is not present" );
     }
 
     public void test()
