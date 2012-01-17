@@ -655,4 +655,15 @@ public abstract class AbstractNPandayIntegrationTestCase
             skip = true;
         }
     }
+
+    protected void skipIfMissingMSBuildTask( String path, String message )
+    {
+        File f = new File( System.getenv( "PROGRAMFILES" ), "MSBuild" );
+        f = new File( f, path );
+        if ( !f.exists() )
+        {
+            skipReason = message;
+            skip = true;
+        }
+    }
 }
