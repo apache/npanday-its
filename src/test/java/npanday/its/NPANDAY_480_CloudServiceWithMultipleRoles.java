@@ -29,10 +29,7 @@ public class NPANDAY_480_CloudServiceWithMultipleRoles
         super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
 
         skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
-
-        // TODO: when XDT doesn't require VS 2010, then this can be removed
-        skipIfMissingMSBuildTask( "Microsoft/VisualStudio/v10.0/Web/Microsoft.Web.Publishing.Tasks.dll",
-                                  "Visual Studio 2010 with web platform is not installed" );
+        assertXdtPresent();
     }
 
     public void test()

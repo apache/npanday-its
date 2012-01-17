@@ -666,4 +666,11 @@ public abstract class AbstractNPandayIntegrationTestCase
             skip = true;
         }
     }
+
+    protected void assertXdtPresent()
+    {
+        // TODO: when XDT doesn't require VS 2010, then this can be removed
+        skipIfMissingMSBuildTask( "Microsoft/VisualStudio/v10.0/Web/Microsoft.Web.Publishing.Tasks.dll",
+                                  "Visual Studio 2010 with web platform is not installed" );
+    }
 }
