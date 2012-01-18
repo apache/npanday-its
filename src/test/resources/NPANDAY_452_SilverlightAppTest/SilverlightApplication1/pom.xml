@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>SilverlightApplication1</artifactId>
   <packaging>silverlight-application</packaging>
-  <name>SilverlightApplication1 : SilverlightApplication1</name>
+  <name>NPanday.ITs.NPANDAY_452_SilverlightAppTest : SilverlightApplication1</name>
   <build>
     <sourceDirectory>./</sourceDirectory>
     <plugins>
@@ -29,7 +29,7 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>SilverlightApplication1</groupId>
+      <groupId>NPanday.ITs.NPANDAY_452_SilverlightAppTest</groupId>
       <artifactId>SilverlightClassLibrary1</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>library</type>

@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>SilverlightClassLibrary1</artifactId>
   <packaging>silverlight-library</packaging>
-  <name>SilverlightApplication1 : SilverlightClassLibrary1</name>
+  <name>NPanday.ITs.NPANDAY_452_SilverlightAppTest : SilverlightClassLibrary1</name>
   <build>
     <sourceDirectory>./</sourceDirectory>
     <plugins>

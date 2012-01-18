@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>SilverlightApplication2</artifactId>
   <packaging>silverlight-application</packaging>
-  <name>SilverlightApplication1 : SilverlightApplication2</name>
+  <name>NPanday.ITs.NPANDAY_452_SilverlightAppTest : SilverlightApplication2</name>
   <build>
     <sourceDirectory>./</sourceDirectory>
     <plugins>
