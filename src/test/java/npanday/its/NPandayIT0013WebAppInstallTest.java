@@ -59,7 +59,7 @@ public class NPandayIT0013WebAppInstallTest
         assertClassPresent( assembly, "_Default" );
 
         // aspx:package sets the main artifact as the ZIP, not the DLL
-        if ( checkNPandayVersion( "1.4.1-incubating,)" ) )
+        if ( checkNPandayVersion( "[1.4.1-incubating,)" ) )
         {
             assertTrue( localRepoZip.exists() );
             assertFalse( localRepoDll.exists() );
