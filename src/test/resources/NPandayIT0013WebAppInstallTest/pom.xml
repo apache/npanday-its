@@ -30,6 +30,7 @@
   <artifactId>WebAppExample</artifactId>
   <packaging>asp</packaging>
   <name>NPanday.IT : WebAppExample</name>
+  <version>1.0-SNAPSHOT</version>
   <build>
     <sourceDirectory>.</sourceDirectory>
     <plugins>

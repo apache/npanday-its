@@ -39,6 +39,12 @@ public class NPandayIT0013WebAppInstallTest
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0013WebAppInstallTest" );
         Verifier verifier = getVerifier( testDir );
+
+        File localRepoZip = new File( verifier.getArtifactPath( "NPanday.ITs", "WebAppExample", "1.0-SNAPSHOT", "zip" ) );
+        File localRepoDll = new File( verifier.getArtifactPath( "NPanday.ITs", "WebAppExample", "1.0-SNAPSHOT", "dll" ) );
+        localRepoZip.delete();
+        localRepoDll.delete();
+
         verifier.executeGoal( "install" );
         File zipFile = new File( testDir, getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
@@ -51,5 +57,12 @@ public class NPandayIT0013WebAppInstallTest
 
         String assembly = new File( testDir, "target/WebAppExample/bin/WebAppExample.dll" ).getCanonicalPath();
         assertClassPresent( assembly, "_Default" );
+
+        // aspx:package sets the main artifact as the ZIP, not the DLL
+        if ( checkNPandayVersion( "1.4.1-incubating,)" ) )
+        {
+            assertTrue( localRepoZip.exists() );
+            assertFalse( localRepoDll.exists() );
+        }
     }
 }
