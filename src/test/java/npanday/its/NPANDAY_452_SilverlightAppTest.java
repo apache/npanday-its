@@ -51,10 +51,7 @@ public class NPANDAY_452_SilverlightAppTest
         verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication2", "1.0-SNAPSHOT", "xap" );
         verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication1.Web", "1.0-SNAPSHOT", "msdeploy.zip" );
 
-        verifier.assertFilePresent( "SilverlightApplication1.Web/ClientBin/SilverlightApplication1.xap" );
-        verifier.assertFilePresent( "SilverlightApplication1.Web/ClientBin/SilverlightApplication2.xap" );
-
-        // make sure the XAP files also get copied by aspnet plugin
+        // make sure the XAP files get copied by aspnet plugin
         File zipFile = new File( verifier.getArtifactPath( context.getGroupId(), "SilverlightApplication1.Web",
                                                            "1.0-SNAPSHOT", "msdeploy.zip" ) );
         List<String> entries = new ArrayList<String>();
