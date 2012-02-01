@@ -23,6 +23,7 @@ import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,10 +40,8 @@ public class NPANDAY_474_AspxExcludeWorkingDirectoriesTest
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_474_AspxExcludeWorkingDirectoriesTest" );
 
-        File svnDir = new File( testDir, ".svn" );
-        svnDir.mkdirs();
-        new File( svnDir, "entries" ).createNewFile();
-        new File( svnDir, "prop-base" ).mkdir();
+        createSvnDir( testDir );
+        createSvnDir( new File( testDir, "Subdir" ) );
 
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
@@ -52,12 +51,22 @@ public class NPANDAY_474_AspxExcludeWorkingDirectoriesTest
         verifier.resetStreams();
 
         assertTrue( new File( testDir, ".svn" ).exists() );
+        assertTrue( new File( testDir, "Subdir/.svn" ).exists() );
         assertTrue( new File( testDir, ".references" ).exists() );
 
-        List<String> unexpectedEntries = Arrays.asList( ".svn", ".references" );
+        List<String> unexpectedEntries = Arrays.asList( ".svn", ".references", "Subdir/.svn" );
         assertNoZipEntries( zipFile, unexpectedEntries );
 
         String assembly = new File( testDir, "target/WcfService1/bin/WcfService1.dll" ).getCanonicalPath();
         assertClassPresent( assembly, "Service1" );
+    }
+
+    private void createSvnDir( File basedir )
+        throws IOException
+    {
+        File svnDir = new File( basedir, ".svn" );
+        svnDir.mkdirs();
+        new File( svnDir, "entries" ).createNewFile();
+        new File( svnDir, "prop-base" ).mkdir();
     }
 }
