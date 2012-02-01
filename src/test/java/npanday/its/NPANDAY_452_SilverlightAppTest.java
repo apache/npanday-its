@@ -21,6 +21,10 @@ package npanday.its;
 
 import org.apache.maven.it.Verifier;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class NPANDAY_452_SilverlightAppTest
     extends AbstractNPandayIntegrationTestCase
 {
@@ -50,6 +54,20 @@ public class NPANDAY_452_SilverlightAppTest
         verifier.assertFilePresent( "SilverlightApplication1.Web/ClientBin/SilverlightApplication1.xap" );
         verifier.assertFilePresent( "SilverlightApplication1.Web/ClientBin/SilverlightApplication2.xap" );
 
+        // make sure the XAP files also get copied by aspnet plugin
+        File zipFile = new File( verifier.getArtifactPath( context.getGroupId(), "SilverlightApplication1.Web",
+                                                           "1.0-SNAPSHOT", "msdeploy.zip" ) );
+        List<String> entries = new ArrayList<String>();
+        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/ClientBin/SilverlightApplication1.xap" ) );
+        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/ClientBin/SilverlightApplication2.xap" ) );
+        assertZipEntries( zipFile, entries );
+
+        // make sure no bin entries as well
+        entries = new ArrayList<String>();
+        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/bin/SilverlightApplication1.xap" ) );
+        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/bin/SilverlightApplication2.xap" ) );
+        assertNoZipEntries( zipFile, entries );
+        
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
     }

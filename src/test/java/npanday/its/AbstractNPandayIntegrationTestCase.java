@@ -239,6 +239,16 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
     }
 
+    protected static String translateMsDeployPath( String basedir, String path )
+    {
+        String p = new File( new File( basedir, "target/packages" ), path ).getAbsolutePath();
+        p = p.replace( '\\', '/' );
+        p = "Content/C_C" + p.substring( 2 ); // transform C:
+        // Note: above is an assumption for where you can run these tests - not sure how other drive letters transformed
+        // by Web Deploy
+        return p;
+    }
+
     protected void runTest()
         throws Throwable
     {
