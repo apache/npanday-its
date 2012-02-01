@@ -55,14 +55,15 @@ public class NPANDAY_452_SilverlightAppTest
         File zipFile = new File( verifier.getArtifactPath( context.getGroupId(), "SilverlightApplication1.Web",
                                                            "1.0-SNAPSHOT", "msdeploy.zip" ) );
         List<String> entries = new ArrayList<String>();
-        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/ClientBin/SilverlightApplication1.xap" ) );
-        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/ClientBin/SilverlightApplication2.xap" ) );
+        String basedir = new File( verifier.getBasedir(), "SilverlightApplication1.Web" ).getAbsolutePath();
+        entries.add( translateMsDeployPath( basedir, "SilverlightApplication1.Web/ClientBin/SilverlightApplication1.xap" ) );
+        entries.add( translateMsDeployPath( basedir, "SilverlightApplication1.Web/ClientBin/SilverlightApplication2.xap" ) );
         assertZipEntries( zipFile, entries );
 
         // make sure no bin entries as well
         entries = new ArrayList<String>();
-        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/bin/SilverlightApplication1.xap" ) );
-        entries.add( translateMsDeployPath( verifier.getBasedir(), "SilverlightApplication1.Web/bin/SilverlightApplication2.xap" ) );
+        entries.add( translateMsDeployPath( basedir, "SilverlightApplication1.Web/bin/SilverlightApplication1.xap" ) );
+        entries.add( translateMsDeployPath( basedir, "SilverlightApplication1.Web/bin/SilverlightApplication2.xap" ) );
         assertNoZipEntries( zipFile, entries );
         
         verifier.verifyErrorFreeLog();
