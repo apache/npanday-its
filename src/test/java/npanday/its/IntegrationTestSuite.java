@@ -47,6 +47,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
+        suite.addTestSuite( NPANDAY_537_WindowsExecutableTest.class );
         suite.addTestSuite( NPANDAY_538_COMReferenceTest.class );
         suite.addTestSuite( NPANDAY_452_SilverlightAppTest.class );
         suite.addTestSuite( NPANDAY_480_CloudServiceWithWorkerRole.class );

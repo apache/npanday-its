@@ -363,6 +363,30 @@ public abstract class AbstractNPandayIntegrationTestCase
         verifier.deleteArtifact( groupId, artifactId, version, type );
     }
 
+    protected void assertSubsystem( String assembly, int subsystem )
+        throws VerificationException
+    {
+        assertEquals( "Subsystem was not " + subsystem + " as expected in assembly " + assembly, subsystem, getSubsystem( assembly ) );
+    }
+
+    private int getSubsystem( String assembly )
+        throws VerificationException
+    {
+        String output = runILDisasm( assembly );
+
+        for ( String line : output.split( "\n" ) )
+        {
+            line = line.trim();
+
+            if ( line.startsWith( ".subsystem 0x" ) )
+            {
+                String value = line.substring( 13, line.indexOf( ' ', 13 ) );
+                return Integer.parseInt( value );
+            }
+        }
+        throw new VerificationException( "Unable to determine subsystem" );
+    }
+
     protected void assertClassPresent( String assembly, String className )
         throws VerificationException
     {

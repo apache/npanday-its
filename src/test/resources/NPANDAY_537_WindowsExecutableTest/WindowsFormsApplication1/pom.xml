@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one
+  ~ or more contributor license agreements.  See the NOTICE file
+  ~ distributed with this work for additional information
+  ~ regarding copyright ownership.  The ASF licenses this file
+  ~ to you under the Apache License, Version 2.0 (the
+  ~ "License"); you may not use this file except in compliance
+  ~ with the License.  You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+  <parent>
+    <artifactId>NPANDAY_537_WindowsExecutableTest-parent</artifactId>
+    <groupId>NPanday.ITs.NPANDAY_537_WindowsExecutableTest</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>WindowsFormsApplication1</artifactId>
+  <packaging>dotnet-windows-executable</packaging>
+  <name>NPanday.ITs.NPANDAY_537_WindowsExecutableTest : WindowsFormsApplication1</name>
+  <build>
+    <sourceDirectory>./</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>maven-compile-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>4.0</frameworkVersion>
+          <includeSources>
+            <includeSource>Form1.cs</includeSource>
+            <includeSource>Form1.Designer.cs</includeSource>
+            <includeSource>Program.cs</includeSource>
+            <includeSource>Properties\AssemblyInfo.cs</includeSource>
+            <includeSource>Properties\Resources.Designer.cs</includeSource>
+            <includeSource>Properties\Settings.Designer.cs</includeSource>
+          </includeSources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>maven-resgen-plugin</artifactId>
+        <configuration>
+          <embeddedResources>
+            <embeddedResource>
+              <sourceFile>Properties\Resources.resx</sourceFile>
+              <name>WindowsFormsApplication1.Properties.Resources</name>
+            </embeddedResource>
+          </embeddedResources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
