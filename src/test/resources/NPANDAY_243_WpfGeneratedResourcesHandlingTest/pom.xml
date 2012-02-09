@@ -71,7 +71,7 @@
           <embeddedResources>
             <embeddedResource>
               <sourceFile>Properties\Resources.resx</sourceFile>
-              <name>NPANDAY_245_WpfGeneratedResourcesHandlingTest.Properties.Resources</name>
+              <name>NPandayIT12549.Properties.Resources</name>
             </embeddedResource>
           </embeddedResources>
         </configuration>

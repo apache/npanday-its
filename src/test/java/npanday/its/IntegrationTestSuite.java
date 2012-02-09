@@ -70,7 +70,7 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPANDAY_268_TransitiveDependenciesTest.class );
         suite.addTestSuite( NPANDAY_262_ResolvingMixedVersionsTest.class );
         suite.addTestSuite( NPANDAY_196_MvcSupportTest.class );
-        suite.addTestSuite( NPANDAY_245_WpfGeneratedResourcesHandlingTest.class );
+        suite.addTestSuite( NPANDAY_243_WpfGeneratedResourcesHandlingTest.class );
         suite.addTestSuite( NPANDAY_198_MissingGroupOrVersionTest.class );
         suite.addTestSuite( NPANDAY_208_MsBuildCopyReferencesTest.class );
         suite.addTestSuite( NPANDAY_202_MsBuildErrorHandlingTest.class );

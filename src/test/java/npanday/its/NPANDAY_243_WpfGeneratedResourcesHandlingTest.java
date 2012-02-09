@@ -24,10 +24,10 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPANDAY_245_WpfGeneratedResourcesHandlingTest
+public class NPANDAY_243_WpfGeneratedResourcesHandlingTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPANDAY_245_WpfGeneratedResourcesHandlingTest()
+    public NPANDAY_243_WpfGeneratedResourcesHandlingTest()
     {
         super( "[1.2,)", "[v3.5,)" ); // 1.2+
     }
@@ -35,7 +35,7 @@ public class NPANDAY_245_WpfGeneratedResourcesHandlingTest
     public void testWpfProject()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_245_WpfGeneratedResourcesHandlingTest" );
+        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_243_WpfGeneratedResourcesHandlingTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "test" );
         String assembly = new File( testDir,
