@@ -22,8 +22,8 @@ under the License.
 if X%1==X set test=
 if not X%1==X set test=-Dtest=*%1*
 
-if X%2==X set version=1.4.1-incubating-SNAPSHOT
+if X%2==X set version=1.5.0-incubating-SNAPSHOT
 if not X%2==X set version=%2
 @echo on
 
-mvn test -Prun-its -Dnpanday.version=%version% %test%
+mvn test -Prun-its -o -Dnpanday.version=%version% %test%
