@@ -116,8 +116,6 @@
   </dependencies>
   <properties>
     <npanday.version>${project.version}</npanday.version>
-    <npanday.snapshots.url>http://repo.npanday.org/archiva/repository/npanday-snapshots</npanday.snapshots.url>
-    <npanday.releases.url>http://repo.npanday.org/archiva/repository/npanday-releases</npanday.releases.url>
   </properties>
 
   <scm>
@@ -228,7 +226,7 @@
     <repository>
       <id>3rdparty</id>
       <name>3rd Party .NET Repository</name>
-      <url>http://repo.npanday.org/3rdparty</url>
+      <url>http://vmbuild.apache.org/archiva/repository/3rdparty</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
