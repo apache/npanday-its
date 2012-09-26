@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://maven.apache.org/POM/4.0.0">
+  <parent>
+    <artifactId>NPANDAY_571_AzureSDKVersionTest-parent</artifactId>
+    <groupId>NPanday.ITs.NPANDAY_571_AzureSDKVersionTest</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>..\pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>NPANDAY_571_AzureSDKVersionTest</artifactId>
+  <packaging>azure-cloud-service</packaging>
+  <name>NPanday.ITs.NPANDAY_571_AzureSDKVersionTest : NPANDAY_571_AzureSDKVersionTest</name>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.npanday.plugins</groupId>
+        <artifactId>azure-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <frameworkVersion>4.0</frameworkVersion>
+          <executableVersion>1.7</executableVersion>
+          <serviceConfigurationFile>ServiceConfiguration.Local.cscfg</serviceConfigurationFile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>NPanday.ITs.NPANDAY_571_AzureSDKVersionTest</groupId>
+      <artifactId>WorkerRole1</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>dotnet-application</type>
+    </dependency>
+  </dependencies>
+</project>

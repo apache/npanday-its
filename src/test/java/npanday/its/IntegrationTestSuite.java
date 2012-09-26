@@ -35,6 +35,7 @@ public class IntegrationTestSuite
          */
         suite.addTestSuite( BootstrapTest.class );
         suite.addTestSuite( AzureBootstrap.class );
+        suite.addTestSuite( Azure17Bootstrap.class );
 
         /*
          * Add tests in order of newest first.
@@ -47,6 +48,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
+        suite.addTestSuite( NPANDAY_571_AzureSDKVersionTest.class );
         suite.addTestSuite( NPANDAY_537_WindowsExecutableTest.class );
         suite.addTestSuite( NPANDAY_538_COMReferenceTest.class );
         suite.addTestSuite( NPANDAY_452_SilverlightAppTest.class );
