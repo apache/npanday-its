@@ -98,8 +98,6 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPandayIT0004NUnitTestVerificationTest.class );
         suite.addTestSuite( NPandayIT0001CompilerVerificationTest.class );
 
-        suite.addTestSuite( AddInInstallationTest.class );
-
         return suite;
     }
 }
