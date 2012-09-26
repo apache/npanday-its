@@ -38,8 +38,9 @@ public class NPandayIT0036InstalledArtifactsVerificationTest
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0036InstalledArtifactsVerificationTest" );
         Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
-        verifier.assertFilePresent(
-            new File( testDir, getAssemblyFile( "NPandayIT0036", "1.0.0.0", "exe" ) ).getAbsolutePath() );
+        String exe =
+            new File( testDir, getAssemblyFile( "NPandayIT0036", "1.0.0.0", "exe" ) ).getAbsolutePath();
+        verifier.assertFilePresent( exe );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "NPandayIT0036-test", "1.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-assemblies/NPandayIT0036", "1.0.0.0",
@@ -49,27 +50,8 @@ public class NPandayIT0036InstalledArtifactsVerificationTest
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "test-assemblies/NUnit.Framework", "1.0.0.0",
                                                                         "dll" ) ).getAbsolutePath() );
 
-        verifier.assertFilePresent( new File( testDir, getBuildSourcesMain( "Module1.vb" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, getBuildSourcesMain( "folder/Module2.vb" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getBuildSourcesMain( "should-not-be-copied.txt" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getBuildSourcesMain( "should-not-be-copied.xml" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getBuildSourcesMain( "folder/should-not-be-copied-2.txt" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getBuildSourcesMain( "folder/should-not-be-copied-2.xml" ) ).getAbsolutePath() );
-
-        verifier.assertFilePresent( new File( testDir, getTestSourcesMain( "Module1.vb" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, getTestSourcesMain( "folder/Module2.vb" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getTestSourcesMain( "should-not-be-copied-test.txt" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getTestSourcesMain( "should-not-be-copied-test.xml" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getTestSourcesMain( "folder/should-not-be-copied-test-2.txt" ) ).getAbsolutePath() );
-        verifier.assertFileNotPresent(
-            new File( testDir, getTestSourcesMain( "folder/should-not-be-copied--test-2.xml" ) ).getAbsolutePath() );
+        assertClassPresent( exe, "Module1" );
+        assertClassPresent( exe, "Module2" );
 
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();

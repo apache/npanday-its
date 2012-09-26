@@ -310,24 +310,9 @@ public abstract class AbstractNPandayIntegrationTestCase
         return "target/comments.xml";
     }
 
-    protected String getBuildSourcesMain( String fileName )
-    {
-        return getBuildFile( "build-sources", fileName );
-    }
-
     protected String getBuildSourcesGenerated( String fileName )
     {
-        return getBuildSourcesMain( fileName );
-    }
-
-    protected String getTestSourcesMain( String fileName )
-    {
-        return getBuildFile( "build-test-sources", fileName );
-    }
-
-    protected String getTestSourcesGenerated( String fileName )
-    {
-        return getTestSourcesMain( fileName );
+        return getBuildFile( "build-sources", fileName );
     }
 
     protected String getBuildFile( String buildDirectory, String fileName )
