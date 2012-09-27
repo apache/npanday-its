@@ -42,6 +42,14 @@
       <systemPath>C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\ref\Microsoft.WindowsAzure.Configuration.dll</systemPath>
     </dependency>
     <dependency>
+      <groupId>Microsoft.WindowsAzure.Diagnostics</groupId>
+      <artifactId>Microsoft.WindowsAzure.Diagnostics</artifactId>
+      <version>1.7.0.0</version>
+      <type>dotnet-library</type>
+      <scope>system</scope>
+      <systemPath>C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\ref\Microsoft.WindowsAzure.Diagnostics.dll</systemPath>
+    </dependency>
+    <dependency>
       <groupId>Microsoft.WindowsAzure.StorageClient</groupId>
       <artifactId>Microsoft.WindowsAzure.StorageClient</artifactId>
       <version>1.7.0.0</version>
