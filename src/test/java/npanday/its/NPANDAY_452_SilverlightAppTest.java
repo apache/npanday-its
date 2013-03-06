@@ -48,7 +48,9 @@ public class NPANDAY_452_SilverlightAppTest
 
         verifier.assertArtifactPresent(context.getGroupId(), "SilverlightClassLibrary1", "1.0-SNAPSHOT", "dll" );
         verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication1", "1.0-SNAPSHOT", "xap" );
+        verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication1", "1.0-SNAPSHOT", "dll" );
         verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication2", "1.0-SNAPSHOT", "xap" );
+        verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication2", "1.0-SNAPSHOT", "dll" );
         verifier.assertArtifactPresent(context.getGroupId(), "SilverlightApplication1.Web", "1.0-SNAPSHOT", "msdeploy.zip" );
 
         // make sure the XAP files get copied by aspnet plugin
