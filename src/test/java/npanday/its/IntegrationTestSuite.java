@@ -48,6 +48,7 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
 
+        suite.addTestSuite( NPANDAY_580_WpfBrowserTest.class );
         suite.addTestSuite( NPANDAY_254_WebAppWithCultureResTest.class );
         suite.addTestSuite( NPANDAY_571_AzureSDKVersionTest.class );
         suite.addTestSuite( NPANDAY_537_WindowsExecutableTest.class );
