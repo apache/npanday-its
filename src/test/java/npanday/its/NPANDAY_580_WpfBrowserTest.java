@@ -39,6 +39,7 @@ public class NPANDAY_580_WpfBrowserTest
 
         verifier.executeGoal( "install" );
         verifier.assertArtifactPresent(context.getGroupId(), "NPANDAY_580_WpfBrowserTest", "1.0.0-SNAPSHOT", "exe" );
+        verifier.assertArtifactPresent(context.getGroupId(), "NPANDAY_580_WpfBrowserTest", "1.0.0-SNAPSHOT", "exe.manifest" );
         verifier.assertArtifactPresent(context.getGroupId(), "NPANDAY_580_WpfBrowserTest", "1.0.0-SNAPSHOT", "xbap" );
 
         verifier.verifyErrorFreeLog();
