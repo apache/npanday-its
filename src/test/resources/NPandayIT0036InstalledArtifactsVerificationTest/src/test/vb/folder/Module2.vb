@@ -18,7 +18,7 @@
 '-----------------------------------------------------------------------------------
 Imports NUnit.Framework
 <TestFixture()> _
-Module Module2
+Public Class Module2
 
     <Test()> _
     Sub Main()
@@ -26,4 +26,4 @@ Module Module2
 
     End Sub
 
-End Module
+End Class
