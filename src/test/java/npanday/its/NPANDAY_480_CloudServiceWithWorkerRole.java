@@ -28,7 +28,7 @@ public class NPANDAY_480_CloudServiceWithWorkerRole
     {
         super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
 
-        skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
+        skipIfMissingAzureSDK("1.6");
     }
 
     public void test()

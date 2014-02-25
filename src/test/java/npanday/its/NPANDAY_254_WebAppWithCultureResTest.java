@@ -32,7 +32,7 @@ public class NPANDAY_254_WebAppWithCultureResTest
     {
         super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
 
-        skipIfMissingProgramFilesDirectory( "IIS/Microsoft Web Deploy V2", "Web Deploy 2.0 not installed" );
+        skipIfMissingWebDeployV2();
         assertXdtPresent();
     }
 

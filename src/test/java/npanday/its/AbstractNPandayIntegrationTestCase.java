@@ -26,7 +26,6 @@ import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
-import org.apache.maven.it.util.IOUtil;
 import org.apache.maven.it.util.ResourceExtractor;
 import org.apache.maven.it.util.cli.CommandLineException;
 import org.apache.maven.it.util.cli.CommandLineUtils;
@@ -34,20 +33,15 @@ import org.apache.maven.it.util.cli.Commandline;
 import org.apache.maven.it.util.cli.StreamConsumer;
 import org.apache.maven.it.util.cli.WriterStreamConsumer;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public abstract class AbstractNPandayIntegrationTestCase
@@ -84,7 +78,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected AbstractNPandayIntegrationTestCase( String versionRangeStr )
     {
-        VersionRange versionRange = createVersionRange( versionRangeStr );
+        VersionRange versionRange = createVersionRange(versionRangeStr);
 
         if ( !checkNPandayVersion( versionRange, version ) && !forceVersion )
         {
@@ -97,7 +91,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         String v = version.toString();
 
-        Matcher m = PATTERN.matcher( v );
+        Matcher m = PATTERN.matcher(v);
         if ( m.matches() )
         {
             return versionRange.containsVersion( new DefaultArtifactVersion( m.group( 1 ) ) );
@@ -112,7 +106,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         this( versionRangeStr );
 
-        VersionRange versionRange = createVersionRange( frameworkVersionStr );
+        VersionRange versionRange = createVersionRange(frameworkVersionStr);
 
         if ( frameworkVersion != null && !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
         {
@@ -312,7 +306,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected String getBuildSourcesGenerated( String fileName )
     {
-        return getBuildFile( "build-sources", fileName );
+        return getBuildFile("build-sources", fileName);
     }
 
     protected String getBuildFile( String buildDirectory, String fileName )
@@ -322,12 +316,12 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected String getAssemblyFile( String assemblyName, String type )
     {
-        return getAssemblyFile( assemblyName, null, type, null );
+        return getAssemblyFile(assemblyName, null, type, null);
     }
 
     protected String getAssemblyFile( String assemblyName, String version, String type )
     {
-        return getAssemblyFile( assemblyName, version, type, null );
+        return getAssemblyFile(assemblyName, version, type, null);
     }
 
     protected String getAssemblyFile( String assemblyName, String version, String type, String classifier )
@@ -338,14 +332,14 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void clearRdfCache()
         throws IOException
     {
-        FileUtils.deleteDirectory( new File( System.getProperty( "user.home" ), ".m2/uac/rdfRepository" ) );
+        FileUtils.deleteDirectory(new File(System.getProperty("user.home"), ".m2/uac/rdfRepository"));
     }
 
     protected void deleteArtifact( Verifier verifier, String groupId, String artifactId, String version, String type )
         throws IOException
     {
         FileUtils.deleteDirectory( new File( System.getProperty( "user.home" ), ".m2/uac/gac_msil/" + artifactId + "/" + version + "__" + groupId ) );
-        verifier.deleteArtifact( groupId, artifactId, version, type );
+        verifier.deleteArtifact(groupId, artifactId, version, type);
     }
 
     protected void assertSubsystem( String assembly, int subsystem )
@@ -493,7 +487,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected String getTestAssemblyFile( String artifactId, String version, String type )
     {
         String basedir = "target/test-assemblies";
-        return getAssemblyFilePath( basedir, artifactId, type );
+        return getAssemblyFilePath(basedir, artifactId, type);
     }
 
     private String getAssemblyFilePath( String basedir, String artifactId, String type )
@@ -533,7 +527,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private boolean isResourcePresent( String assembly, String resource )
         throws VerificationException
     {
-        return isResourcePresent( assembly, getAssemblyName( assembly ), resource );
+        return isResourcePresent(assembly, getAssemblyName(assembly), resource);
     }
 
     private boolean isResourcePresent( String assembly, String assemblyName, String resource )
@@ -575,7 +569,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private boolean hasPublicKey( String assembly )
         throws VerificationException
     {
-        String output = runILDisasm( assembly );
+        String output = runILDisasm(assembly);
 
         boolean insideCorrectAssembly = false;
         for ( String line : output.split( "\n" ) )
@@ -599,7 +593,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     private String getAssemblyFrameworkVersion( File assembly )
         throws VerificationException
     {
-        String output = runILDisasm( assembly.getAbsolutePath() );
+        String output = runILDisasm(assembly.getAbsolutePath());
 
         String prefix = "// Metadata version: v";
         for ( String line : output.split( "\n" ) )
@@ -625,7 +619,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         throws VerificationException
     {
         String frameworkVersion = getAssemblyFrameworkVersion( assembly );
-        VersionRange versionRange = createVersionRange( versionRangeStr );
+        VersionRange versionRange = createVersionRange(versionRangeStr);
         if ( !versionRange.containsVersion( new DefaultArtifactVersion( frameworkVersion ) ) )
         {
             fail( "Framework version " + frameworkVersion + " is not in range " + versionRangeStr );
@@ -689,7 +683,27 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void assertXdtPresent()
     {
         // TODO: when XDT doesn't require VS 2010, then this can be removed
-        skipIfMissingMSBuildTask( "Microsoft/VisualStudio/v10.0/Web/Microsoft.Web.Publishing.Tasks.dll",
-                                  "Visual Studio 2010 with web platform is not installed" );
+        skipIfMissingMSBuildTask("Microsoft/VisualStudio/v10.0/Web/Microsoft.Web.Publishing.Tasks.dll",
+                "Visual Studio 2010 with web platform is not installed");
+    }
+
+    protected void skipIfMissingWebDeployV2() {
+        skipIfMissingProgramFilesDirectory("IIS/Microsoft Web Deploy V2", "Web Deploy 2.0 not installed");
+    }
+
+    protected void skipIfMissingAzureSDK(String sdkVersion) {
+        if ("1.6".equals(sdkVersion)) {
+            skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
+        }
+        else if ("1.7".equals(sdkVersion)) {
+            skipIfMissingProgramFilesDirectory( "Microsoft SDKs\\Windows Azure\\.NET SDK\\2012-06", "Azure SDK is not installed" );
+        }
+        else {
+            throw new IllegalArgumentException("Unknown SDK version: " + sdkVersion);
+        }
+    }
+
+    protected void skipIfMissingMVC2() {
+        skipIfMissingGAC( "System.Web.MVC", "MVC.NET is not installed" );
     }
 }

@@ -29,9 +29,9 @@ public class NPANDAY_196_MvcSupportTest
 {
     public NPANDAY_196_MvcSupportTest()
     {
-        super( "[1.2,)", "[v3.5,)" ); 
+        super( "[1.2,)", "[v3.5,)" );
 
-        skipIfMissingGAC( "System.Web.MVC", "MVC.NET is not installed" );
+        skipIfMissingMVC2();
     }
 
     public void testMVCProject()

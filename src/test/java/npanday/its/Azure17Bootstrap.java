@@ -31,7 +31,7 @@ public class Azure17Bootstrap
     {
         super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
 
-        skipIfMissingProgramFilesDirectory( "Microsoft SDKs\\Windows Azure\\.NET SDK\\2012-06", "Azure SDK is not installed" );
+        skipIfMissingAzureSDK("1.7");
     }
 
     public void testBootstrap()

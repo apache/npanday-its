@@ -28,8 +28,8 @@ public class NPANDAY_480_AzureSupportOneWebRole
     {
         super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
 
-        skipIfMissingProgramFilesDirectory( "Windows Azure SDK", "Azure SDK is not installed" );
-        skipIfMissingProgramFilesDirectory( "IIS/Microsoft Web Deploy V2", "Web Deploy 2.0 not installed" );
+        skipIfMissingAzureSDK("1.6");
+        skipIfMissingWebDeployV2();
         assertXdtPresent();
     }
 

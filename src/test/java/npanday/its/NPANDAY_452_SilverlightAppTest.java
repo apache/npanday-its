@@ -35,7 +35,7 @@ public class NPANDAY_452_SilverlightAppTest
         skipIfMissingMSBuildTask( "Microsoft/Silverlight/v3.0/Microsoft.Silverlight.CSharp.targets",
                                   "Silverlight v3.0 SDK is not present" );
         // required for ASP.NET packaging
-        skipIfMissingProgramFilesDirectory( "IIS/Microsoft Web Deploy V2", "Web Deploy 2.0 not installed" );
+        skipIfMissingWebDeployV2();
     }
 
     public void test()
