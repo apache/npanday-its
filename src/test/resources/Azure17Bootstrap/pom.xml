@@ -57,6 +57,14 @@
       <scope>system</scope>
       <systemPath>C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\ref\Microsoft.WindowsAzure.StorageClient.dll</systemPath>
     </dependency>
+    <dependency>
+      <groupId>Microsoft.WindowsAzure.ServiceRuntime</groupId>
+      <artifactId>Microsoft.WindowsAzure.ServiceRuntime</artifactId>
+      <version>1.7.0.0</version>
+      <type>dotnet-library</type>
+      <scope>system</scope>
+      <systemPath>C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\ref\Microsoft.WindowsAzure.ServiceRuntime.dll</systemPath>
+    </dependency>
   </dependencies>
 
   <build>
