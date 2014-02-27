@@ -60,6 +60,9 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <platform>x86</platform>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.npanday.plugins</groupId>
