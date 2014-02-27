@@ -177,12 +177,11 @@
       </properties>
     </profile>
   </profiles>
-  <!-- Required to build where it was built in a different local repository, but
-       still assumes you're going to use a repository manager to mirror it -->
+  <!-- Required to build where it was built in a different local repository -->
   <repositories>
     <repository>
       <id>npanday.snapshots</id>
-      <url>http://repo1.maven.org/maven2</url>
+      <url>https://archiva-repository.apache.org/archiva/repository/snapshots</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -191,7 +190,7 @@
   <pluginRepositories>
     <pluginRepository>
       <id>npanday.snapshots</id>
-      <url>http://repo1.maven.org/maven2</url>
+      <url>https://archiva-repository.apache.org/archiva/repository/snapshots</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
