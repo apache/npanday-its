@@ -30,7 +30,7 @@ public class NPANDAY_480_AzureSupportOneWebRole
 
         skipIfMissingAzureSDK("1.6");
         skipIfMissingWebDeployV2();
-        assertXdtPresent();
+        skipIfXdtNotPresent();
     }
 
     public void test()

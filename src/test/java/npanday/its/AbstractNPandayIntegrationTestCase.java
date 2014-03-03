@@ -680,11 +680,23 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
     }
 
-    protected void assertXdtPresent()
+    protected void skipIfXdtNotPresent()
     {
-        // TODO: when XDT doesn't require VS 2010, then this can be removed
-        skipIfMissingMSBuildTask("Microsoft/VisualStudio/v10.0/Web/Microsoft.Web.Publishing.Tasks.dll",
-                "Visual Studio 2010 with web platform is not installed");
+        File f = new File( System.getenv( "PROGRAMFILES" ), "MSBuild" );
+        f = new File( f, "Microsoft/VisualStudio" );
+        File[] versions = f.listFiles();
+        if ( versions != null ) {
+            for ( File v : versions )
+            {
+                if ( new File( v, "Web/Microsoft.Web.Publishing.Tasks.dll" ).exists() )
+                {
+                    return;
+                }
+            }
+        }
+
+        skipReason = "Visual Studio 2010 (or above) with web platform is not installed";
+        skip = true;
     }
 
     protected void skipIfMissingWebDeployV2() {
