@@ -66,7 +66,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>create-iisApp-package</goal>
+              <goal>create-content-package</goal>
             </goals>
           </execution>
         </executions>
