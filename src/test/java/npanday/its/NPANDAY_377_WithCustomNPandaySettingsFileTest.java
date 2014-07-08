@@ -36,7 +36,7 @@ public class NPANDAY_377_WithCustomNPandaySettingsFileTest
         throws Exception
     {
         File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_377_WithCustomNPandaySettingsFileTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getVerifier( testDir, false );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsFileTest/" +
             getAssemblyFile( "NPANDAY377WithCustomNPandaySettingsFileTest", "1.0.0", "dll" ) ).getAbsolutePath() );

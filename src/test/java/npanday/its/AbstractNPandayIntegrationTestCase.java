@@ -275,7 +275,12 @@ public abstract class AbstractNPandayIntegrationTestCase
         return simpleName;
     }
 
-    protected Verifier getVerifier( File testDirectory )
+    protected Verifier getVerifier(File testDirectory)
+        throws VerificationException {
+        return getVerifier(testDirectory, true);
+    }
+
+    protected Verifier getVerifier(File testDirectory, boolean overrideNPandaySettings)
         throws VerificationException
     {
         Verifier verifier;
@@ -291,7 +296,9 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
         List<String> cliOptions = new ArrayList<String>( 2 );
         cliOptions.add( "-Dnpanday.version=" + version );
-        cliOptions.add( "-Dnpanday.settings=" + new File( testDirectory, "npanday-settings.xml" ).getAbsolutePath() );
+        if (overrideNPandaySettings) {
+            cliOptions.add( "-Dnpanday.settings=" + new File( testDirectory, "npanday-settings.xml" ).getAbsolutePath() );
+        }
         if ( debugOutput )
         {
             cliOptions.add( "-X" );
