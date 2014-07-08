@@ -291,6 +291,7 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
         List<String> cliOptions = new ArrayList<String>( 2 );
         cliOptions.add( "-Dnpanday.version=" + version );
+        cliOptions.add( "-Dnpanday.settings=target/npanday-settings.xml" );
         if ( debugOutput )
         {
             cliOptions.add( "-X" );
