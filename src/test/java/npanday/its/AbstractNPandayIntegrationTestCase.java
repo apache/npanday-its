@@ -425,19 +425,29 @@ public abstract class AbstractNPandayIntegrationTestCase
             }
         }
 
-        String value = null;
-        try
-        {
-            value = execute( "ildasm", new String[]{"/text", assembly} );
-            disasmExec = "ildasm";
+        String value;
+
+        for (String path : new String[] { System.getenv("ProgramFiles"), System.getenv("ProgramFiles(x86)")}) {
+            File[] versions = new File(path, "Microsoft SDKs\\Windows").listFiles();
+            if (versions != null) {
+                for (File f : versions) {
+                    File ildasm = new File(f, "bin\\ildasm.exe");
+                    if (ildasm.exists()) {
+                        disasmExec = ildasm.getAbsolutePath();
+                    }
+                }
+            }
+        }
+        if (disasmExec != null) {
+            value = execute( disasmExec, new String[]{"/text", assembly} );
             disasmArg = "/text";
         }
-        catch ( VerificationException e )
-        {
+        else {
             value = execute( "monodis", new String[]{assembly} );
             disasmExec = "monodis";
             disasmArg = null;
         }
+
         return value;
     }
 
