@@ -44,9 +44,9 @@ public class IntegrationTestSuite
          */
 
         // Tests that currently don't pass for any Maven version, i.e. the corresponding issue hasn't been resolved yet
-        // suite.addTestSuite( NPandayIT0033VBSourceWithCSharpSourceTest.class ); // issue #11732
-        // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // issue #11729
-        // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // issue #11729
+        // suite.addTestSuite( NPandayIT0033VBSourceWithCSharpSourceTest.class ); // NPANDAY-215
+        // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // NPANDAY-214
+        // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // NPANDAY-214
 
         suite.addTestSuite( NPANDAY_580_WpfBrowserTest.class );
         suite.addTestSuite( NPANDAY_254_WebAppWithCultureResTest.class );
