@@ -20,6 +20,7 @@ package npanday.its;
  */
 
 import junit.framework.TestCase;
+import npanday.its.util.WinRegistry;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.artifact.versioning.VersionRange;
@@ -27,6 +28,7 @@ import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
 import org.apache.maven.it.util.ResourceExtractor;
+import org.apache.maven.it.util.StringUtils;
 import org.apache.maven.it.util.cli.CommandLineException;
 import org.apache.maven.it.util.cli.CommandLineUtils;
 import org.apache.maven.it.util.cli.Commandline;
@@ -37,6 +39,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -476,16 +479,28 @@ public abstract class AbstractNPandayIntegrationTestCase
     private static String findDisasmExec() {
         String value = null;
 
-        for (String path : new String[] { System.getenv("ProgramFiles"), System.getenv("ProgramFiles(x86)")}) {
-            File[] versions = new File(path, "Microsoft SDKs\\Windows").listFiles();
-            if (versions != null) {
-                for (File f : versions) {
-                    File ildasm = new File(f, "bin\\ildasm.exe");
-                    if (ildasm.exists()) {
-                        value = ildasm.getAbsolutePath();
-                        disasmArg = "/text";
-                        System.out.println("Found ildasm at " + value + " for disassembly");
-                    }
+        String currentVersion = WinRegistry.getValue(WinRegistry.RegistryHKey.HKLM, "SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows", "CurrentVersion");
+
+        String[] searchKeys = {
+                "SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions\\12.0\\12.0@SDK40ToolsPath",
+                "SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions\\4.0\\11.0@SDK40ToolsPath",
+                "SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions\\4.0@SDK40ToolsPath",
+                "SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\{currentVersion}\\WinSDK-NetFx40Tools@InstallationFolder",
+                "SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions\\4.0@SDK35ToolsPath",
+                "SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\{currentVersion}\\WinSDKNetFx35Tools@InstallationFolder"
+        };
+
+        for (String key : searchKeys) {
+            key = StringUtils.replace(key, "{currentVersion}", currentVersion);
+            String[] split = key.split("@");
+            String path = WinRegistry.getValue(WinRegistry.RegistryHKey.HKLM, split[0], split[1]);
+            if (path != null) {
+                File ildasm = new File(path, "ildasm.exe");
+                if (ildasm.exists()) {
+                    value = ildasm.getAbsolutePath();
+                    disasmArg = "/text";
+                    System.out.println("Found ildasm at " + value + " for disassembly");
+                    break;
                 }
             }
         }
