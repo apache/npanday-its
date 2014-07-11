@@ -141,12 +141,18 @@ public abstract class AbstractNPandayIntegrationTestCase
 
                 // Additional framework versions, which likely provide tools, as ToolsVersions is not always populated
                 for (String key : WinRegistry.readStringSubKeys(WinRegistry.RegistryHKey.HKLM.getHKey(), "SOFTWARE\\Microsoft\\.NETFramework")) {
+                    // No tests specific to v1.0/v1.1
                     if ("v2.0.50727".equals(key) && !keys.contains("2.0")) {
                         keys.add("2.0");
                     }
+                    else if ("v3.0".equals(key) && !keys.contains("3.0")) {
+                        keys.add("3.0");
+                    }
+                    // v3.5 not listed under .NETFramework as it is in place - rely on the ToolsVersions for that
                     else if ("v4.0.30319".equals(key) && !keys.contains("4.0")) {
                         keys.add("4.0");
                     }
+                    // versions above v4.0 will all be found in ToolsVersions
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e.getMessage(), e);
