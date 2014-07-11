@@ -19,17 +19,18 @@ package npanday.its;
  * under the License.
  */
 
+import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
+import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
 public class NPandayIT0028RemoteSnapshotRepoTest
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPandayIT0028RemoteSnapshotRepoTest()
-    {
-        super( "[1.0.2,)" );
+    public NPandayIT0028RemoteSnapshotRepoTest() throws VerificationException, InvalidVersionSpecificationException {
+        super("[1.0.2,)");
+        skipIfMavenVersion( "[3.0,)" );
     }
 
     public void testSnapDeploymentRemoteRepoNotUnique()
@@ -43,7 +44,7 @@ public class NPandayIT0028RemoteSnapshotRepoTest
         String path =
             "target/remoteSnapshotRepo/snapshots/NPandayIT0028/NPandayIT0028/1.0-SNAPSHOT/NPandayIT0028-1.0-SNAPSHOT";
         verifier.assertFilePresent( new File( testDir, path + ".dll" ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, path + ".pom" ).getAbsolutePath() );
+        verifier.assertFilePresent(new File(testDir, path + ".pom").getAbsolutePath());
         verifier.verifyErrorFreeLog();
     }
 }

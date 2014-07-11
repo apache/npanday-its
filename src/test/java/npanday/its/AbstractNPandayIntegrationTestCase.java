@@ -40,10 +40,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,6 +54,8 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected static final String FRAMEWORK_V3_5 = "v3.5";
     protected static final String FRAMEWORK_V2_0 = "v2.0.50727";
     protected static final String FRAMEWORK_V1_1 = "v1.1";
+
+    private static String mavenVersion;
 
     protected boolean skip;
 
@@ -724,6 +724,26 @@ public abstract class AbstractNPandayIntegrationTestCase
             skipReason = message;
             skip = true;
         }
+    }
+
+    protected void skipIfMavenVersion(String versionSpec) throws InvalidVersionSpecificationException, VerificationException {
+        VersionRange range = VersionRange.createFromVersionSpec( versionSpec );
+        String mavenVersion = findMavenVersion();
+        if (range.containsVersion(new DefaultArtifactVersion(mavenVersion))) {
+            skipReason = "Skipping because Maven version " + mavenVersion + " is in range " + versionSpec;
+            skip = true;
+        }
+    }
+
+    private static String findMavenVersion() {
+        if (mavenVersion == null) {
+            try {
+                mavenVersion = new Verifier("").getMavenVersion();
+            } catch (VerificationException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }
+        return mavenVersion;
     }
 
     protected void skipIfXdtNotPresent()
