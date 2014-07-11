@@ -126,8 +126,6 @@ public abstract class AbstractNPandayIntegrationTestCase
     }
 
     private static List<String> findAvailableFrameworkVersions() {
-        // TODO: might need to check if framework is sufficient - might need to check actual SDK for a given tools version
-
         List<String> keys;
         if (!Os.isFamily( Os.FAMILY_WINDOWS )) {
             // on Mono, assume all present until we can do better at finding them
@@ -137,6 +135,11 @@ public abstract class AbstractNPandayIntegrationTestCase
         else {
             try {
                 keys = new ArrayList<String>();
+                for (String key : WinRegistry.readStringSubKeys(WinRegistry.RegistryHKey.HKLM.getHKey(), "SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions")) {
+                    keys.add("v" + key);
+                }
+
+                // Additional framework versions, which likely provide tools, as ToolsVersions is not always populated
                 for (String key : WinRegistry.readStringSubKeys(WinRegistry.RegistryHKey.HKLM.getHKey(), "SOFTWARE\\Microsoft\\.NETFramework")) {
                     if (key.matches("^v[0-9.]+$")) {
                         keys.add(key);
