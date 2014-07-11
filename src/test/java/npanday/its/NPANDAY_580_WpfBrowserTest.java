@@ -28,7 +28,7 @@ public class NPANDAY_580_WpfBrowserTest
 {
     public NPANDAY_580_WpfBrowserTest()
     {
-        super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.5.0-incubating,)", FRAMEWORK_V4_0 );
     }
 
     public void test()

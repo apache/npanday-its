@@ -29,7 +29,7 @@ public class NPandayIT0041Net35Test
 {
     public NPandayIT0041Net35Test()
     {
-        super( "[1.0.2,)", "[v3.5,)" );
+        super( "[1.0.2,)", FRAMEWORK_V3_5 );
     }
 
     public void testNet35Project()

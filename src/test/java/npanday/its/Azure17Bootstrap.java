@@ -26,7 +26,7 @@ public class Azure17Bootstrap
 {
     public Azure17Bootstrap()
     {
-        super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.5.0-incubating,)" );
 
         skipIfMissingAzureSDK("1.7");
     }

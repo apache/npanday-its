@@ -26,7 +26,7 @@ public class NPANDAY_480_CloudServiceWithWorkerRole
 {
     public NPANDAY_480_CloudServiceWithWorkerRole()
     {
-        super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.5.0-incubating,)", FRAMEWORK_V4_0 );
 
         skipIfMissingAzureSDK("1.6");
     }

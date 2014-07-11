@@ -31,7 +31,7 @@ public class NPandayIT0013WebAppInstallTest
 {
     public NPandayIT0013WebAppInstallTest()
     {
-        super( "[1.0.2,)" );
+        super( "[1.0.2,)", FRAMEWORK_V3_5 );
     }
 
     public void testWebAppInstall()

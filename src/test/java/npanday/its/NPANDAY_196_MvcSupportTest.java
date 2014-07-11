@@ -26,9 +26,10 @@ import java.io.File;
 public class NPANDAY_196_MvcSupportTest
     extends AbstractNPandayIntegrationTestCase
 {
+
     public NPANDAY_196_MvcSupportTest()
     {
-        super( "[1.2,)", "[v3.5,)" );
+        super( "[1.2,)", FRAMEWORK_V3_5 );
 
         skipIfMissingMVC2();
     }

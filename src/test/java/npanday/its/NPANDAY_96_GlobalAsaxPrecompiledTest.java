@@ -31,7 +31,7 @@ public class NPANDAY_96_GlobalAsaxPrecompiledTest
 {
     public NPANDAY_96_GlobalAsaxPrecompiledTest()
     {
-        super( "[1.4.0-incubating,)", "[v3.5,)" );
+        super( "[1.4.0-incubating,)", FRAMEWORK_V3_5 );
     }
 
     public void testGlobalAsaxPrecompiled()

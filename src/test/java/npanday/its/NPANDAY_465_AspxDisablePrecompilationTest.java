@@ -31,7 +31,7 @@ public class NPANDAY_465_AspxDisablePrecompilationTest
 {
     public NPANDAY_465_AspxDisablePrecompilationTest()
     {
-        super( "[1.4.1-incubating,)", "[v3.5,)" );
+        super( "[1.4.1-incubating,)", FRAMEWORK_V3_5 );
     }
 
     public void testDisablePrecompilation()

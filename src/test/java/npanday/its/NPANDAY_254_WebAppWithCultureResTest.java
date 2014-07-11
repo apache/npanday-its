@@ -30,7 +30,7 @@ public class NPANDAY_254_WebAppWithCultureResTest
 {
     public NPANDAY_254_WebAppWithCultureResTest()
     {
-        super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.5.0-incubating,)", FRAMEWORK_V4_0 );
 
         skipIfMissingWebDeployV2();
         skipIfXdtNotPresent();

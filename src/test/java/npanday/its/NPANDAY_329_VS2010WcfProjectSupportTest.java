@@ -28,9 +28,10 @@ import java.util.List;
 public class NPANDAY_329_VS2010WcfProjectSupportTest
     extends AbstractNPandayIntegrationTestCase
 {
+
     public NPANDAY_329_VS2010WcfProjectSupportTest()
     {
-        super( "[1.4.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.4.0-incubating,)", FRAMEWORK_V4_0);
     }
 
     public void testWCF2010Project()

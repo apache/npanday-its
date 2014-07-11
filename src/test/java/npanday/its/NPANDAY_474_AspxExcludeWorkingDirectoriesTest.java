@@ -32,7 +32,7 @@ public class NPANDAY_474_AspxExcludeWorkingDirectoriesTest
 {
     public NPANDAY_474_AspxExcludeWorkingDirectoriesTest()
     {
-        super( "[1.4.1-incubating,)", "[v3.5,)" );
+        super( "[1.4.1-incubating,)", FRAMEWORK_V4_0 );
     }
 
     public void testExcludeWorkingDirectories()

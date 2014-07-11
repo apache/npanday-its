@@ -27,6 +27,7 @@ import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.FileUtils;
+import org.apache.maven.it.util.Os;
 import org.apache.maven.it.util.ResourceExtractor;
 import org.apache.maven.it.util.StringUtils;
 import org.apache.maven.it.util.cli.CommandLineException;
@@ -41,6 +42,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,23 +52,26 @@ import java.util.zip.ZipFile;
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
 {
+    protected static final String FRAMEWORK_V4_0 = "v4.0.30319";
+    protected static final String FRAMEWORK_V3_5 = "v3.5";
+    protected static final String FRAMEWORK_V2_0 = "v2.0.50727";
+    protected static final String FRAMEWORK_V1_1 = "v1.1";
+
     protected boolean skip;
 
     protected String skipReason;
 
-    private static final String NPANDAY_MAX_FRAMEWORK_VERSION_PROPERTY = "npanday.framework.version";
-
     private static final String NPANDAY_VERSION_SYSTEM_PROPERTY = "npanday.version";
 
     protected static DefaultArtifactVersion version = checkVersion();
-
-    private static DefaultArtifactVersion frameworkVersion = checkFrameworkVersion();
 
     private static boolean debugMaven = Boolean.valueOf( System.getProperty( "debug.maven", "false" ) );
 
     private static boolean debugOutput = Boolean.valueOf( System.getProperty( "npanday.log.debug", "false" ) );
 
     private static boolean forceVersion = Boolean.valueOf( System.getProperty( "npanday.version.force", "false" ) );
+
+    private static final List<String> availableFrameworkVersions = findAvailableFrameworkVersions();
 
     private static final Pattern PATTERN = Pattern.compile( "(.*?)-(RC[0-9]+|SNAPSHOT)" );
 
@@ -94,16 +99,14 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
     }
 
-    protected AbstractNPandayIntegrationTestCase( String versionRangeStr, String frameworkVersionStr )
+    protected AbstractNPandayIntegrationTestCase( String versionRangeStr, String frameworkVersion )
     {
         this( versionRangeStr );
 
-        VersionRange versionRange = createVersionRange(frameworkVersionStr);
-
-        if ( frameworkVersion != null && !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
+        if ( !availableFrameworkVersions.contains(frameworkVersion) && !forceVersion )
         {
             skip = true;
-            skipReason = "Framework version " + frameworkVersion + " not in range " + versionRange;
+            skipReason = "Framework version " + frameworkVersion + " not available";
         }
     }
 
@@ -120,6 +123,31 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected Verifier getDefaultVerifier() throws VerificationException, IOException {
         return getVerifier(context.getTestDir());
+    }
+
+    private static List<String> findAvailableFrameworkVersions() {
+        // TODO: might need to check if framework is sufficient - might need to check actual SDK for a given tools version
+
+        List<String> keys;
+        if (!Os.isFamily( Os.FAMILY_WINDOWS )) {
+            // on Mono, assume all present until we can do better at finding them
+            System.out.println("Assuming all frameworks are available");
+            return Arrays.asList(FRAMEWORK_V1_1, FRAMEWORK_V2_0, FRAMEWORK_V3_5, FRAMEWORK_V4_0);
+        }
+        else {
+            try {
+                keys = new ArrayList<String>();
+                for (String key : WinRegistry.readStringSubKeys(WinRegistry.RegistryHKey.HKLM.getHKey(), "SOFTWARE\\Microsoft\\.NETFramework")) {
+                    if (key.matches("^v[0-9.]+$")) {
+                        keys.add(key);
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }
+        System.out.println("Available frameworks: " + keys);
+        return keys;
     }
 
     protected static boolean checkNPandayVersion( VersionRange versionRange, DefaultArtifactVersion version )
@@ -154,58 +182,6 @@ public abstract class AbstractNPandayIntegrationTestCase
         else
         {
             System.out.println( "No NPanday version given" );
-        }
-        return version;
-    }
-
-    private static DefaultArtifactVersion checkFrameworkVersion()
-    {
-        DefaultArtifactVersion version = null;
-        String v = System.getProperty( NPANDAY_MAX_FRAMEWORK_VERSION_PROPERTY );
-        if ( v != null )
-        {
-            version = new DefaultArtifactVersion( v );
-            System.out.println( "Using Framework versions <= " + version );
-        }
-        else
-        {
-            // TODO: this is not necessarily accurate. While it gets all those available, the max should actually be
-            //       the one in the path (which can be obtained from the output for csc, but there may be other better
-            //       ways such as a small C# app to interrogate it.
-            //       It may be best to have an NPanday plugin that can reveal it then call that first to set it,
-            //       reusing the vendor info
-
-            File versions = new File( System.getenv( "systemroot" ) + "\\Microsoft.NET\\Framework" );
-            if ( versions.exists() )
-            {
-                List<DefaultArtifactVersion> frameworkVersions = new ArrayList<DefaultArtifactVersion>();
-                String[] list = versions.list( new java.io.FilenameFilter()
-                {
-                    public boolean accept( File parent, String name )
-                    {
-                        File f = new File( parent, name );
-                        // Mscorlib.dll can be used to detect 2.0 SDK, Microsoft.CompactFramework.Build.Tasks.dll for 3.5 SDK
-                        // Having just the runtime (without these files) is not sufficient
-                        return f.isDirectory() && ( new File( f, "Mscorlib.dll" ).exists() || new File( f,
-                                                                                                        "Microsoft.CompactFramework.Build.Tasks.dll" ).exists() );
-                    }
-                } );
-                if ( list != null && list.length > 0 )
-                {
-                    for ( String frameworkVersion : list )
-                    {
-                        frameworkVersions.add( new DefaultArtifactVersion( frameworkVersion ) );
-                    }
-                    Collections.sort( frameworkVersions );
-                    System.out.println( "Available framework versions: " + frameworkVersions );
-                    version = frameworkVersions.get( frameworkVersions.size() - 1 );
-                    System.out.println( "Selected framework version: " + version );
-                }
-            }
-            if ( version == null )
-            {
-                System.out.println( "No Framework version given - attempting to use all" );
-            }
         }
         return version;
     }

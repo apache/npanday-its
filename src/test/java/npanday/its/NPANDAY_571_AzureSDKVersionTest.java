@@ -26,7 +26,7 @@ public class NPANDAY_571_AzureSDKVersionTest
 {
     public NPANDAY_571_AzureSDKVersionTest()
     {
-        super( "[1.5.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.5.0-incubating,)", FRAMEWORK_V4_0 );
 
         skipIfMissingProgramFilesDirectory( "Microsoft SDKs\\Windows Azure\\.NET SDK\\2012-06", "Azure SDK 1.7 is not installed" );
     }

@@ -28,7 +28,7 @@ public class NPANDAY_288_Net40SupportTest
 {
     public NPANDAY_288_Net40SupportTest()
     {
-        super( "[1.4.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.4.0-incubating,)", FRAMEWORK_V4_0 );
     }
 
     public void testNet40Project()

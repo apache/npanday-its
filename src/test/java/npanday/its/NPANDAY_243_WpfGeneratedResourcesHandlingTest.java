@@ -28,7 +28,7 @@ public class NPANDAY_243_WpfGeneratedResourcesHandlingTest
 {
     public NPANDAY_243_WpfGeneratedResourcesHandlingTest()
     {
-        super( "[1.2,)", "[v3.5,)" ); // 1.2+
+        super( "[1.2,)", FRAMEWORK_V3_5 );
     }
 
     public void testWpfProject()

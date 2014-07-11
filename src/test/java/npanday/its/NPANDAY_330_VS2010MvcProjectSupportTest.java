@@ -28,7 +28,7 @@ public class NPANDAY_330_VS2010MvcProjectSupportTest
 {
     public NPANDAY_330_VS2010MvcProjectSupportTest()
     {
-        super( "[1.4.0-incubating,)", "[v4.0.30319,)" );
+        super( "[1.4.0-incubating,)", FRAMEWORK_V4_0 );
 
         skipIfMissingMVC2();
     }
