@@ -89,6 +89,11 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected static boolean checkNPandayVersion( VersionRange versionRange, DefaultArtifactVersion version )
     {
+        if (version == null) {
+            // run all tests
+            return true;
+        }
+
         String v = version.toString();
 
         Matcher m = PATTERN.matcher(v);
@@ -295,7 +300,9 @@ public abstract class AbstractNPandayIntegrationTestCase
             verifier = new Verifier( testDirectory.getAbsolutePath() );
         }
         List<String> cliOptions = new ArrayList<String>( 2 );
-        cliOptions.add( "-Dnpanday.version=" + version );
+        if (version != null) {
+            cliOptions.add( "-Dnpanday.version=" + version );
+        }
         if (overrideNPandaySettings) {
             cliOptions.add( "-Dnpanday.settings=" + new File( testDirectory, "npanday-settings.xml" ).getAbsolutePath() );
         }
