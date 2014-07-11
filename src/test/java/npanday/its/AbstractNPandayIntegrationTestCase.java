@@ -69,7 +69,7 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static String disasmArg;
 
-    private static String disasmExec;
+    private static String disasmExec = findDisasmExec();
 
     protected AbstractNPandayIntegrationTestCase()
     {
@@ -421,19 +421,18 @@ public abstract class AbstractNPandayIntegrationTestCase
     private String runILDisasm( String assembly )
         throws VerificationException
     {
-        if ( disasmExec != null )
+        if ( disasmArg != null )
         {
-            if ( disasmArg != null )
-            {
-                return execute( disasmExec, new String[]{disasmArg, assembly} );
-            }
-            else
-            {
-                return execute( disasmExec, new String[]{assembly} );
-            }
+            return execute( disasmExec, new String[]{disasmArg, assembly} );
         }
+        else
+        {
+            return execute( disasmExec, new String[]{assembly} );
+        }
+    }
 
-        String value;
+    private static String findDisasmExec() {
+        String value = null;
 
         for (String path : new String[] { System.getenv("ProgramFiles"), System.getenv("ProgramFiles(x86)")}) {
             File[] versions = new File(path, "Microsoft SDKs\\Windows").listFiles();
@@ -441,18 +440,16 @@ public abstract class AbstractNPandayIntegrationTestCase
                 for (File f : versions) {
                     File ildasm = new File(f, "bin\\ildasm.exe");
                     if (ildasm.exists()) {
-                        disasmExec = ildasm.getAbsolutePath();
+                        value = ildasm.getAbsolutePath();
+                        disasmArg = "/text";
+                        System.out.println("Found ildasm at " + value + " for disassembly");
                     }
                 }
             }
         }
-        if (disasmExec != null) {
-            value = execute( disasmExec, new String[]{"/text", assembly} );
-            disasmArg = "/text";
-        }
-        else {
-            value = execute( "monodis", new String[]{assembly} );
-            disasmExec = "monodis";
+        if (value == null) {
+            System.out.println("Using monodis from PATH for disassembly");
+            value = "monodis";
             disasmArg = null;
         }
 
