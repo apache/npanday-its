@@ -50,10 +50,10 @@ import java.util.zip.ZipFile;
 public abstract class AbstractNPandayIntegrationTestCase
     extends TestCase
 {
-    protected static final String FRAMEWORK_V4_0 = "v4.0.30319";
-    protected static final String FRAMEWORK_V3_5 = "v3.5";
-    protected static final String FRAMEWORK_V2_0 = "v2.0.50727";
-    protected static final String FRAMEWORK_V1_1 = "v1.1";
+    protected static final String FRAMEWORK_V4_0 = "4.0";
+    protected static final String FRAMEWORK_V3_5 = "3.5";
+    protected static final String FRAMEWORK_V2_0 = "2.0";
+    protected static final String FRAMEWORK_V1_1 = "1.1";
 
     private static String mavenVersion;
 
@@ -136,13 +136,16 @@ public abstract class AbstractNPandayIntegrationTestCase
             try {
                 keys = new ArrayList<String>();
                 for (String key : WinRegistry.readStringSubKeys(WinRegistry.RegistryHKey.HKLM.getHKey(), "SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions")) {
-                    keys.add("v" + key);
+                    keys.add(key);
                 }
 
                 // Additional framework versions, which likely provide tools, as ToolsVersions is not always populated
                 for (String key : WinRegistry.readStringSubKeys(WinRegistry.RegistryHKey.HKLM.getHKey(), "SOFTWARE\\Microsoft\\.NETFramework")) {
-                    if (key.matches("^v[0-9.]+$")) {
-                        keys.add(key);
+                    if ("v2.0.50727".equals(key) && !keys.contains("2.0")) {
+                        keys.add("2.0");
+                    }
+                    else if ("v4.0.30319".equals(key) && !keys.contains("4.0")) {
+                        keys.add("4.0");
                     }
                 }
             } catch (Exception e) {
