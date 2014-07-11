@@ -737,10 +737,17 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static String findMavenVersion() {
         if (mavenVersion == null) {
+            Verifier verifier = null;
             try {
-                mavenVersion = new Verifier("").getMavenVersion();
+                verifier = new Verifier("");
+                mavenVersion = verifier.getMavenVersion();
             } catch (VerificationException e) {
                 throw new RuntimeException(e.getMessage(), e);
+            }
+            finally {
+                if (verifier != null) {
+                    verifier.resetStreams();
+                }
             }
         }
         return mavenVersion;
