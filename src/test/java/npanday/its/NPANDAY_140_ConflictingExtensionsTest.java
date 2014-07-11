@@ -19,11 +19,7 @@ package npanday.its;
  * under the License.
  */
 
-import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
-
-import java.io.File;
 
 public class NPANDAY_140_ConflictingExtensionsTest
     extends AbstractNPandayIntegrationTestCase
@@ -36,11 +32,8 @@ public class NPANDAY_140_ConflictingExtensionsTest
     public void testConflictingExtensions()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_140_ConflictingExtensionsTest" );
-        Verifier verifier = getVerifier( testDir );
-
+        Verifier verifier = getDefaultVerifier();
         verifier.executeGoal( "install" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

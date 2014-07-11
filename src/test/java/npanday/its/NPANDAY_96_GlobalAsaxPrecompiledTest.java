@@ -37,13 +37,12 @@ public class NPANDAY_96_GlobalAsaxPrecompiledTest
     public void testGlobalAsaxPrecompiled()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_96_GlobalAsaxPrecompiledTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         File zipFile = new File( testDir, getAssemblyFile( "GlobalASAXExample", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
 
         List<String> expectedEntries = Arrays.asList( "bin/GlobalASAXExample.dll", "Default.aspx", "Global.asax",
                                                       "Web.config" );

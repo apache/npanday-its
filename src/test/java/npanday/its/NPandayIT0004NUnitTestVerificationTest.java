@@ -35,8 +35,8 @@ public class NPandayIT0004NUnitTestVerificationTest
     public void testNUnitTestsRun()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0004NUnitTestVerificationTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
 
         verifier.assertFilePresent(
@@ -49,6 +49,5 @@ public class NPandayIT0004NUnitTestVerificationTest
             new File( testDir, getTestAssemblyFile( "NUnit.Framework", "2.2.8.0", "dll" ) ).getAbsolutePath() );
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

@@ -41,8 +41,7 @@ public class NPANDAY_452_SilverlightAppTest
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
 
@@ -69,7 +68,6 @@ public class NPANDAY_452_SilverlightAppTest
         assertNoZipEntries( zipFile, entries );
         
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

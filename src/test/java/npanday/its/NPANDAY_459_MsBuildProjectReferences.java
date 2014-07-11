@@ -24,10 +24,10 @@ import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
-public class NPANDAY_459_MsBuildProjectReferencesTest
+public class NPANDAY_459_MsBuildProjectReferences
     extends AbstractNPandayIntegrationTestCase
 {
-    public NPANDAY_459_MsBuildProjectReferencesTest()
+    public NPANDAY_459_MsBuildProjectReferences()
     {
         super( "[1.4.1-incubating,)" );
     }
@@ -35,8 +35,8 @@ public class NPANDAY_459_MsBuildProjectReferencesTest
     public void testMsBuildWithProjectReferences()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_459_MSBuildProjectReferences" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         // TODO: would be better to ensure each IT has unique IDs for required test artifacts in a better namespace for deleting
         verifier.deleteArtifacts( "test" );
 
@@ -48,14 +48,12 @@ public class NPANDAY_459_MsBuildProjectReferencesTest
         // copy to bin directory manually for msbuild
         verifier.assertFilePresent( new File( testDir, "ClassLibrary1/bin/Debug/ClassLibrary1.dll" ).getAbsolutePath() );
 
-        // TODO: The bin directory is currently deleted by "install" (though
-        // perhaps shouldn't be) - unrelated to this issue, though
+        // TODO: The bin directory is currently deleted by "install" (though perhaps shouldn't be) - unrelated to this issue, though
         //verifier.assertFilePresent( new File( testDir, "ConsoleApplication1/bin/Debug/ConsoleApplication1.exe" ).getAbsolutePath() );
         //verifier.assertFilePresent( new File( testDir, "ConsoleApplication1/bin/Debug/ClassLibrary1.dll" ).getAbsolutePath() );
 
         // TODO: need to properly support transitive dependencies in the projects that copy files
         //verifier.assertFilePresent( new File( testDir, "ConsoleApplication1/bin/Debug/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

@@ -32,15 +32,13 @@ public class NPANDAY_538_COMReferenceTest
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
 
         verifier.assertArtifactPresent(context.getGroupId(), "COMApplication", "1.0-SNAPSHOT", "exe" );
         
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

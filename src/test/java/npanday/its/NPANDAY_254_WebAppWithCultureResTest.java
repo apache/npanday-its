@@ -39,9 +39,7 @@ public class NPANDAY_254_WebAppWithCultureResTest
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
-
+        Verifier verifier = getDefaultVerifier();
         verifier.executeGoal( "install" );
 
         verifier.assertArtifactPresent(context.getGroupId(), "WebAppWithCultureRes", "1.0.0-SNAPSHOT", "msdeploy.zip" );
@@ -55,7 +53,6 @@ public class NPANDAY_254_WebAppWithCultureResTest
         assertZipEntries(zipFile, entries);
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

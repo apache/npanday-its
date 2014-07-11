@@ -20,9 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
-
-import java.io.File;
 
 public class Azure17Bootstrap
     extends AbstractNPandayIntegrationTestCase
@@ -37,10 +34,8 @@ public class Azure17Bootstrap
     public void testBootstrap()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/Azure17Bootstrap" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
         verifier.executeGoal( "package" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

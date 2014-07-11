@@ -39,13 +39,12 @@ public class NPandayIT0012VBWebAppTest
     public void testWebAppInstall()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0012VBWebAppTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         File zipFile = new File( testDir, getAssemblyFile( "VBWebAppTest", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
 
         List<String> expectedEntries = Arrays.asList( "bin/VBWebAppTest.dll", "Default.aspx",
                                                       "My Project/Application.myapp", "My Project/Resources.resx",

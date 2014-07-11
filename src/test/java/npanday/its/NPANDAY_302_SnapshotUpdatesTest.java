@@ -35,21 +35,18 @@ public class NPANDAY_302_SnapshotUpdatesTest
     public void testUniqueSnapshotUpdates()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_302_SnapshotUpdatesTest/example1" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getVerifier(new File( context.getTestDir(), "example1" ));
 
         clearRdfCache();
         deleteArtifact( verifier, "NPanday.ITs", "NPanday.IT13635.Dependency", "1.0-SNAPSHOT", "dll" );
 
         verifier.executeGoal( "compile" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
+        resetVerifier();
 
-        testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_302_SnapshotUpdatesTest/example2" );
-        verifier = getVerifier( testDir );
+        verifier = getVerifier( new File( context.getTestDir(), "example2" ) );
 
         verifier.executeGoal( "compile" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

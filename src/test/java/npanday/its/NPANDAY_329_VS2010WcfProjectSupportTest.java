@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 import java.util.Arrays;
@@ -37,14 +36,12 @@ public class NPANDAY_329_VS2010WcfProjectSupportTest
     public void testWCF2010Project()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(),
-                                                                 "/NPANDAY_329_VS2010WcfProjectSupportTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         File zipFile = new File( testDir, getAssemblyFile( "WcfService1", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
 
         List<String> expectedEntries = Arrays.asList( "bin/WcfService1.dll", "bin/System.Web.DynamicData.dll",
                                                       "bin/System.Web.Entity.dll",

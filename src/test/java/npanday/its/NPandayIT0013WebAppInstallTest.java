@@ -37,8 +37,8 @@ public class NPandayIT0013WebAppInstallTest
     public void testWebAppInstall()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0013WebAppInstallTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
 
         File localRepoZip = new File( verifier.getArtifactPath( "NPanday.ITs", "WebAppExample", "1.0-SNAPSHOT", "zip" ) );
         File localRepoDll = new File( verifier.getArtifactPath( "NPanday.ITs", "WebAppExample", "1.0-SNAPSHOT", "dll" ) );
@@ -49,7 +49,6 @@ public class NPandayIT0013WebAppInstallTest
         File zipFile = new File( testDir, getAssemblyFile( "WebAppExample", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
 
         List<String> expectedEntries = Arrays.asList( "bin/WebAppExample.dll", "Default.aspx", "Web.config" );
 

@@ -22,7 +22,6 @@ package npanday.its;
 import java.io.File;
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 public class NPANDAY_198_MissingGroupOrVersionTest
     extends AbstractNPandayIntegrationTestCase
@@ -37,9 +36,8 @@ public class NPANDAY_198_MissingGroupOrVersionTest
     {
         clearRdfCache();
 
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_198_MissingGroupOrVersionTest" );
-        Verifier verifier = getVerifier( testDir );
-
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "package" );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "NPanday.ITs11579", "1.0-SNAPSHOT", "dll" ) ).getAbsolutePath() );
@@ -52,6 +50,5 @@ public class NPANDAY_198_MissingGroupOrVersionTest
         verifier.assertFilePresent(
             new File( testDir, "target/test-assemblies/NPanday11579Dependency.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

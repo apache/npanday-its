@@ -36,8 +36,8 @@ public class NPandayIT0006StockingHandlersTest
     public void testXsdPlugin()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0006StockingHandlersTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
             new File( testDir, getBuildSourcesGenerated( "StockingHandlers_1_0.cs" ) ).getAbsolutePath() );
@@ -45,6 +45,5 @@ public class NPandayIT0006StockingHandlersTest
         verifier.assertFilePresent( assembly );
         assertClassPresent( assembly, "stockingHandlersType" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

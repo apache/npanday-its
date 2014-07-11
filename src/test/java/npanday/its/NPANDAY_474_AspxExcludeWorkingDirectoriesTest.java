@@ -38,17 +38,16 @@ public class NPANDAY_474_AspxExcludeWorkingDirectoriesTest
     public void testExcludeWorkingDirectories()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_474_AspxExcludeWorkingDirectoriesTest" );
+        Verifier verifier = getDefaultVerifier();
+        File testDir = new File( verifier.getBasedir() );
 
         createSvnDir( testDir );
         createSvnDir( new File( testDir, "Subdir" ) );
 
-        Verifier verifier = getVerifier( testDir );
         verifier.executeGoal( "install" );
         File zipFile = new File( testDir, getAssemblyFile( "WcfService1", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
 
         assertTrue( new File( testDir, ".svn" ).exists() );
         assertTrue( new File( testDir, "Subdir/.svn" ).exists() );

@@ -36,15 +36,14 @@ public class NPandayIT0003NetModuleTransitiveDependencyTest
     public void testNetModuleDependencyTransitivity()
         throws Exception
     {
-        File testDir =
-            ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0003NetModuleTransitiveDependencyTest" );
+        File testDir = context.getTestDir();
         File testModuleDir = new File( testDir, "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
+        resetVerifier();
 
         testModuleDir = new File( testDir, "library" );
         verifier = getVerifier( testModuleDir );
@@ -52,7 +51,7 @@ public class NPandayIT0003NetModuleTransitiveDependencyTest
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
+        resetVerifier();
 
         testModuleDir = new File( testDir, "cli" );
         verifier = getVerifier( testModuleDir );
@@ -64,7 +63,7 @@ public class NPandayIT0003NetModuleTransitiveDependencyTest
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "cli", "1.0.0.0", "exe" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
+        resetVerifier();
 
         testModuleDir = new File( testDir, "cli-fail-transitive" );
         verifier = getVerifier( testModuleDir );
@@ -76,7 +75,6 @@ public class NPandayIT0003NetModuleTransitiveDependencyTest
         catch ( VerificationException e )
         {
             verifier.verifyTextInLog( "The type or namespace name 'It0002' could not be found" );
-            verifier.resetStreams();
         }
     }
 }

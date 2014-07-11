@@ -35,8 +35,8 @@ public class NPandayIT0040IntraProjectDependencyTest
     public void testIntraProjectDependency()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0040IntraProjectDependencyTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         File libDir = new File( testDir, "ClassLibrary3" );
         verifier.assertFilePresent(
@@ -47,6 +47,5 @@ public class NPandayIT0040IntraProjectDependencyTest
         verifier.assertFilePresent(
             new File( libDir, "target/test-assemblies/NUnit.Framework.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

@@ -35,14 +35,13 @@ public class NPandayIT0037ClassLibWithWebRefInstallTest
     public void testClassLibWithWebRefInstall()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0037ClassLibWithWebRefInstallTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String generatedClass = "ClassLibraryWithWebReference/WebReferences/net.webservicex.www/sendsmsworld.cs";
         verifier.assertFilePresent( new File( testDir, generatedClass ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, "ClassLibraryWithWebReference/" +
             getAssemblyFile( "ClassLibraryWithWebReference", "1.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

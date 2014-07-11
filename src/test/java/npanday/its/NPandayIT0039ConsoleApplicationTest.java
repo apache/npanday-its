@@ -35,12 +35,11 @@ public class NPandayIT0039ConsoleApplicationTest
     public void testConsoleApplication()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0039ConsoleApplicationTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         verifier.assertFilePresent( new File( testDir, "ConsoleApplicationEx/" +
             getAssemblyFile( "ConsoleApplicationEx", "1.0.0", "exe" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

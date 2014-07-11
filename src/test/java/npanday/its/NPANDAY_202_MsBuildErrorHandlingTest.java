@@ -21,9 +21,6 @@ package npanday.its;
 
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
-
-import java.io.File;
 
 public class NPANDAY_202_MsBuildErrorHandlingTest
     extends AbstractNPandayIntegrationTestCase
@@ -36,9 +33,7 @@ public class NPANDAY_202_MsBuildErrorHandlingTest
     public void testMsBuildErrorsHandled()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_202_MsBuildErrorHandlingTest" );
-        Verifier verifier = getVerifier( testDir );
-
+        Verifier verifier = getDefaultVerifier();
         try
         {
             verifier.executeGoal( "compile" );
@@ -48,6 +43,5 @@ public class NPANDAY_202_MsBuildErrorHandlingTest
         {
             verifier.verifyTextInLog( "error CS1002: ; expected" );
         }
-        verifier.resetStreams();
     }
 }

@@ -36,8 +36,7 @@ public class NPANDAY_480_AzureSupportOneWebRole
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
         final String a = "HelloWorld_CloudService";
@@ -59,7 +58,6 @@ public class NPANDAY_480_AzureSupportOneWebRole
         // TODO: check package contents
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

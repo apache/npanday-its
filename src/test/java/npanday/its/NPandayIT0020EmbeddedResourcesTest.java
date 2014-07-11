@@ -35,8 +35,8 @@ public class NPandayIT0020EmbeddedResourcesTest
     public void testEmbeddedResources()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0020EmbeddedResourcesTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
             new File( testDir, "target/assembly-resources/resource/resgen/fix.gif" ).getAbsolutePath());
@@ -49,6 +49,5 @@ public class NPandayIT0020EmbeddedResourcesTest
         assertClassNotPresent( assembly, "NPandayIT0020.resgen.fix.gif" );
         assertClassNotPresent( assembly, "NPandayIT0020.fix.gif" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

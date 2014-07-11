@@ -35,8 +35,8 @@ public class NPandayIT0036InstalledArtifactsVerificationTest
     public void testIT0036InstalledArtifacts()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0036InstalledArtifactsVerificationTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String exe =
             new File( testDir, getAssemblyFile( "NPandayIT0036", "1.0.0.0", "exe" ) ).getAbsolutePath();
@@ -54,6 +54,5 @@ public class NPandayIT0036InstalledArtifactsVerificationTest
         assertClassPresent( exe, "Module2" );
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

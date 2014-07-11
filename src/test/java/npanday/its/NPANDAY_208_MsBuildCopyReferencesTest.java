@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
@@ -35,8 +34,8 @@ public class NPANDAY_208_MsBuildCopyReferencesTest
     public void testMsBuildCopyReferences()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_208_MsBuildCopyReferencesTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         // TODO: would be better to ensure each IT has unique IDs for required test artifacts in a better namespace for deleting
         verifier.deleteArtifacts( "test" );
 
@@ -46,6 +45,5 @@ public class NPANDAY_208_MsBuildCopyReferencesTest
         verifier.assertFilePresent( new File( testDir + "/bin/Debug/NPandayIT11695.dll" ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir + "/bin/Debug/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

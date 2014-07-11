@@ -35,16 +35,15 @@ public class NPandayIT0002NetModuleDependencyTest
     public void testNetModuleDependency()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0002NetModuleDependencyTest" );
-        File testModuleDir = new File( testDir, "dependency" );
+        File testModuleDir = new File( context.getTestDir(), "dependency" );
         Verifier verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "dependency", "1.0.0.0", "netmodule" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
+        resetVerifier();
 
-        testModuleDir = new File( testDir, "library" );
+        testModuleDir = new File( context.getTestDir(), "library" );
         verifier = getVerifier( testModuleDir );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent(
@@ -52,6 +51,5 @@ public class NPandayIT0002NetModuleDependencyTest
         verifier.assertFilePresent(
             new File( testModuleDir, getAssemblyFile( "library", "1.0.0.0", "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

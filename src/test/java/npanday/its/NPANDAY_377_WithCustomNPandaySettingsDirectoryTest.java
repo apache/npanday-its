@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
@@ -35,13 +34,13 @@ public class NPANDAY_377_WithCustomNPandaySettingsDirectoryTest
     public void test()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_377_WithCustomNPandaySettingsDirectoryTest" );
-        Verifier verifier = getVerifier( testDir, false );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
+        overrideNPandaySettings( verifier );
         verifier.executeGoal( "install" );
         verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/" +
             getAssemblyFile( "NPANDAY377WithCustomNPandaySettingsDirectoryTest", "1.0.0", "dll" ) ).getAbsolutePath() );
-        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/npanday-settings.xml").getAbsolutePath() );
+        verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/npanday-settings.xml" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

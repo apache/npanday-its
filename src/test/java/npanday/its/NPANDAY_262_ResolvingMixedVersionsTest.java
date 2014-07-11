@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
@@ -35,9 +34,8 @@ public class NPANDAY_262_ResolvingMixedVersionsTest
     public void testMixedVersionResolution()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_262_ResolvingMixedVersionsTest" );
-        Verifier verifier = getVerifier( testDir );
-
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.deleteArtifact( "test", "test-snapshot", "1.0-SNAPSHOT", "dll" );
 
         verifier.executeGoal( "install" );
@@ -51,6 +49,5 @@ public class NPANDAY_262_ResolvingMixedVersionsTest
             new File( testDir, "target/test-assemblies/test-mixed-versions-test.dll" ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, "target/test-assemblies/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

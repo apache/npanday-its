@@ -20,9 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
-
-import java.io.File;
 
 public class BootstrapTest
     extends AbstractNPandayIntegrationTestCase
@@ -35,10 +32,8 @@ public class BootstrapTest
     public void testBootstrap()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/BootstrapTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
         verifier.executeGoal( "install" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

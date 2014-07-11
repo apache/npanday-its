@@ -32,9 +32,7 @@ public class NPANDAY_537_WindowsExecutableTest
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
-
+        Verifier verifier = getDefaultVerifier();
         verifier.executeGoal( "install" );
 
         verifier.assertArtifactPresent(context.getGroupId(), "WindowsFormsApplication1", "1.0-SNAPSHOT", "exe" );
@@ -42,7 +40,6 @@ public class NPANDAY_537_WindowsExecutableTest
         assertSubsystem( verifier.getArtifactPath( context.getGroupId(), "WindowsFormsApplication1", "1.0-SNAPSHOT", "exe" ), 2 );
         
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

@@ -35,8 +35,8 @@ public class NPandayIT0038CompilerWithArgsTest
     public void testCompilerWithArgs()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0038CompilerWithArgsTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayITCompilerWithArgs", "1.0.0.0", "dll",
                                                               null ) ).getAbsolutePath();
@@ -44,6 +44,5 @@ public class NPandayIT0038CompilerWithArgsTest
         assertClassPresent( assembly, "It0001" );
         assertClassNotPresent( assembly, "It0002" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

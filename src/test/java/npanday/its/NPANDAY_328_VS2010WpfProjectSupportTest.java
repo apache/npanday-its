@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
@@ -35,8 +34,8 @@ public class NPANDAY_328_VS2010WpfProjectSupportTest
     public void testWPF2010Project()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_328_VS2010WpfProjectSupportTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "test" );
         String assembly = new File( testDir,
             getAssemblyFile( "WpfApplication8", "1.0.0", "exe" ) ).getAbsolutePath();
@@ -49,6 +48,5 @@ public class NPANDAY_328_VS2010WpfProjectSupportTest
         assertClassPresent( assembly, "WpfApplication8.App" );
         assertClassPresent( assembly, "WpfApplication8.MainWindow" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

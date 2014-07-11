@@ -35,13 +35,12 @@ public class NPandayIT0022StrongNameKeyAddedToAssemblyTest
     public void testStrongNameKeyAddedToAssembly()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0022StrongNameKeyAddedToAssemblyTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0022", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
         assertPublicKey( assembly );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

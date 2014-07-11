@@ -34,8 +34,7 @@ public class NPANDAY_571_AzureSDKVersionTest
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
         final String a = "NPANDAY_571_AzureSDKVersionTest";
@@ -60,7 +59,6 @@ public class NPANDAY_571_AzureSDKVersionTest
         // TODO: check package contents
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

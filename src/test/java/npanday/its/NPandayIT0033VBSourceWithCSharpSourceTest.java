@@ -35,8 +35,8 @@ public class NPandayIT0033VBSourceWithCSharpSourceTest
     public void testVBSourceWithCsharpTestSource()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0033VBSourceWithCSharpSourceTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0033", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
@@ -46,6 +46,5 @@ public class NPandayIT0033VBSourceWithCSharpSourceTest
         verifier.assertFilePresent( testAssembly );
         assertClassPresent( testAssembly, "Class1" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

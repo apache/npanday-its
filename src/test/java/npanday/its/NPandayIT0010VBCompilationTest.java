@@ -35,13 +35,12 @@ public class NPandayIT0010VBCompilationTest
     public void testVBCompilation()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0010VBCompilationTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0010", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
         assertClassPresent( assembly, "HelloWorld" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

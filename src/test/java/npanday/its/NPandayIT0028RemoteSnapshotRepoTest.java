@@ -35,8 +35,8 @@ public class NPandayIT0028RemoteSnapshotRepoTest
     public void testSnapDeploymentRemoteRepoNotUnique()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0028RemoteSnapshotRepoTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "deploy" );
         verifier.assertFilePresent(
             new File( testDir, getAssemblyFile( "NPandayIT0028", "1.0.0.0", "dll" ) ).getAbsolutePath() );
@@ -45,6 +45,5 @@ public class NPandayIT0028RemoteSnapshotRepoTest
         verifier.assertFilePresent( new File( testDir, path + ".dll" ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, path + ".pom" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

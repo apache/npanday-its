@@ -58,7 +58,7 @@ public class IntegrationTestSuite
         suite.addTestSuite( NPANDAY_480_CloudServiceWithMultipleRoles.class );
         suite.addTestSuite( NPANDAY_480_AzureSupportOneWebRole.class );
         suite.addTestSuite( NPANDAY_474_AspxExcludeWorkingDirectoriesTest.class );
-        suite.addTestSuite( NPANDAY_459_MsBuildProjectReferencesTest.class );
+        suite.addTestSuite( NPANDAY_459_MsBuildProjectReferences.class );
         suite.addTestSuite( NPANDAY_465_AspxDisablePrecompilationTest.class );
         suite.addTestSuite( NPANDAY_488_MSDeployPackageSimpleWebApp.class );
         suite.addTestSuite( NPANDAY_96_GlobalAsaxPrecompiledTest.class );

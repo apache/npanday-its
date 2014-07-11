@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
@@ -37,8 +36,8 @@ public class NPANDAY_330_VS2010MvcProjectSupportTest
     public void testMVC2010Project()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_330_VS2010MvcProjectSupportTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         		
 		String assembly = new File( testDir + "/NPanday330MVC2010ProjectTest",
@@ -49,6 +48,5 @@ public class NPANDAY_330_VS2010MvcProjectSupportTest
         assertClassPresent( assembly, "NPanday330MVC2010ProjectTest.Controllers.HomeController" );
         assertClassPresent( assembly, "NPanday330MVC2010ProjectTest.MvcApplication" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

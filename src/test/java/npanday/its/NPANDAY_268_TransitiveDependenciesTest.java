@@ -42,7 +42,7 @@ public class NPANDAY_268_TransitiveDependenciesTest
     public void testLadderBuild()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_268_TransitiveDependenciesTest/LadderBuild" );
+        File testDir = new File( context.getTestDir(), "LadderBuild" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "ladder1", "2.0.0.0", "dll" );
@@ -51,13 +51,12 @@ public class NPANDAY_268_TransitiveDependenciesTest
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "ladder1", "2.0.0.0",
                                                                         "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
     public void testTransitiveDependenciesNotOnCompile()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_268_TransitiveDependenciesTest/TransDependency" );
+        File testDir = new File( context.getTestDir(), "TransDependency" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "NPandayIT13018", "1.0.0.0", "dll" );
@@ -68,6 +67,5 @@ public class NPANDAY_268_TransitiveDependenciesTest
         verifier.assertFilePresent( new File( testDir, getAssemblyFile( "NPandayIT13018", "1.0.0.0",
                                                                         "dll" ) ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

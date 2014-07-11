@@ -71,6 +71,10 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     private static String disasmExec = findDisasmExec();
 
+    protected NPandayIntegrationTestContext context;
+
+    private Verifier verifier;
+
     protected AbstractNPandayIntegrationTestCase()
     {
         this( "(0,)" );
@@ -85,6 +89,34 @@ public abstract class AbstractNPandayIntegrationTestCase
             skip = true;
             skipReason = "NPanday version " + version + " not in range " + versionRange;
         }
+    }
+
+    protected AbstractNPandayIntegrationTestCase( String versionRangeStr, String frameworkVersionStr )
+    {
+        this( versionRangeStr );
+
+        VersionRange versionRange = createVersionRange(frameworkVersionStr);
+
+        if ( frameworkVersion != null && !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
+        {
+            skip = true;
+            skipReason = "Framework version " + frameworkVersion + " not in range " + versionRange;
+        }
+    }
+
+    protected void setUp() throws IOException, VerificationException {
+        context = new NPandayIntegrationTestContext();
+
+        File testDir = ResourceExtractor.simpleExtractResources(getClass(), "/" + getClass().getSimpleName());
+
+        context.setGroupId("NPanday.ITs." + getClass().getSimpleName());
+        context.setTestDir(testDir);
+
+        // Verifier not created yet because it steals System.out before we can print the test name in runTest
+    }
+
+    protected Verifier getDefaultVerifier() throws VerificationException, IOException {
+        return getVerifier(context.getTestDir());
     }
 
     protected static boolean checkNPandayVersion( VersionRange versionRange, DefaultArtifactVersion version )
@@ -104,19 +136,6 @@ public abstract class AbstractNPandayIntegrationTestCase
         else
         {
             return versionRange.containsVersion( version );
-        }
-    }
-
-    protected AbstractNPandayIntegrationTestCase( String versionRangeStr, String frameworkVersionStr )
-    {
-        this( versionRangeStr );
-
-        VersionRange versionRange = createVersionRange(frameworkVersionStr);
-
-        if ( frameworkVersion != null && !versionRange.containsVersion( frameworkVersion ) && !forceVersion )
-        {
-            skip = true;
-            skipReason = "Framework version " + frameworkVersion + " not in range " + versionRange;
         }
     }
 
@@ -251,25 +270,34 @@ public abstract class AbstractNPandayIntegrationTestCase
     protected void runTest()
         throws Throwable
     {
-        System.out.println();
         System.out.print( String.format("%1$-70s", getITName() + "." + getName()));
 
         if ( skip )
         {
-            System.out.print( " Skipping (" + skipReason + ")" );
+            System.out.println( "Skipping (" + skipReason + ")" );
             return;
         }
 
         try
         {
             super.runTest();
-            System.out.print( "OK" );
+
+            // always reset the streams to get stdout/err back
+            verifier.resetStreams();
+
+            System.out.println( "OK" );
         }
         catch ( Throwable t )
         {
-            // TODO: this actually never happens on my machine. me@lcorneliussen.de
-            System.out.print( "FAILURE" );
+            // don't cross the streams!
+            verifier.resetStreams();
+
+            System.out.println( "FAILURE" );
+
             throw t;
+        }
+        finally {
+            verifier = null;
         }
     }
 
@@ -281,14 +309,11 @@ public abstract class AbstractNPandayIntegrationTestCase
     }
 
     protected Verifier getVerifier(File testDirectory)
-        throws VerificationException {
-        return getVerifier(testDirectory, true);
-    }
+        throws VerificationException, IOException {
+        if ( verifier != null ) {
+            throw new IllegalStateException( "Previous verifier has not been reset - call resetVerifier()" );
+        }
 
-    protected Verifier getVerifier(File testDirectory, boolean overrideNPandaySettings)
-        throws VerificationException
-    {
-        Verifier verifier;
         if ( debugMaven )
         {
             verifier = new Verifier( testDirectory.getAbsolutePath() ) {
@@ -303,15 +328,25 @@ public abstract class AbstractNPandayIntegrationTestCase
         if (version != null) {
             cliOptions.add( "-Dnpanday.version=" + version );
         }
-        if (overrideNPandaySettings) {
-            cliOptions.add( "-Dnpanday.settings=" + new File( testDirectory, "npanday-settings.xml" ).getAbsolutePath() );
-        }
         if ( debugOutput )
         {
             cliOptions.add( "-X" );
         }
         verifier.setCliOptions( cliOptions );
+
+        verifier.deleteArtifacts(context.getGroupId());
+
         return verifier;
+    }
+
+    protected static void overrideNPandaySettings( Verifier verifier ) {
+        verifier.getCliOptions().add("-Dnpanday.settings=" +
+                new File(verifier.getBasedir(), "npanday-settings.xml").getAbsolutePath());
+    }
+
+    protected void resetVerifier() {
+        verifier.resetStreams();
+        verifier = null;
     }
 
     protected String getCommentsFile()
@@ -481,8 +516,6 @@ public abstract class AbstractNPandayIntegrationTestCase
 
             StreamConsumer err = new WriterStreamConsumer( logWriter );
 
-//            System.err.println( "Command: " + Commandline.toString( cli.getCommandline() ) );
-
             int ret = CommandLineUtils.executeCommandLine( cli, out, err );
 
             logWriter.close();
@@ -490,8 +523,13 @@ public abstract class AbstractNPandayIntegrationTestCase
             String output = logWriter.toString();
             if ( ret > 0 )
             {
-                System.err.println( output );
-                throw new VerificationException( "Exit code: " + ret );
+                StringBuilder error = new StringBuilder( "Command failed with exit code: " + ret + "\n" );
+                error.append("Command: ").append(Commandline.toString(cli.getCommandline())).append("\n");
+                error.append("--- OUTPUT ---\n");
+                error.append(output);
+                error.append("--------------");
+
+                throw new VerificationException(String.valueOf(error));
             }
 
             return output;
@@ -662,11 +700,6 @@ public abstract class AbstractNPandayIntegrationTestCase
 
         context.setGroupId("NPanday.ITs." + getClass().getSimpleName());
         context.setTestDir(testDir);
-
-        Verifier verifier = getVerifier( testDir );
-        verifier.deleteArtifacts( context.getGroupId() );
-
-        context.setVerifier(verifier);
 
         return context;
     }

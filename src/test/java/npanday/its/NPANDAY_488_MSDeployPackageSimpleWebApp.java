@@ -36,14 +36,12 @@ public class NPANDAY_488_MSDeployPackageSimpleWebApp
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
         verifier.assertArtifactPresent(context.getGroupId(), "HelloWorld_WebRole", "1.0.0-SNAPSHOT", "msdeploy.zip" );
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

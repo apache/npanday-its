@@ -34,8 +34,7 @@ public class NPANDAY_580_WpfBrowserTest
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
         verifier.assertArtifactPresent(context.getGroupId(), "NPANDAY_580_WpfBrowserTest", "1.0.0-SNAPSHOT", "exe" );
@@ -43,7 +42,6 @@ public class NPANDAY_580_WpfBrowserTest
         verifier.assertArtifactPresent(context.getGroupId(), "NPANDAY_580_WpfBrowserTest", "1.0.0-SNAPSHOT", "xbap" );
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

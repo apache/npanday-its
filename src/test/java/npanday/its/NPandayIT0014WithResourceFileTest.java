@@ -35,8 +35,8 @@ public class NPandayIT0014WithResourceFileTest
     public void testWithResourceFile()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0014WithResourceFileTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "test" );
         String assembly = new File( testDir, "ClassLibrary1/" +
             getAssemblyFile( "ClassLibrary1", "1.0.0", "dll" ) ).getAbsolutePath();
@@ -46,6 +46,5 @@ public class NPandayIT0014WithResourceFileTest
         assertResourcePresent( assembly, "Resource1.resources" );
         assertClassPresent( assembly, "ClassLibrary1.Resource1" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

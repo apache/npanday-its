@@ -34,8 +34,7 @@ public class NPANDAY_480_CloudServiceWithWorkerRole
     public void test()
         throws Exception
     {
-        NPandayIntegrationTestContext context = createDefaultTestContext();
-        Verifier verifier = context.getPreparedVerifier();
+        Verifier verifier = getDefaultVerifier();
 
         verifier.executeGoal( "install" );
         final String a = "HelloWorld_CloudService";
@@ -60,7 +59,6 @@ public class NPANDAY_480_CloudServiceWithWorkerRole
         // TODO: check package contents
 
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
 }

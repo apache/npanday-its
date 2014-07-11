@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 import java.util.Arrays;
@@ -37,14 +36,11 @@ public class NPANDAY_121_ResGenWithErrorInFileNameTest
     public void testResGenWithErrorInFileName()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(),
-                                                                 "/NPANDAY_121_ResGenWithErrorInFileNameTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
         verifier.executeGoal( "install" );
-        File zipFile = new File( testDir, "npanday-9903/" + getAssemblyFile( "npanday-9903", "1.0.0", "zip" ) );
+        File zipFile = new File( verifier.getBasedir(), "npanday-9903/" + getAssemblyFile( "npanday-9903", "1.0.0", "zip" ) );
         verifier.assertFilePresent( zipFile.getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
 
         List<String> expectedEntries = Arrays.asList( "bin/npanday-9903.dll", "Default.aspx", "error.aspx",
                                                       "error.asp.resx", "My Project/Application.myapp",
@@ -53,7 +49,7 @@ public class NPANDAY_121_ResGenWithErrorInFileNameTest
 
         assertZipEntries( zipFile, expectedEntries );
 
-        String assembly = new File( testDir, "npanday-9903/target/npanday-9903/bin/npanday-9903.dll" ).getCanonicalPath();
+        String assembly = new File( verifier.getBasedir(), "npanday-9903/target/npanday-9903/bin/npanday-9903.dll" ).getCanonicalPath();
         assertResourcePresent( assembly, "npanday_9903", "Resources.resources" );
         assertResourcePresent( assembly, "npanday_9903","error.asp.resources" );
         assertClassPresent( assembly, "_Default" );

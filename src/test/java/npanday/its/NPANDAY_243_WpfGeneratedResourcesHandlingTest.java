@@ -20,7 +20,6 @@ package npanday.its;
  */
 
 import org.apache.maven.it.Verifier;
-import org.apache.maven.it.util.ResourceExtractor;
 
 import java.io.File;
 
@@ -35,8 +34,8 @@ public class NPANDAY_243_WpfGeneratedResourcesHandlingTest
     public void testWpfProject()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPANDAY_243_WpfGeneratedResourcesHandlingTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "test" );
         String assembly = new File( testDir,
             getAssemblyFile( "NPandayIT12549", "1.0.0", "exe" ) ).getAbsolutePath();
@@ -52,6 +51,5 @@ public class NPANDAY_243_WpfGeneratedResourcesHandlingTest
         assertClassPresent( assembly, "NPandayIT12549.App" );
         assertClassPresent( assembly, "NPandayIT12549.Window1" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

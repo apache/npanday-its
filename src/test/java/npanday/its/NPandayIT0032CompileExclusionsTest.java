@@ -35,8 +35,8 @@ public class NPandayIT0032CompileExclusionsTest
     public void testCompileExclusions()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0032CompileExclusionsTest" );
-        Verifier verifier = getVerifier( testDir );
+        Verifier verifier = getDefaultVerifier();
+        String testDir = verifier.getBasedir();
         verifier.executeGoal( "install" );
         String assembly = new File( testDir, getAssemblyFile( "NPandayIT0032", "1.0.0.0", "dll" ) ).getAbsolutePath();
         verifier.assertFilePresent( assembly );
@@ -46,6 +46,5 @@ public class NPandayIT0032CompileExclusionsTest
         verifier.assertFilePresent( testAssembly );
         assertClassPresent( testAssembly, "It0032Test1" );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }

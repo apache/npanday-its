@@ -35,7 +35,7 @@ public class NPandayIT0011SnapshotResolutionTest
     public void testUniqueSnapshotResolution()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0011SnapshotResolutionTest/unique" );
+        File testDir = new File( context.getTestDir(), "unique" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "test-snapshot", "1.0-SNAPSHOT", "dll" );
@@ -51,13 +51,12 @@ public class NPandayIT0011SnapshotResolutionTest
             new File( testDir, "target/test-assemblies/test-unique-snapshot-test.dll" ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, "target/test-assemblies/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 
     public void testNonUniqueSnapshotResolution()
         throws Exception
     {
-        File testDir = ResourceExtractor.simpleExtractResources( getClass(), "/NPandayIT0011SnapshotResolutionTest/non-unique" );
+        File testDir = new File( context.getTestDir(), "non-unique" );
         Verifier verifier = getVerifier( testDir );
 
         verifier.deleteArtifact( "test", "test-snapshot", "1.0-SNAPSHOT", "dll" );
@@ -73,6 +72,5 @@ public class NPandayIT0011SnapshotResolutionTest
             new File( testDir, "target/test-assemblies/test-non-unique-snapshot-test.dll" ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, "target/test-assemblies/test-snapshot.dll" ).getAbsolutePath() );
         verifier.verifyErrorFreeLog();
-        verifier.resetStreams();
     }
 }
