@@ -744,6 +744,13 @@ public abstract class AbstractNPandayIntegrationTestCase
         }
     }
 
+    protected void skipIf64Bit() {
+        if (System.getenv( "PROGRAMFILES(X86)" ) != null) {
+            skip = true;
+            skipReason = "Only run on x86 servers";
+        }
+    }
+
     protected void skipIfMavenVersion(String versionSpec) throws InvalidVersionSpecificationException, VerificationException {
         VersionRange range = VersionRange.createFromVersionSpec( versionSpec );
         String mavenVersion = findMavenVersion();
@@ -773,15 +780,15 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected void skipIfXdtNotPresent()
     {
-        File f = new File( System.getenv( "PROGRAMFILES" ), "MSBuild" );
-        f = new File( f, "Microsoft/VisualStudio" );
-        File[] versions = f.listFiles();
-        if ( versions != null ) {
-            for ( File v : versions )
-            {
-                if ( new File( v, "Web/Microsoft.Web.Publishing.Tasks.dll" ).exists() )
-                {
-                    return;
+        for ( String pf : new String[] { System.getenv( "PROGRAMFILES" ), System.getenv( "PROGRAMFILES(X86)" )}) {
+            File f = new File( pf, "MSBuild" );
+            f = new File( f, "Microsoft/VisualStudio" );
+            File[] versions = f.listFiles();
+            if ( versions != null ) {
+                for ( File v : versions ) {
+                    if ( new File( v, "Web/Microsoft.Web.Publishing.Tasks.dll" ).exists() ) {
+                        return;
+                    }
                 }
             }
         }

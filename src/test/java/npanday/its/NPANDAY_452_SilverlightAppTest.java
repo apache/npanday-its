@@ -36,6 +36,8 @@ public class NPANDAY_452_SilverlightAppTest
                                   "Silverlight v3.0 SDK is not present" );
         // required for ASP.NET packaging
         skipIfMissingWebDeployV2();
+        // Silverlight doesn't play well here - may be something the tools can address in future
+        skipIf64Bit();
     }
 
     public void test()
