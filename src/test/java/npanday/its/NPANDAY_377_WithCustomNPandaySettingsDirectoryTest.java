@@ -34,10 +34,9 @@ public class NPANDAY_377_WithCustomNPandaySettingsDirectoryTest
     public void test()
         throws Exception
     {
-        Verifier verifier = getDefaultVerifier();
-        String testDir = verifier.getBasedir();
-        overrideNPandaySettings( verifier );
-        verifier.executeGoal( "install" );
+        File testDir = context.getTestDir();
+        Verifier verifier = getVerifier(testDir, false);
+        verifier.executeGoal("install");
         verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/" +
             getAssemblyFile( "NPANDAY377WithCustomNPandaySettingsDirectoryTest", "1.0.0", "dll" ) ).getAbsolutePath() );
         verifier.assertFilePresent( new File( testDir, "NPANDAY_377_WithCustomNPandaySettingsDirectoryTest/npanday-settings.xml" ).getAbsolutePath() );

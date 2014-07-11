@@ -92,7 +92,7 @@ public abstract class AbstractNPandayIntegrationTestCase
     {
         VersionRange versionRange = createVersionRange(versionRangeStr);
 
-        if ( !checkNPandayVersion( versionRange, version ) && !forceVersion )
+        if ( !checkNPandayVersion(versionRange, version) && !forceVersion )
         {
             skip = true;
             skipReason = "NPanday version " + version + " not in range " + versionRange;
@@ -289,6 +289,11 @@ public abstract class AbstractNPandayIntegrationTestCase
 
     protected Verifier getVerifier(File testDirectory)
         throws VerificationException, IOException {
+        return getVerifier(testDirectory, true);
+    }
+
+    protected Verifier getVerifier(File testDirectory, boolean overrideNPandaySettings)
+        throws VerificationException, IOException {
         if ( verifier != null ) {
             throw new IllegalStateException( "Previous verifier has not been reset - call resetVerifier()" );
         }
@@ -311,16 +316,17 @@ public abstract class AbstractNPandayIntegrationTestCase
         {
             cliOptions.add( "-X" );
         }
+
+        if (overrideNPandaySettings) {
+            cliOptions.add("-Dnpanday.settings=" +
+                    new File(verifier.getBasedir(), "npanday-settings.xml").getAbsolutePath());
+        }
+
         verifier.setCliOptions( cliOptions );
 
         verifier.deleteArtifacts(context.getGroupId());
 
         return verifier;
-    }
-
-    protected static void overrideNPandaySettings( Verifier verifier ) {
-        verifier.getCliOptions().add("-Dnpanday.settings=" +
-                new File(verifier.getBasedir(), "npanday-settings.xml").getAbsolutePath());
     }
 
     protected void resetVerifier() {
