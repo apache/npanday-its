@@ -48,6 +48,8 @@ public class IntegrationTestSuite
         // suite.addTestSuite( NPandayIT0002NetModuleDependencyTest.class ); // NPANDAY-214
         // suite.addTestSuite( NPandayIT0003NetModuleTransitiveDependencyTest.class ); // NPANDAY-214
 
+        suite.addTestSuite( NPANDAY_227_ResGenResourcesTest.class );
+        suite.addTestSuite( NPANDAY_227_ResGenConventionsTest.class );
         suite.addTestSuite( NPANDAY_580_WpfBrowserTest.class );
         suite.addTestSuite( NPANDAY_254_WebAppWithCultureResTest.class );
         suite.addTestSuite( NPANDAY_571_AzureSDKVersionTest.class );
